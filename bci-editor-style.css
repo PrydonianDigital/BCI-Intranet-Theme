@@ -1,0 +1,21 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:400,500,700';
+
+html {
+	font-size: 62.5%;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+body#tinymce.wp-editor {
+	margin: 1em;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.8rem;
+	line-height: 1.6;
+	color: #111111;
+}
+body#tinymce.wp-editor p {
+	margin: 0 0 0.8em 0;
+}
+body#tinymce.wp-editor a {
+    color: #600060;
+}

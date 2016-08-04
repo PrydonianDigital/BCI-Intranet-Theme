@@ -1,0 +1,82 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:400';
+html {
+	font-size: 62.5%;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.8rem;
+	line-height: 1.6;
+	color: #111111;
+	background: #800080 !important;
+}
+.login h1 a {
+	width: 320px;
+	height: 134px;
+	background: url(../img/BCI-Logo.png) no-repeat center center;
+	background-size: 300px 134px;
+}
+#nav, #backtoblog {
+	display: none;
+}
+.login label {
+	font-size: 1.4rem;
+	color: #333;
+}
+
+.login input[type="text"]{
+	background-color: #ffffff;
+	border-color:#dddddd;
+	-webkit-border-radius: 4px;
+}
+.login input[type="password"]{
+	background-color: #ffffff;
+	border-color:#dddddd;
+	-webkit-border-radius: 4px;
+}
+.login .button-primary {
+	width: 120px;
+	float:right;
+	background-color:#600060 !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#600060), to(#600060));
+	background: -webkit-linear-gradient(top, #600060, #600060);
+	background: -moz-linear-gradient(top, #600060, #600060);
+	background: -ms-linear-gradient(top, #600060, #600060);
+	background: -o-linear-gradient(top, #600060, #600060);
+	background-image: -ms-linear-gradient(top, #600060 0%, #600060 100%);
+	color: #ffffff;
+	-webkit-border-radius: 4px;
+	border: 1px solid #800080;
+}
+
+.login .button-primary:hover {
+	background-color:#600060 !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#600060), to(#800080 ));
+	background: -webkit-linear-gradient(top, #600060, #800080 );
+	background: -moz-linear-gradient(top, #600060, #800080 );
+	background: -ms-linear-gradient(top, #600060, #800080 );
+	background: -o-linear-gradient(top, #600060, #800080 );
+	background-image: -ms-linear-gradient(top, #0b436e 0%, #800080 100%);
+	color: #fff;
+	-webkit-border-radius: 4px;
+	border: 1px solid #800080;
+}
+
+.login .button-primary:active {
+	background-color:#600060 !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#800080), to(#600060));
+	background: -webkit-linear-gradient(top, #800080, #600060);
+	background: -moz-linear-gradient(top, #800080, #600060);
+	background: -ms-linear-gradient(top, #800080, #600060);
+	background: -o-linear-gradient(top, #800080, #600060);
+	background-image: -ms-linear-gradient(top, #800080 0%, #600060 100%);
+	color: #fff;
+	-webkit-border-radius: 4px;
+	border: 1px solid #800080;
+}
+#login_error, .message {
+	display: none !important;
+}
