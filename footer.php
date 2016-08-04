@@ -37,8 +37,10 @@
 	</div>
 
 </footer>
+
 <a href="#0" class="cd-top"><i class="nav-angle-double-up"></i></a>
+
 <?php wp_footer(); ?>
-<?php include_once('analytics.php') ?>
+
 </body>
 </html>
