@@ -24,20 +24,10 @@
 	function embed_styles() {
 	    echo '<style>';
 	    echo '@import "https://fonts.googleapis.com/css?family=Roboto:400,500,700";';
-	    echo '@import "' . get_template_directory_uri() . '/css/nav.css"; ';
 	    echo '.wp-embed-footer {display:none !important;}';
 	    echo '.wp-embed {font-family: "Roboto" !important; color: #222 !important;}';
 	    echo '.wp-embed-heading {color: #25023B !important;}';
-	    echo '.wp-embed-icon {font-family: "nav" !important; font-size: 2rem;}';
 	    echo '</style>';
-	}
-
-	add_action( 'embed_content', 'embed_icon' );
-	function embed_icon() {
-		$output = '<div class="wp-embed-icon">';
-		$output .= '<a href="'.get_the_permalink().'"><i class="nav-BCIi"></i></a>';
-		$output .= '</div>';
-		echo $output;
 	}
 
 	// Searches
