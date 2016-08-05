@@ -3,22 +3,25 @@
 	<div class="row">
 
 		<div class="small-12 large-9 column" role="main">
-			<div class="featured owl-carousel" id="featured-slider">
-				<?php
-					$stickies = get_option( 'sticky_posts' );
-					if ( $stickies ) {
-						$args = [
-							'post_type'				=> 'post',
-							'post__in'				=> $stickies,
-							'ignore_sticky_posts'	=> 1
-						];
-						$the_query = new WP_Query($args);
-						if ( $the_query->have_posts() ) {
-							while ( $the_query->have_posts() ) {
-									$the_query->the_post();
-									$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 
-				?>
+			<?php
+				$stickies = get_option( 'sticky_posts' );
+				if ( $stickies ) {
+					$args = [
+						'post_type'				=> 'post',
+						'post__in'				=> $stickies,
+						'ignore_sticky_posts'	=> 1
+					];
+					$the_query = new WP_Query($args);
+					if ( $the_query->have_posts() ) {
+			?>
+			<div class="featured owl-carousel" id="featured-slider">
+			<?php
+						while ( $the_query->have_posts() ) {
+								$the_query->the_post();
+								$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+
+			?>
 				<article class="item" style="background-image: url(<?php echo $url; ?>)">
 					<div>
 					<h2><?php the_title(); ?></h2>
@@ -26,14 +29,16 @@
 					<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
 					</div>
 				</article>
-				<?php
+			<?php
 
-							}
-							wp_reset_postdata();
 						}
+						wp_reset_postdata();
 					}
-				?>
+			?>
 			</div>
+			<?php
+				}
+			?>
 
 			<div class="row">
 
@@ -54,6 +59,16 @@
 							<div>
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('display', array( 'class' => 'aligncenter' )); ?></a>
 								<h5><?php the_title(); ?></h5>
+								<h6>Photo by:
+								<?php
+									$users = get_post_meta( get_the_ID(), '_potw_user', true );
+									$user_split = explode( ',', str_replace( ' ', '', $users ) );
+									foreach ( $user_split as $user ) {
+									    $user = get_user_by( 'id', $user );
+									    $name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
+									    echo $name . ' ';
+									}
+								?></h6>
 								<small class="meta"><?php the_time('l jS F, Y') ?></small>
 							</div>
 						</div>

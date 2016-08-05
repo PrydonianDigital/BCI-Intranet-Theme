@@ -707,6 +707,22 @@
 		) );
 	}
 
+	// POTW
+	add_action( 'cmb2_admin_init', 'potw_meta' );
+	function potw_meta() {
+		$prefix = '_potw_';
+		$cmb_user = new_cmb2_box( array(
+		    'id'			=> $prefix . 'edit_metabox',
+		    'title'			=> __( 'Photo Info', 'bci' ),
+		    'object_types'	=> array( 'potw', ), // Post type
+		) );
+		$cmb_user->add_field( array(
+		    'name' 			=> __( 'Photo Credit', 'bci' ),
+		    'id'			=> $prefix . 'user',
+		    'type'			=> 'user_search_text',
+		) );
+	}
+
 	// Announcements
 	add_action( 'cmb2_admin_init', 'show_announcement' );
 	function show_announcement() {

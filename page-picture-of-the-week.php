@@ -27,6 +27,16 @@
 					<h3>This week's picture</h3>
 					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?></a>
 					<h5><?php the_title(); ?></h5>
+					<h3>Photo by:
+					<?php
+						$users = get_post_meta( get_the_ID(), '_potw_user', true );
+						$user_split = explode( ',', str_replace( ' ', '', $users ) );
+						foreach ( $user_split as $user ) {
+						    $user = get_user_by( 'id', $user );
+						    $name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
+						    echo '<b>' . $name . '</b>, ';
+						}
+					?></h3>
 					<small class="meta"><?php the_time('l jS F, Y') ?></small>
 				</div>
 			</div>
