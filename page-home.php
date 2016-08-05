@@ -15,14 +15,14 @@
 					$the_query = new WP_Query($args);
 					if ( $the_query->have_posts() ) {
 			?>
-			<div class="featured owl-carousel" id="featured-slider">
+			<div class="featured owl-carousel row" id="featured-slider">
 			<?php
 						while ( $the_query->have_posts() ) {
 								$the_query->the_post();
 								$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 
 			?>
-				<article class="item" style="background-image: url(<?php echo $url; ?>)">
+					<article class="item large-12 small-12 columns" style="background-image: url(<?php echo $url; ?>)">
 					<div>
 					<h2><?php the_title(); ?></h2>
 					<?php the_excerpt(); ?>
@@ -40,7 +40,70 @@
 				}
 			?>
 
-			<div class="row">
+			<?php
+			$defaults = [
+			    'fields'                 => 'ids',
+			    'update_post_term_cache' => false,
+			    'update_post_meta_cache' => false,
+			    'cache_results'          => false
+			];
+			$args = [
+			    'post_type'      => 'potw',
+			    'posts_per_page' => '1',
+			];
+			$args1 = [
+			    'post_type'      => 'potm',
+			    'posts_per_page' => '1',
+			];
+			$post_query = get_posts( array_merge( $defaults, $args  ) );
+			$page_query = get_posts( array_merge( $defaults, $args1 ) );
+			$post_ids = array_merge ( $post_query, $page_query ); //. You can swop around here
+			if ( $post_ids ) {
+			    $final_args = [
+			        'post_type' => ['potw', 'potm'],
+			        'post__in'  => $post_ids,
+			        'orderby'   => 'post__in', // If you need to keep the order from $post_ids
+			        'order'     => 'ASC' // If you need to keep the order from $post_ids
+			    ];
+			    $loop = new WP_Query( $final_args );
+				if ( $loop->have_posts() ) : ?>
+				<h4 class="home-category">Picture of the Week / Paper of the Month</h4>
+				<div class="featured owl-carousel row" id="featured-slider">
+				<?php while ( $loop->have_posts() ) : $loop->the_post();
+				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+			?>
+							<article class="item large-12 small-12 columns" style="background-image: url(<?php echo $url; ?>)">
+								<div>
+								<h4>
+									<?php
+										$post_type = get_post_type( $post->ID );
+										switch( $post_type ) {
+											case 'potw':
+												echo 'Picture of the Week';
+											break;
+											case 'potm':
+												echo 'Paper of the Month';
+											break;
+										}
+									?>
+								</h4>
+								<h2><?php the_title(); ?></h2>
+								<?php the_excerpt(); ?>
+								<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
+								</div>
+							</article>
+			<?php
+				endwhile;
+			?>
+				</div>
+			<?php
+				endif;
+
+				wp_reset_postdata();
+			}
+			?>
+
+			<!--div class="row">
 
 				<div class="small-12 large-6 columns center potw">
 					<h3>Picture of the Week</h3>
@@ -109,7 +172,7 @@
 					<a href="/potm/">See all</a>
 				</div>
 
-			</div>
+			</div-->
 
 		<?php
 			$args = array('parent' => 0);
@@ -117,7 +180,7 @@
 				foreach ($cats as $cat) {
 					echo '<div class="row">';
 					$cat_id= $cat->term_id;
-					echo '<h4 class="home-category">Latest news in '.$cat->name.'</h4>';
+					echo '<div class="large-12 small-12 columns"><h4 class="home-category">Latest news in '.$cat->name.'</h4></div>';
 					$the_query = new WP_Query(
 						array(
 							'category_name' => $cat->slug,
