@@ -97,7 +97,7 @@
 							<div>
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('display', array( 'class' => 'aligncenter' )); ?></a>
 								<h5><?php the_title(); ?></h5>
-								<h5>Winner: <?php $winner = get_post_meta(get_the_ID(), '_potm_winner', true); echo $winner; ?></h5>
+								<h6>Winner: <?php $winner = get_post_meta(get_the_ID(), '_potm_winner', true); echo $winner; ?></h6>
 								<small class="meta"><?php $date = get_post_meta(get_the_ID(), '_potm_date', true); echo $date; ?></small>
 							</div>
 						</div>

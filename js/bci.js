@@ -23,7 +23,7 @@ $s(function() {
 		$s('#appNav').attr('style', 'top: ' + headH + 'px;');
 	});
 
-	$s('select').not('.tribe-bar-views-select, .gfield_select, #advert_category').select2();
+	$s('select').not('.tribe-bar-views-select, .gfield_select, #advert_category, .tribe_events_filter_item select').select2();
 
 	// Mobile show nav
 	$s('#navShow').on('click', 'a', function(e){
