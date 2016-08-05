@@ -31,7 +31,7 @@
 			?>
 			<div class="wrap cmb2-options-page <?php echo $this->key; ?>">
 				<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-				<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?>
+    			<?php cmb2_metabox_form( $this->metabox_id, $this->key ); ?>
 			</div>
 			<?php
 		}
