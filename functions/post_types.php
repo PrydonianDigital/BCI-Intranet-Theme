@@ -911,43 +911,6 @@
 	}
 	add_action( 'init', 'newsletter_taxonomy', 0 );
 
-	// Document Taxonomy
-	function document_taxonomy() {
-		$labels = array(
-			'name'                       => _x( 'Document Categories', 'Taxonomy General Name', 'bci' ),
-			'singular_name'              => _x( 'Document Category', 'Taxonomy Singular Name', 'bci' ),
-			'menu_name'                  => __( 'Categories', 'bci' ),
-			'all_items'                  => __( 'All Categories', 'bci' ),
-			'parent_item'                => __( 'Parent Category', 'bci' ),
-			'parent_item_colon'          => __( 'Parent Category:', 'bci' ),
-			'new_item_name'              => __( 'New Category', 'bci' ),
-			'add_new_item'               => __( 'Add New Category', 'bci' ),
-			'edit_item'                  => __( 'Edit Category', 'bci' ),
-			'update_item'                => __( 'Update Category', 'bci' ),
-			'view_item'                  => __( 'View Category', 'bci' ),
-			'separate_items_with_commas' => __( 'Separate items with commas', 'bci' ),
-			'add_or_remove_items'        => __( 'Add or remove items', 'bci' ),
-			'choose_from_most_used'      => __( 'Choose from the most used', 'bci' ),
-			'popular_items'              => __( 'Popular Items', 'bci' ),
-			'search_items'               => __( 'Search Items', 'bci' ),
-			'not_found'                  => __( 'Not Found', 'bci' ),
-			'no_terms'                   => __( 'No items', 'bci' ),
-			'items_list'                 => __( 'Items list', 'bci' ),
-			'items_list_navigation'      => __( 'Items list navigation', 'bci' ),
-		);
-		$args = array(
-			'labels'                     => $labels,
-			'hierarchical'               => true,
-			'public'                     => true,
-			'show_ui'                    => true,
-			'show_admin_column'          => true,
-			'show_in_nav_menus'          => true,
-			'show_tagcloud'              => true,
-		);
-		register_taxonomy( 'doc_cat', array( 'document' ), $args );
-	}
-	add_action( 'init', 'document_taxonomy', 0 );
-
 	// Venue Taxonomy
 	function venue_taxonomy() {
 		$labels = array(

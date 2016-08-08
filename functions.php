@@ -34,7 +34,7 @@
 	function main_search() {
 		$args = array();
 		$args['wp_query'] = array(
-			'post_type' => array('page', 'post', 'tribe_events', 'centre', 'document'),
+			'post_type' => array('page', 'post', 'tribe_events', 'centre'),
 			'orderby' => 'title',
 			'order' => 'ASC'
 		);
