@@ -65,7 +65,7 @@
 			'type' => 'post_type',
 			'format' => 'checkbox',
 			'label' => 'Search by:',
-			'values' => array('page' => '<i class="nav-file"></i> Pages', 'centre' => '<i class="nav-office"></i> Centres', 'post' => '<i class="nav-newspaper"></i> News', 'tribe_events' => '<i class="nav-calendar"></i> Events', 'document' => '<i class="nav-file-text-o"></i> Documents') ,
+			'values' => array('page' => '<i class="nav-file"></i> Pages', 'centre' => '<i class="nav-office"></i> Centres', 'post' => '<i class="nav-newspaper"></i> News', 'tribe_events' => '<i class="nav-calendar"></i> Events') ,
 			'default_all' => true
 		);
 		$args['fields'][] = array(
