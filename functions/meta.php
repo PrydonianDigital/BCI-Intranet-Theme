@@ -664,6 +664,12 @@
 			'on_front' => true,
 			'type' => 'checkbox',
 		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Admin Forum', 'bci' ),
+			'id' => $prefix . 'admin',
+			'on_front' => true,
+			'type' => 'checkbox',
+		) );
 	}
 
 	// Page/Post External Links
