@@ -105,7 +105,7 @@
 			<a href="#"><i class="nav-menu"></i></a>
 		</div>
 
-		<div id="apps" class="<?php if(current_user_can('edit_others_pages')) { ?>wide<?php } ?>">
+		<div id="apps" class="<?php $user = wp_get_current_user(); if ( in_array( 'administrator', (array) $user->roles ) ) { ?>wide<?php } ?>">
 			<?php if(current_user_can('activate_plugins')) { ?>
 				<a class="appsButton close dash" id="dash"  href="<?php echo admin_url(); ?>" title="Dashboard"><i class="nav-equalizer2"></i></a>
 			<?php } ?>
