@@ -67,41 +67,45 @@
 			    ];
 			    $loop = new WP_Query( $final_args );
 				if ( $loop->have_posts() ) : ?>
-				<h4 class="home-category">Picture of the Week / Paper of the Month</h4>
-				<div class="featured owl-carousel row" id="featured-slider">
-				<?php while ( $loop->have_posts() ) : $loop->the_post();
-				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-			?>
-							<article class="item large-12 small-12 columns" style="background-image: url(<?php echo $url; ?>)">
-								<div>
-								<h4>
-									<?php
-										$post_type = get_post_type( $post->ID );
-										switch( $post_type ) {
-											case 'potw':
-												echo 'Picture of the Week';
-											break;
-											case 'potm':
-												echo 'Paper of the Month';
-											break;
-										}
-									?>
-								</h4>
-								<h2><?php the_title(); ?></h2>
-								<?php the_excerpt(); ?>
-								<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
-								</div>
-							</article>
-			<?php
-				endwhile;
-			?>
-				</div>
-			<?php
-				endif;
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					<h4 class="home-category">Picture of the Week / Paper of the Month</h4>
+					<div class="featured owl-carousel" id="featured-slider">
+					<?php while ( $loop->have_posts() ) : $loop->the_post();
+					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+				?>
+								<article class="item large-12 small-12 columns" style="background-image: url(<?php echo $url; ?>)">
+									<div>
+									<h4>
+										<?php
+											$post_type = get_post_type( $post->ID );
+											switch( $post_type ) {
+												case 'potw':
+													echo 'Picture of the Week';
+												break;
+												case 'potm':
+													echo 'Paper of the Month';
+												break;
+											}
+										?>
+									</h4>
+									<h2><?php the_title(); ?></h2>
+									<?php the_excerpt(); ?>
+									<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
+									</div>
+								</article>
+				<?php
+					endwhile;
+				?>
+					</div>
+				<?php
+					endif;
 
-				wp_reset_postdata();
-			}
-			?>
+					wp_reset_postdata();
+				}
+				?>
+				</div>
+			</div>
 
 			<!--div class="row">
 
