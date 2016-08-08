@@ -4,9 +4,9 @@
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u="//dev.intranet.qmcr.qmul.ac.uk/piwik/";
+    var u="<?php echo bci_get_option( 'piwik' ); ?>";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(['setSiteId', '<?php echo bci_get_option( 'piwikID' ); ?>']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();

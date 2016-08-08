@@ -54,6 +54,18 @@
 				'default' => 'someone@qmul.ac.uk',
 			) );
 			$cmb->add_field( array(
+				'name' => __( 'Piwik URL', 'bci' ),
+				'desc' => __( 'Enter the Piwik URL (no leading http:, just the //', 'bci' ),
+				'id'   => 'piwik',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Piwik Site ID', 'bci' ),
+				'desc' => __( 'Enter the Piwik site ID', 'bci' ),
+				'id'   => 'piwikID',
+				'type' => 'text_small',
+			) );
+			$cmb->add_field( array(
 				'name' => __( '404 Page title', 'bci' ),
 				'desc' => __( 'Enter the title for the 404 Page', 'bci' ),
 				'id'   => '404title',
