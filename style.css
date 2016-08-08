@@ -1255,14 +1255,16 @@ article.item div {
 	margin-left: -0.9375rem;
 	margin-right: -0.9375rem;
 	width: calc(100% + 1.875rem);
-	background: -moz-linear-gradient(top, rgba(43,22,123,0.9) 0%, rgba(43,22,123,0) 100%) !important;
-	background: -webkit-linear-gradient(top, rgba(43,22,123,0.9) 0%,rgba(43,22,123,0) 100%) !important;
-	background: linear-gradient(to bottom, rgba(43,22,123,0.9) 0%,rgba(43,22,123,0) 100%) !important;
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a62B167B', endColorstr='#002B167B',GradientType=0 ) !important;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%) !important;
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.9) 0%,rgba(43,22,123,0) 100%) !important;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0) 100%) !important;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ) !important;
 }
-article.item h2, article.item p {
+article.item h2, article.item h4, article.item p {
 	margin: 0 0 1em 0;
 	width: 98%;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.75);
+	line-height: 1.3;
 }
 article.item a.readmore {
 	border: 1px solid #fff;
