@@ -7,7 +7,7 @@
 	function bcc_theme()	{
 		add_theme_support( 'post-thumbnails' );
 		add_image_size( 'slider', '815', '228', true );
-		add_image_size( 'header', '940', '368', true );
+		add_image_size( 'header', '1172', '200', true );
 		add_image_size( 'display', '300', '250', true );
 		add_image_size( 'thumbnail-news', '227', '108', true );
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
@@ -21,8 +21,8 @@
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 		show_admin_bar( false );
 		add_theme_support('custom-logo', array(
-			'height'		=> 234,
-			'width'			=> 522,
+			'height'		=> 125,
+			'width'			=> 180,
 			'flex-width' 	=> true,
 		));
 	}
@@ -214,6 +214,8 @@
 			.bug-library-bugs-count a:before {content:"\f227"!important}
 			.notice-count a:before {content:"\f309"!important}
 			.newsletter-count a:before {content:"\f1ea"!important; font-family: "nav" !important;}
+			.link-count a:before {content:"\f103"!important;}
+			.doc-count a:before {content:"\f330"!important;}
 			</style>';
 	}
 	add_action('admin_head', 'custom_colors');
