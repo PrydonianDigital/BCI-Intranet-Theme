@@ -16,23 +16,24 @@
 
 					<small>This entry was posted on <?php the_time('l jS F, Y') ?> at <?php the_time() ?> and is filed under <?php the_category(', ') ?><br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 
-					<?php
-						$members = get_post_meta( get_the_ID(), '_link_link', true );
-						$output = '';
-						if ( empty( $members ) ) {
-							echo $output;
-						}
-						$output .= '<ul class="links">';
-						foreach ( $members as $member ) {
-							$output .= '<li>';
-							$output .= '<a href="'. esc_html( $member['url'] ) .'" target="_blank">';
-							$output .= esc_html( $member['title'] );
-							$output .= '</a>';
-							$output .= '</li>';
-						}
-						$output .= '</ul>';
-						echo $output;
-					?>
+	<?php
+	$p2l2 = new WP_Query( array(
+		'connected_type' => 'p2l2',
+		'connected_items' => $post,
+		'nopaging' => true,
+	) );
+	if ( $p2l2->have_posts() ) : ?>
+	<div class="large-6 small-12 columns">
+		<h2>Related Links</h2>
+		<ul class="links">
+		<?php while ( $p2l2->have_posts() ) : $p2l2->the_post(); ?>
+			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>"><?php the_title(); ?></a></li>
+		<?php endwhile; ?>
+		</ul>
+	</div>
+	<?php wp_reset_postdata();
+	endif;
+	?>
 
 				</div>
 
