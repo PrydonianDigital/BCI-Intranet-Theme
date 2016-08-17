@@ -15,10 +15,17 @@
 			<?php endif; ?>
 
 			<?php
-			$temp = $wp_query;
-			$wp_query = null;
-			$wp_query = new WP_Query();
-			$wp_query->query('showposts=10&post_type=tribe_venue&paged='.$paged);
+			$args = array(
+				'post_type' => 'tribe_venue',
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'venue_cat',
+						'field' => 'slug',
+						'terms' => 'qmul',
+					)
+				)
+			);
+			$wp_query = new WP_Query($args);
 			if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 			<div <?php post_class('news'); ?>>
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
@@ -30,10 +37,6 @@
 				<?php the_excerpt(); ?>
 			</div>
 			<?php endwhile; ?>
-			<?php wp_pagenavi(); ?>
-			<?php $wp_query = null;
-			$wp_query = $temp;
-			?>
 			<?php else : ?>
 				<h2>Not Found</h2>
 				<p>Sorry, but you are looking for something that isn't here.</p>
