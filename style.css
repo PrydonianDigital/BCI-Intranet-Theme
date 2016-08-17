@@ -80,7 +80,7 @@ header.site-header .custom-logo-link {
 	padding: 1em 0;
 }
 header.site-header .custom-logo {
-	width: 208px;
+	width: 150px;
 	height: auto;
 }
 header.site-header #site-logo {
@@ -111,7 +111,7 @@ header.site-header #announcement a {
 #userInfo {
 	float: right;
 	color: #fff;
-	margin: 1.7em 0 0 0;
+	margin: 1.6em 0 0 0;
 }
 #userInfo a {
 	color: #fff;
@@ -127,7 +127,7 @@ header.site-header #announcement a {
 	text-align: right;
 	float: right;
 	overflow: hidden;
-	margin: 1.85em 0 0 0.5em;
+	margin: 1.7em 0 0 0.5em;
 }
 #apps.wide {
 	width: 235px;
@@ -1371,6 +1371,7 @@ article.item a.readmore {
 	height: 20px;
 	float: left;
 }
+.cmb2-element .ui-datepicker-title select.ui-datepicker-year {display: none !important;}
 .pageInner ul.cmb2-list li:before {
 	content: '';
 }
