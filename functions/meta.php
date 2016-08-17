@@ -549,18 +549,18 @@
 			'on_front' => true,
 			'type' => 'text',
 		) );
-		$cmb_user->add_field( array(
-			'desc' => __( 'Department', 'bci' ),
-			'id' => $prefix . 'dTitle',
-			'on_front' => true,
-			'type' => 'title',
-		) );
-		$cmb_user->add_field( array(
-			'desc' => __( '', 'bci' ),
-			'id' => $prefix . 'dept',
-			'on_front' => true,
-			'type' => 'text',
-		) );
+//		$cmb_user->add_field( array(
+//			'desc' => __( 'Department', 'bci' ),
+//			'id' => $prefix . 'dTitle',
+//			'on_front' => true,
+//			'type' => 'title',
+//		) );
+//		$cmb_user->add_field( array(
+//			'desc' => __( '', 'bci' ),
+//			'id' => $prefix . 'dept',
+//			'on_front' => true,
+//			'type' => 'text',
+//		) );
 		$cmb_user->add_field( array(
 			'desc' => __( '<i class="nav-phone"></i> Extension', 'bci' ),
 			'id' => $prefix . 'eTitle',
@@ -583,7 +583,7 @@
 			'desc' => __( '', 'bci' ),
 			'id' => $prefix . 'birth',
 			'on_front' => true,
-			'type' => 'text_date',
+			'type' => 'text_date_timestamp',
 			'date_format' => 'd M',
 		) );
 		$cmb_user->add_field( array(
@@ -672,38 +672,6 @@
 		) );
 	}
 
-	// Page/Post External Links
-	add_action( 'cmb2_admin_init', 'ext_link' );
-	function ext_link() {
-		$prefix = '_link_';
-		$cmb_anti = new_cmb2_box( array(
-			'id' => $prefix . 'links',
-			'title' => __( 'External Links', 'bci' ),
-			'object_types' => array( 'post', 'page' ),
-		) );
-		$group_field_id = $cmb_anti->add_field( array(
-			'id'          => $prefix . 'link',
-			'type'        => 'group',
-			'description' => __( 'Add Links', 'bci' ),
-			'options'     => array(
-				'group_title'   => __( 'Link {#}', 'bci' ), // {#} gets replaced by row number
-				'add_button'    => __( 'Add Another Link', 'bci' ),
-				'remove_button' => __( 'Remove Link', 'bci' ),
-				'sortable'      => true, // beta
-			),
-		) );
-		$cmb_anti->add_group_field( $group_field_id, array(
-			'name'       => __( 'Link Title', 'cs' ),
-			'id'         => 'title',
-			'type'       => 'text',
-		) );
-		$cmb_anti->add_group_field( $group_field_id, array(
-			'name'       => __( 'Link URL', 'cs' ),
-			'id'         => 'url',
-			'type'       => 'text_url',
-		) );
-	}
-
 	// Newsletter Info
 	add_action( 'cmb2_admin_init', 'newsletter_info' );
 	function newsletter_info() {
@@ -717,6 +685,49 @@
 			'desc' => __( 'Newsletter PDF', 'bci' ),
 			'id' => $prefix . 'pdf',
 			'type' => 'file',
+		) );
+	}
+
+	// Doc Info
+	add_action( 'cmb2_admin_init', 'doc_info' );
+	function doc_info() {
+		$prefix = 'doc_';
+		$cmb_doc = new_cmb2_box( array(
+			'id' => $prefix . 'doc',
+			'title' => __( 'Document', 'bci' ),
+			'object_types' => array( 'doc' ),
+		) );
+		$doc_group = $cmb_doc->add_field( array(
+			'id' => $prefix . 'version',
+			'type' => 'group',
+			'description' => __( 'Add documents here. If there is an updated version, click the "Add New Version" button and upload the new version underneath the existing version. This will replace the older version in all links whilst keeping the old version in case of errors.', 'bci' ),
+			'options'	 => array(
+				'group_title'   => __( 'Version {#}', 'bci' ),
+				'add_button'	=> __( 'Add New Version', 'bci' ),
+				'remove_button' => __( 'Remove Version', 'bci' ),
+				'sortable'	  => true,
+			),
+		) );
+		$cmb_doc->add_group_field( $doc_group, array(
+			'name' => 'File',
+			'id'   => '_doc',
+			'type' => 'file',
+		) );
+	}
+
+	// Links Info
+	add_action( 'cmb2_admin_init', 'link_info' );
+	function link_info() {
+		$prefix = 'link_';
+		$cmb_news = new_cmb2_box( array(
+			'id' => $prefix . 'link',
+			'title' => __( 'Link', 'bci' ),
+			'object_types' => array( 'link' ),
+		) );
+		$cmb_news->add_field( array(
+			'desc' => __( 'Link URL', 'bci' ),
+			'id' => $prefix . 'url',
+			'type' => 'text_url',
 		) );
 	}
 
