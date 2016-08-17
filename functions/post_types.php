@@ -54,6 +54,112 @@
 	}
 	add_action( 'init', 'app', 0 );
 
+	function links() {
+		$labels = array(
+			'name'                  => _x( 'Links', 'Post Type General Name', 'bci' ),
+			'singular_name'         => _x( 'Link', 'Post Type Singular Name', 'bci' ),
+			'menu_name'             => __( 'Links', 'bci' ),
+			'name_admin_bar'        => __( 'Link', 'bci' ),
+			'archives'              => __( 'Link Archives', 'bci' ),
+			'parent_item_colon'     => __( 'Parent Link:', 'bci' ),
+			'all_items'             => __( 'All Links', 'bci' ),
+			'add_new_item'          => __( 'Add New Link', 'bci' ),
+			'add_new'               => __( 'Add New', 'bci' ),
+			'new_item'              => __( 'New Link', 'bci' ),
+			'edit_item'             => __( 'Edit Link', 'bci' ),
+			'update_item'           => __( 'Update Link', 'bci' ),
+			'view_item'             => __( 'View Link', 'bci' ),
+			'search_items'          => __( 'Search Link', 'bci' ),
+			'not_found'             => __( 'Not found', 'bci' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'bci' ),
+			'featured_image'        => __( 'Featured Image', 'bci' ),
+			'set_featured_image'    => __( 'Set featured image', 'bci' ),
+			'remove_featured_image' => __( 'Remove featured image', 'bci' ),
+			'use_featured_image'    => __( 'Use as featured image', 'bci' ),
+			'insert_into_item'      => __( 'Insert into item', 'bci' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'bci' ),
+			'items_list'            => __( 'Items list', 'bci' ),
+			'items_list_navigation' => __( 'Items list navigation', 'bci' ),
+			'filter_items_list'     => __( 'Filter items list', 'bci' ),
+		);
+		$args = array(
+			'label'                 => __( 'Link', 'bci' ),
+			'description'           => __( 'Links', 'bci' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'page-attributes'),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => false,
+			'exclude_from_search'   => true,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+			'show_in_rest'       => true,
+			'rest_controller_class' => 'WP_REST_Posts_Controller',
+			'menu_icon'				=> 'dashicons-admin-links'
+		);
+		register_post_type( 'link', $args );
+	}
+	add_action( 'init', 'links', 0 );
+
+	function docs() {
+		$labels = array(
+			'name'                  => _x( 'Documents', 'Post Type General Name', 'bci' ),
+			'singular_name'         => _x( 'Document', 'Post Type Singular Name', 'bci' ),
+			'menu_name'             => __( 'Documents', 'bci' ),
+			'name_admin_bar'        => __( 'Documents', 'bci' ),
+			'archives'              => __( 'Document Archives', 'bci' ),
+			'parent_item_colon'     => __( 'Parent Document:', 'bci' ),
+			'all_items'             => __( 'All Documents', 'bci' ),
+			'add_new_item'          => __( 'Add New Document', 'bci' ),
+			'add_new'               => __( 'Add New', 'bci' ),
+			'new_item'              => __( 'New Document', 'bci' ),
+			'edit_item'             => __( 'Edit Document', 'bci' ),
+			'update_item'           => __( 'Update Document', 'bci' ),
+			'view_item'             => __( 'View Documents', 'bci' ),
+			'search_items'          => __( 'Search Document', 'bci' ),
+			'not_found'             => __( 'Not found', 'bci' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'bci' ),
+			'featured_image'        => __( 'Featured Image', 'bci' ),
+			'set_featured_image'    => __( 'Set featured image', 'bci' ),
+			'remove_featured_image' => __( 'Remove featured image', 'bci' ),
+			'use_featured_image'    => __( 'Use as featured image', 'bci' ),
+			'insert_into_item'      => __( 'Insert into item', 'bci' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'bci' ),
+			'items_list'            => __( 'Items list', 'bci' ),
+			'items_list_navigation' => __( 'Items list navigation', 'bci' ),
+			'filter_items_list'     => __( 'Filter items list', 'bci' ),
+		);
+		$args = array(
+			'label'                 => __( 'Document', 'bci' ),
+			'description'           => __( 'Documents', 'bci' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title'),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => false,
+			'has_archive'           => false,
+			'exclude_from_search'   => true,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+			'show_in_rest'       => true,
+			'rest_controller_class' => 'WP_REST_Posts_Controller',
+			'menu_icon'				=> 'dashicons-book'
+		);
+		register_post_type( 'doc', $args );
+	}
+	add_action( 'init', 'docs', 0 );
+
 	function announcement() {
 		$labels = array(
 			'name'                  => _x( 'Announcements', 'Post Type General Name', 'bci' ),
@@ -832,21 +938,22 @@
 	}
 
 	// Columns for Documents
-	add_filter( 'manage_edit-document_columns', 'my_edit_document_columns' ) ;
-	function my_edit_document_columns( $columns ) {
+	add_filter( 'manage_edit-doc_columns', 'my_edit_doc_columns' ) ;
+	function my_edit_doc_columns( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
 			'title' => __( 'Title' ),
-			'doccat' => __( 'Document Categories' )
+			'document_categories' => __( 'Document Categories' ),
+			'date' => __( 'Date' )
 		);
 		return $columns;
 	}
 
-	add_action( 'manage_document_posts_custom_column', 'my_manage_document_columns', 10, 2 );
-	function my_manage_document_columns( $column, $post_id ) {
+	add_action( 'manage_doc_posts_custom_column', 'my_manage_doc_columns', 10, 2 );
+	function my_manage_doc_columns( $column, $post_id ) {
 		global $post;
 		switch( $column ) {
-			case 'doccat' :
+			case 'document_categories' :
 				$terms = get_the_terms( $post_id, 'doc_cat' );
 				if ( !empty( $terms ) ) {
 					$out = array();
@@ -868,11 +975,85 @@
 		}
 	}
 
-	add_filter( 'manage_edit-document_sortable_columns', 'my_document_sortable_columns' );
-	function my_document_sortable_columns( $columns ) {
-		$columns['doccat'] = 'doccat';
+	add_filter( 'manage_edit-doc_sortable_columns', 'my_doc_sortable_columns' );
+	function my_doc_sortable_columns( $columns ) {
+		$columns['document_categories'] = 'document_categories';
 		return $columns;
 	}
+
+	// Document Taxonomy
+	function doc_taxonomy() {
+		$labels = array(
+			'name'                       => _x( 'Document Categories', 'Taxonomy General Name', 'bci' ),
+			'singular_name'              => _x( 'Document Category', 'Taxonomy Singular Name', 'bci' ),
+			'menu_name'                  => __( 'Categories', 'bci' ),
+			'all_items'                  => __( 'All Categories', 'bci' ),
+			'parent_item'                => __( 'Parent Category', 'bci' ),
+			'parent_item_colon'          => __( 'Parent Category:', 'bci' ),
+			'new_item_name'              => __( 'New Category', 'bci' ),
+			'add_new_item'               => __( 'Add New Category', 'bci' ),
+			'edit_item'                  => __( 'Edit Category', 'bci' ),
+			'update_item'                => __( 'Update Category', 'bci' ),
+			'view_item'                  => __( 'View Category', 'bci' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'bci' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'bci' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'bci' ),
+			'popular_items'              => __( 'Popular Items', 'bci' ),
+			'search_items'               => __( 'Search Items', 'bci' ),
+			'not_found'                  => __( 'Not Found', 'bci' ),
+			'no_terms'                   => __( 'No items', 'bci' ),
+			'items_list'                 => __( 'Items list', 'bci' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'bci' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true,
+		);
+		register_taxonomy( 'doc_cat', array( 'doc' ), $args );
+	}
+	add_action( 'init', 'doc_taxonomy', 0 );
+
+	// Link Taxonomy
+	function link_cat() {
+		$labels = array(
+			'name'                       => _x( 'Link Categories', 'Taxonomy General Name', 'bci' ),
+			'singular_name'              => _x( 'Link Category', 'Taxonomy Singular Name', 'bci' ),
+			'menu_name'                  => __( 'Categories', 'bci' ),
+			'all_items'                  => __( 'All Categories', 'bci' ),
+			'parent_item'                => __( 'Parent Category', 'bci' ),
+			'parent_item_colon'          => __( 'Parent Category:', 'bci' ),
+			'new_item_name'              => __( 'New Category', 'bci' ),
+			'add_new_item'               => __( 'Add New Category', 'bci' ),
+			'edit_item'                  => __( 'Edit Category', 'bci' ),
+			'update_item'                => __( 'Update Category', 'bci' ),
+			'view_item'                  => __( 'View Category', 'bci' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'bci' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'bci' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'bci' ),
+			'popular_items'              => __( 'Popular Items', 'bci' ),
+			'search_items'               => __( 'Search Items', 'bci' ),
+			'not_found'                  => __( 'Not Found', 'bci' ),
+			'no_terms'                   => __( 'No items', 'bci' ),
+			'items_list'                 => __( 'Items list', 'bci' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'bci' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true,
+		);
+		register_taxonomy( 'link_cat', array( 'link' ), $args );
+	}
+	add_action( 'init', 'link_cat', 0 );
 
 	// Newsletter Taxonomy
 	function newsletter_taxonomy() {
