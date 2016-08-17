@@ -39,7 +39,7 @@
 					echo '<div class="large-3 small-12 columns"><strong>' . $dept->post_title  . '</strong></div>';
 					echo '<div class="large-4 small-12 columns">' . $user->first_name . ' ' . $user->last_name . '</div>';
 					echo '<div class="large-2 small-12 columns"><i class="nav-phone"></i> x' . $user->_me_ext . '</div>';
-					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . user_email . '">' . $user->user_email . '</a></div>';
+					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . $user->user_email . '">' . $user->user_email . '</a></div>';
 					echo '</div>';
 				}
 			} else {
