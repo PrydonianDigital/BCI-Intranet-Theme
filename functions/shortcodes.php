@@ -19,7 +19,7 @@
 	}
 
 	// tile shortcode
-	function show_docs($atts){
+	function show_docs($atts, $content = null){
 	   extract(shortcode_atts(array(
 		  'p'					=> '',
 	   ), $atts));
@@ -37,7 +37,7 @@
 				if ( isset( $entry['_doc'] ) )
 					$doc = esc_html( $entry['_doc'] );
 					if(end($entries) == $entry) {
-						echo '<a href="' . $doc . '">' . get_the_title() . '</a>';
+						echo '<a href="' . $doc . '">' . $content . '</a>';
 					}
 			}
 			endwhile;
