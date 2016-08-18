@@ -37,7 +37,7 @@
 				if ( isset( $entry['_doc'] ) )
 					$doc = esc_html( $entry['_doc'] );
 					if(end($entries) == $entry) {
-						echo '<a href="' . $doc . '">' . $content . '</a>';
+						$return_string .= '<a href="' . $doc . '">' . $content . '</a>';
 					}
 			}
 			endwhile;
