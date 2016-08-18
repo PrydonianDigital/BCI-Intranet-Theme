@@ -18,8 +18,37 @@
 
 	}
 
-	// tile shortcode
-	function show_docs($atts, $content = null){
+	// Doc shortcode
+	function show_doc($atts){
+	   extract(shortcode_atts(array(
+		  'p'					=> '',
+	   ), $atts));
+		$args = array (
+			'p'					=> $p,
+			'post_type'			=> array( 'doc' ),
+			'posts_per_page'	=> '1',
+		);
+		$query = new WP_Query( $args );
+		if ($query->have_posts()) :
+			while ($query->have_posts()) : $query->the_post();
+		$entries = get_post_meta( get_the_ID(), 'doc_version', true );
+		foreach ((array) $entries as $key => $entry) {
+			$doc = '';
+			if ( isset( $entry['_doc'] ) )
+				$doc = esc_html( $entry['_doc'] );
+				if(end($entries) == $entry) {
+					$return_string .=  '<a href="' . $doc . '" target="_blank">' . get_the_title() . '</a>';
+				}
+		}
+			endwhile;
+		endif;
+		wp_reset_query();
+		return $return_string;
+	}
+	add_shortcode( 'document','show_doc' );
+
+	// Doc with custom text shortcode
+	function show_doc_text($atts, $content = null){
 	   extract(shortcode_atts(array(
 		  'p'					=> '',
 	   ), $atts));
@@ -37,7 +66,7 @@
 				if ( isset( $entry['_doc'] ) )
 					$doc = esc_html( $entry['_doc'] );
 					if(end($entries) == $entry) {
-						$return_string .= '<a href="' . $doc . '">' . $content . '</a>';
+						$return_string .= '<a href="' . $doc . '" target="_blank">' . $content . '</a>';
 					}
 			}
 			endwhile;
@@ -45,4 +74,4 @@
 		wp_reset_query();
 		return $return_string;
 	}
-	add_shortcode( 'doc','show_docs' );
+	add_shortcode( 'doc','show_doc_text' );
