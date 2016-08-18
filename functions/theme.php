@@ -102,6 +102,29 @@
 	}
 	add_action('wp_before_admin_bar_render', 'annointed_admin_bar_remove', 0);
 
+function bci_update_messages( $messages ) {
+	global $post, $post_ID;
+	$post_types = get_post_types( array( 'show_ui' => true, '_builtin' => false ), 'objects' );
+	foreach( $post_types as $post_type => $post_object ) {
+		$messages[$post_type] = array(
+			0  => '', // Unused. Messages start at index 1.
+			1  => sprintf( __( '%s updated. <a href="%s">View %s</a>' ), $post_object->labels->singular_name, esc_url( get_permalink( $post_ID ) ), $post_object->labels->singular_name ),
+			2  => __( 'Custom field updated.' ),
+			3  => __( 'Custom field deleted.' ),
+			4  => sprintf( __( '%s updated.' ), $post_object->labels->singular_name ),
+			5  => isset( $_GET['revision']) ? sprintf( __( '%s restored to revision from %s' ), $post_object->labels->singular_name, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6  => sprintf( __( '%s published. <a href="%s">View %s</a>' ), $post_object->labels->singular_name, esc_url( get_permalink( $post_ID ) ), $post_object->labels->singular_name ),
+			7  => sprintf( __( '%s saved.' ), $post_object->labels->singular_name ),
+			8  => sprintf( __( '%s submitted. <a target="_blank" href="%s">Preview %s</a>'), $post_object->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ), $post_object->labels->singular_name ),
+			9  => sprintf( __( '%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview %s</a>'), $post_object->labels->singular_name, date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ), $post_object->labels->singular_name ),
+			10 => sprintf( __( '%s draft updated. <a target="_blank" href="%s">Preview %s</a>'), $post_object->labels->singular_name, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ), $post_object->labels->singular_name ),
+		);
+	}
+	return $messages;
+}
+add_filter( 'post_updated_messages', 'bci_update_messages' );
+
+
 	if (!function_exists('is_admin')) {
 		header('Status: 403 Forbidden');
 		header('HTTP/1.1 403 Forbidden');
