@@ -1200,10 +1200,12 @@ blockquote:after,
 }
 figure {
 	margin: 0 0.2em 0.5em 0.2em;
-	width: auto;
-	display: inline-block;
+	position: relative;
 	padding: 0.5em;
 	background: #efefef;
+}
+figure img.aligncenter {
+	margin: 0 auto;
 }
 .wp-caption {
 	padding: 0.7em;
