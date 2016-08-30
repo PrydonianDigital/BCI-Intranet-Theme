@@ -1,5 +1,38 @@
 <?php
 
+	// Newsletters shortcode
+	function newsletter_year($atts){
+	   extract(shortcode_atts(array(
+		  'year'					=> '',
+		  'category'				=> ''
+	   ), $atts));
+		$args = array (
+			'year'				=> $year,
+			'post_type'			=> array( 'newsletter' ),
+			'posts_per_page'	=> -1,
+			'tax_query'			=> array(
+				array(
+					'taxonomy' 	=> 'news_cat',
+					'field' 	=> 'slug',
+					'terms' 	=> $category,
+				)
+			)
+		);
+		$query = new WP_Query( $args );
+		if ( $query->have_posts() ):
+		$news ='';
+		$news .= '<h3>'. $year .'</h3>';
+		$news .= '<ul>';
+		while ( $query->have_posts() ) : $query->the_post();
+		$news .= '<li><a href="'. get_the_permalink() .'">'. get_the_title() .'</a></li>';
+		endwhile;
+		$news .= '</ul>';
+		endif;
+		wp_reset_query();
+		return $news;
+	}
+	add_shortcode( 'newsletters','newsletter_year' );
+
 	// User Apps
 	add_shortcode( 'cmb-form', 'cmb2_do_frontend_form_shortcode' );
 	function cmb2_do_frontend_form_shortcode( $atts = array() ) {
