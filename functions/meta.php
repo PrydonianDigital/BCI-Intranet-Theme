@@ -637,7 +637,7 @@
 			'type' => 'title',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Committee Roles', 'bci' ),
+			'desc' => __( 'Other Roles', 'bci' ),
 			'id' => $prefix . 'vTitle',
 			'on_front' => true,
 			'type' => 'title',
