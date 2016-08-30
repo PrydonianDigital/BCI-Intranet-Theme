@@ -1,6 +1,26 @@
 <div class="row">
 
 	<?php
+	$p22p2 = new WP_Query( array(
+		'connected_type' => 'p22p2',
+		'connected_items' => $post,
+		'nopaging' => true,
+	) );
+	if ( $p22p2->have_posts() ) : ?>
+		<div class="large-6 small-12 columns">
+		<h2>Related Pages</h2>
+		<ul class="doc">
+	<?php
+		while ( $p22p2->have_posts() ) : $p22p2->the_post(); ?>
+		<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+	<?php endwhile; ?>
+		</ul>
+	</div>
+	<?php
+	endif; wp_reset_postdata();
+	?>
+
+	<?php
 	$d2p = new WP_Query( array(
 		'connected_type' => 'd2p',
 		'connected_items' => $post,
@@ -95,7 +115,7 @@
 		<h2>Related Links</h2>
 		<ul class="links">
 		<?php while ( $p2l->have_posts() ) : $p2l->the_post(); ?>
-			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>"><?php the_title(); ?></a></li>
+			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>" <?php $blank = get_post_meta(get_the_ID(), 'link_blank', true); if($blank !=''){ ?> target="_blank"<?php } ?>><?php the_title(); ?></a></li>
 		<?php endwhile; ?>
 		</ul>
 	</div>
