@@ -410,6 +410,25 @@
 		return cent_link_start( array( 'post_type' => 'centre', 'numberposts' => -1 ) );
 	}
 
+	// Link Docs
+	function doc_link_start( $query_args ) {
+		$args = wp_parse_args( $query_args, array(
+			'post_type'   => 'doc',
+			'numberposts' => -1,
+		) );
+		$posts = get_posts( $args );
+		$post_options = array();
+		if ( $posts ) {
+			foreach ( $posts as $post ) {
+			  $post_options[ $post->ID ] = $post->post_title;
+			}
+		}
+		return $post_options;
+	}
+	function doc_link() {
+		return doc_link_start( array( 'post_type' => 'doc', 'numberposts' => -1 ) );
+	}
+
 	// Apps on User profile
 	add_action( 'cmb2_init', 'yourprefix_register_user_profile_metabox' );
 	function yourprefix_register_user_profile_metabox() {
@@ -427,6 +446,25 @@
 			'type' => 'multicheck_inline',
 			'select_all_button' => true,
 			'options_cb' => 'att_link',
+		) );
+	}
+
+	// docs in TinyMCE
+	add_action( 'cmb2_init', 'doc_tinyMCE' );
+	function doc_tinyMCE() {
+		$prefix = '_doc_';
+		$cmb_user = new_cmb2_box( array(
+			'id' => $prefix . 'edit_metabox',
+			'title' => __( 'Choose Document', 'bci' ),
+			'object_types' => array( 'post' ),
+			'show_names' => true,
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Select the Document', 'bci' ),
+			'id' => $prefix . 'doc',
+			'on_front' => true,
+			'type' => 'select',
+			'options_cb' => 'doc_link',
 		) );
 	}
 
@@ -496,7 +534,7 @@
 			'type' => 'title',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Main Safety Contact', 'bci' ),
+			'desc' => __( 'Local Safety Officers', 'bci' ),
 			'id' => $prefix . 'main_safety',
 			'on_front' => true,
 			'type' => 'checkbox',
@@ -659,16 +697,34 @@
 			'type' => 'checkbox',
 		) );
 		$cmb_user->add_field( array(
+			'desc' => __( 'Admin Forum', 'bci' ),
+			'id' => $prefix . 'admin',
+			'on_front' => true,
+			'type' => 'checkbox',
+		) );
+		$cmb_user->add_field( array(
 			'desc' => __( 'BCC IT User Group', 'bci' ),
 			'id' => $prefix . 'bccit',
 			'on_front' => true,
 			'type' => 'checkbox',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Admin Forum', 'bci' ),
-			'id' => $prefix . 'admin',
+			'desc' => __( 'BCC IT User Group Title', 'bci' ),
+			'id' => $prefix . 'bccittitle',
+			'on_front' => true,
+			'type' => 'text',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'BCC IT Staff', 'bci' ),
+			'id' => $prefix . 'it',
 			'on_front' => true,
 			'type' => 'checkbox',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'BCC IT Staff Title', 'bci' ),
+			'id' => $prefix . 'ittitle',
+			'on_front' => true,
+			'type' => 'text',
 		) );
 	}
 
@@ -728,6 +784,11 @@
 			'desc' => __( 'Link URL', 'bci' ),
 			'id' => $prefix . 'url',
 			'type' => 'text_url',
+		) );
+		$cmb_news->add_field( array(
+			'desc' => __( 'Open in new tab/window?', 'bci' ),
+			'id' => $prefix . 'blank',
+			'type' => 'checkbox',
 		) );
 	}
 
