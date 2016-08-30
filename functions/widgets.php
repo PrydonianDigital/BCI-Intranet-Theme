@@ -1,5 +1,318 @@
 <?php
 
+	function BCI_comms_committee_widget() {
+		register_widget( 'BCI_comms_committee' );
+	}
+	add_action( 'widgets_init', 'BCI_comms_committee_widget' );
+	class BCI_comms_committee extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_comms_committee', 'description' => __( 'Lists Comms Committee', 'bci' ) );
+			parent::__construct( 'comms_committee', __( 'BCI Comms Committee Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'meta_query' 	=> array(
+					array(
+						'key' 		=> '_me_coms_committee',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key' 		=> '_usercentre_centre',
+						'compare'	=> 'EXISTS'
+					)
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_comms_committee">';
+				echo '<h2>Comms Committee members</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
+	function BCI_it_staff_widget() {
+		register_widget( 'BCI_it_staff' );
+	}
+	add_action( 'widgets_init', 'BCI_it_staff_widget' );
+	class BCI_it_staff extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_it_staff', 'description' => __( 'IT Operational Group', 'bci' ) );
+			parent::__construct( 'it_staff', __( 'IT Operational Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'meta_query' 	=> array(
+					array(
+						'key'       => '_me_it',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'       => '_usercentre_centre',
+						'value'     => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_it_staff">';
+				echo '<h2>IT Operational Group</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$bccittitle = get_the_author_meta( '_me_bccittitle', $new_joiners_info->ID );
+					$bccit = get_the_author_meta( '_me_bccit', $new_joiners_info->ID );
+					$ittitle = get_the_author_meta( '_me_ittitle', $new_joiners_info->ID );
+					$it = get_the_author_meta( '_me_it', $new_joiners_info->ID );
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $ittitle . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
+	function BCI_it_group_widget() {
+		register_widget( 'BCI_it_group' );
+	}
+	add_action( 'widgets_init', 'BCI_it_group_widget' );
+	class BCI_it_group extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_it_group', 'description' => __( 'BCC IT Users Group', 'bci' ) );
+			parent::__construct( 'it_group', __( 'BCC IT Users Group Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'meta_query' 	=> array(
+					array(
+						'key'       => '_me_bccit',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'       => '_usercentre_centre',
+						'value'     => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_it_group">';
+				echo '<h2>BCC IT Users Group</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$bccittitle = get_the_author_meta( '_me_bccittitle', $new_joiners_info->ID );
+					$bccit = get_the_author_meta( '_me_bccit', $new_joiners_info->ID );
+					$ittitle = get_the_author_meta( '_me_ittitle', $new_joiners_info->ID );
+					$it = get_the_author_meta( '_me_it', $new_joiners_info->ID );
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $bccittitle . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
+	function BCI_lab_manager_widget() {
+		register_widget( 'BCI_lab_manager' );
+	}
+	add_action( 'widgets_init', 'BCI_lab_manager_widget' );
+	class BCI_lab_manager extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_lab_manager', 'description' => __( 'Lists Lab Managers', 'bci' ) );
+			parent::__construct( 'lab_manager', __( 'BCI Lab Managers Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key'       => '_usercentre_lab_manager',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'       => '_usercentre_centre',
+						'value'     => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_lab_manager">';
+				echo '<h2>Lab Managers</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
+	function BCI_centre_mailing_widget() {
+		register_widget( 'BCI_centre_mailing' );
+	}
+	add_action( 'widgets_init', 'BCI_centre_mailing_widget' );
+	class BCI_centre_mailing extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_centre_mailing', 'description' => __( 'Lists Centre Mailing Lists', 'bci' ) );
+			parent::__construct( 'centre_mailing', __( 'BCI Centre Mailing List Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array (
+				'post_type'              => array( 'centre' ),
+				'posts_per_page'         => '-1',
+			);
+			$managers = new WP_Query( $args );
+			if ( $managers->have_posts() ) {
+			echo '<li class="widget widget_centre_administrator">';
+			echo '<h2>Centre Mailing List</h2>';
+			echo '<ul class="new-joiners">';
+				while ( $managers->have_posts() ) {
+					$managers->the_post();
+					$ml = get_post_meta( get_the_ID(), '_centre_ml', true );
+					if($ml !=''){
+						echo '<li><a href="mailto:'. $ml .'">'. get_the_title() .'</a></li>';
+					}
+				}
+			echo '</ul>';
+			echo '</li>';
+			} else {}
+			wp_reset_postdata();
+		}
+	}
+
+	function BCI_centre_administrator_widget() {
+		register_widget( 'BCI_centre_administrator' );
+	}
+	add_action( 'widgets_init', 'BCI_centre_administrator_widget' );
+	class BCI_centre_administrator extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_centre_administrator', 'description' => __( 'Lists Centre Administrators', 'bci' ) );
+			parent::__construct( 'centre_administrator', __( 'BCI Centre Administrators Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key'       => '_usercentre_centre_administrator',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'       => '_usercentre_centre',
+						'value'     => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_centre_administrator">';
+				echo '<h2>Centre Administrators</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
+	function BCI_centre_roles_widget() {
+		register_widget( 'BCI_centre_roles' );
+	}
+	add_action( 'widgets_init', 'BCI_centre_roles_widget' );
+	class BCI_centre_roles extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_centre_roles', 'description' => __( 'Lists Centre Leads', 'bci' ) );
+			parent::__construct( 'centre_roles', __( 'BCI Centre Leads Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key'       => '_usercentre_centre_lead',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'       => '_usercentre_centre',
+						'value'     => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_centre_roles">';
+				echo '<h2>Centre Leads</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+	}
+
 	function BCI_social_comms_widget() {
 		register_widget( 'BCI_social_comms' );
 	}
@@ -12,15 +325,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_social_committee',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -34,8 +348,9 @@
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -57,15 +372,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_phd_forum',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -80,7 +396,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -102,15 +419,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_postdoc_rep',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -125,7 +443,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -147,15 +466,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_postdoc_mentor',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -170,7 +490,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -192,15 +513,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_student_reps',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -215,7 +537,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -237,15 +560,16 @@
 		function widget( $args, $instance) {
 			$args = array(
 				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
+				'meta_key'		=> '_usercentre_centre',
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_exec',
-						'compare'	=> 'EXISTS'
+						'value'     => 'on',
+						'compare'   => 'LIKE',
 					),
 					array(
-						'key' 		=> '_me_dept',
+						'key' 		=> '_usercentre_centre',
 						'compare'	=> 'EXISTS'
 					)
 				)
@@ -260,52 +584,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
-				}
-				echo '</ul>';
-				echo '</li>';
-			} else {
-				echo '';
-			}
-		}
-	}
-
-	function BCI_bcc_it() {
-		register_widget( 'BCI_bcc_it' );
-	}
-	add_action( 'widgets_init', 'BCI_bcc_it' );
-	class BCI_bcc_it extends WP_Widget {
-		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_exec', 'description' => __( 'Lists Social Committee', 'bci' ) );
-			parent::__construct( 'exec', __( 'BCI BCC IT User Group Widget', 'bci' ), $widget_ops );
-		}
-		function widget( $args, $instance) {
-			$args = array(
-				'orderby'		=> 'meta_value',
-				'meta_key'		=> '_me_dept',
-				'order'			=> 'DESC',
-				'meta_query' 	=> array(
-					array(
-						'key' 		=> '_me_bccit',
-						'compare'	=> 'EXISTS'
-					),
-					array(
-						'key' 		=> '_me_dept',
-						'compare'	=> 'EXISTS'
-					)
-				)
-			);
-			$wp_user_query = new WP_User_Query($args);
-			$new_joiners = $wp_user_query->get_results();
-			if (!empty($new_joiners)) {
-				echo '<li class="widget widget_exec">';
-				echo '<h2>BCC IT User Group members</h2>';
-				echo '<ul class="new-joiners">';
-				foreach ($new_joiners as $new_joiner) {
-					$new_joiners_info = get_userdata($new_joiner->ID);
-					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $department . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
