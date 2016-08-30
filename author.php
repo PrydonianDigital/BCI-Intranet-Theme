@@ -32,13 +32,13 @@
 			<?php echo $curauth->description; ?>
 		    <?php
 				if($curauth->_usercentre_main_safety == 'on') {
-					echo '<p>Main Safety</p>';
+					echo '<p>Local Safety Officers</p>';
 				}
 				if($curauth->_usercentre_fire_marshall == 'on') {
-					echo '<p>Fire Marshall</p>';
+					echo '<p>Fire Marshalls</p>';
 				}
 				if($curauth->_usercentre_first_aider == 'on') {
-					echo '<p>First Aider</p>';
+					echo '<p>First Aiders</p>';
 				}
 			?>
 		    <?php
