@@ -808,24 +808,6 @@
 		) );
 	}
 
-	// Announcements
-	add_action( 'cmb2_admin_init', 'show_announcement' );
-	function show_announcement() {
-		$prefix = '_argh_';
-		$cmb_announcement = new_cmb2_box( array(
-			'id' => $prefix . 'edit_metabox',
-			'title' => __( 'Show this announcement', 'bci' ),
-			'object_types' => array( 'announcement' ),
-			'show_names' => true,
-			'context' => 'side'
-		) );
-		$cmb_announcement->add_field( array(
-			'description' => __( 'tick the box to show this on the home page', 'bci' ),
-			'id' => $prefix . 'show',
-			'type' => 'checkbox',
-		) );
-	}
-
 	// Lab Resources
 	add_action( 'cmb2_admin_init', 'lab_resources' );
 	function lab_resources() {
