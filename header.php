@@ -50,8 +50,6 @@
 			if ( $argh->have_posts() ) {
 				while ( $argh->have_posts() ) {
 					$argh->the_post();
-					$announcement = get_post_meta( get_the_ID(), '_argh_show', true );
-					if($announcement !='') {
 			?>
 			<div id="announcement">
 				<div id="announcementClose">
@@ -64,7 +62,6 @@
 				</a>
 			</div>
 			<?php
-					}
 				}
 			} else {}
 			wp_reset_postdata();
