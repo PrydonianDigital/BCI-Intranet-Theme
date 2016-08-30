@@ -57,40 +57,11 @@
 				<div id="announcementClose">
 					<i class="nav-close2"></i>
 				</div>
-				<?php
-				$eann = new WP_Query( array(
-					'connected_type' => 'a2e',
-					'connected_items' => $post,
-					'nopaging' => true,
-				) );
-				if ( $eann->have_posts() ) : while ( $eann->have_posts() ) : $eann->the_post(); ?>
-				<a href="<?php the_permalink(); ?>">
 					<div>
 						<h2><?php the_title(); ?></h2>
-						<?php echo tribe_events_event_schedule_details( $event_id, '<h4>', '</h4>' ); ?>
+						<?php the_content(); ?>
 					</div>
 				</a>
-				<?php endwhile;
-				wp_reset_postdata();
-				endif;
-				?>
-				<?php
-				$pann = new WP_Query( array(
-					'connected_type' => 'p2a',
-					'connected_items' => $post,
-					'nopaging' => true,
-				) );
-				if ( $pann->have_posts() ) : while ( $pann->have_posts() ) : $pann->the_post(); ?>
-				<a href="<?php the_permalink(); ?>">
-					<div>
-						<h2><?php the_title(); ?></h2>
-						<?php the_excerpt(); ?>
-					</div>
-				</a>
-				<?php endwhile;
-				wp_reset_postdata();
-				endif;
-				?>
 			</div>
 			<?php
 					}
@@ -109,7 +80,7 @@
 			<?php if(current_user_can('activate_plugins')) { ?>
 				<a class="appsButton close dash" id="dash"  href="<?php echo admin_url(); ?>" title="Dashboard"><i class="nav-equalizer2"></i></a>
 			<?php } ?>
-			<a class="appsButton close help" id="help"  href="<?php bloginfo('url'); ?>/help/" title="Help"><i class="nav-question"></i></a>
+			<a class="appsButton close help" id="search"  href="<?php bloginfo('url'); ?>/search/" title="Search"><i class="nav-search"></i></a>
 			<a class="appsButton close editApps" id="editProfile"  href="<?php bloginfo('url'); ?>/my-profile/" title="Edit my profile"><i class="nav-useredit"></i></a>
 			<a class="appsButton close editApps" id="editApps"  href="<?php bloginfo('url'); ?>/my-profile/my-apps/" title="Edit my apps"><i class="nav-cogs"></i></a>
 			<a class="appsButton close" id="openApps" href="#" title="View my apps"><i class="nav-myapps"></i></a>
