@@ -2,7 +2,7 @@
 
 	// Theme Options
 	if ( ! isset( $content_width ) )
-		$content_width = 800;
+		$content_width = 600;
 
 	function bcc_theme()	{
 		add_theme_support( 'post-thumbnails' );
@@ -10,7 +10,6 @@
 		add_image_size( 'header', '1172', '200', true );
 		add_image_size( 'display', '300', '250', true );
 		add_image_size( 'thumbnail-news', '227', '108', true );
-		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 		add_theme_support( 'title-tag' );
 		remove_action( 'wp_head', 'wp_generator' );
 		remove_action( 'wp_head', 'rsd_link' );
