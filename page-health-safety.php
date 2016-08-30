@@ -19,7 +19,7 @@
 
 			<?php the_content(); ?>
 
-			<h3>Main Safety</h3>
+			<h3>Local Safety Officers</h3>
 			<?php
 			$args = array (
 				'number'			=> '-1',
@@ -30,6 +30,9 @@
 						'compare'   => 'EXISTS',
 					),
 				),
+				'orderby'			=> 'meta_value_num',
+				'meta_key'			=> '_usercentre_centre',
+				'order'				=> 'ASC'
 			);
 			$hands = new WP_User_Query( $args );
 			if ( ! empty( $hands->results ) ) {
@@ -46,7 +49,7 @@
 				echo '<p>No people have this role.</p>';
 			}
 			?>
-			<h3>First Aider</h3>
+			<h3>First Aiders</h3>
 			<?php
 			$args = array (
 				'number'			=> '-1',
@@ -69,14 +72,14 @@
 					echo '<div class="large-3 small-12 columns"><strong>' . $dept->post_title  . '</strong></div>';
 					echo '<div class="large-4 small-12 columns">' . $user->first_name . ' ' . $user->last_name . '</div>';
 					echo '<div class="large-2 small-12 columns"><i class="nav-phone"></i> x' . $user->_me_ext . '</div>';
-					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . user_email . '">' . $user->user_email . '</a></div>';
+					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . $user->user_email . '">' . $user->user_email . '</a></div>';
 					echo '</div>';
 				}
 			} else {
 				echo '<p>No people have this role.</p>';
 			}
 			?>
-			<h3>Fire Marshall</h3>
+			<h3>Fire Marshalls</h3>
 			<?php
 			$args = array (
 				'number'			=> '-1',
@@ -87,6 +90,9 @@
 						'compare'   => 'EXISTS',
 					),
 				),
+				'orderby'			=> 'meta_value_num',
+				'meta_key'			=> '_usercentre_centre',
+				'order'				=> 'ASC'
 			);
 			$hands = new WP_User_Query( $args );
 			if ( ! empty( $hands->results ) ) {
@@ -96,7 +102,7 @@
 					echo '<div class="large-3 small-12 columns"><strong>' . $dept->post_title  . '</strong></div>';
 					echo '<div class="large-4 small-12 columns">' . $user->first_name . ' ' . $user->last_name . '</div>';
 					echo '<div class="large-2 small-12 columns"><i class="nav-phone"></i> x' . $user->_me_ext . '</div>';
-					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . user_email . '">' . $user->user_email . '</a></div>';
+					echo '<div class="large-3 small-12 columns"><i class="nav-envelope"></i> <a href="mailto:' . $user->user_email . '">' . $user->user_email . '</a></div>';
 					echo '</div>';
 				}
 			} else {
