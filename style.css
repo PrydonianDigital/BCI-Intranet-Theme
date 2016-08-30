@@ -94,9 +94,6 @@ header.site-header #announcement {
 	margin: 0 -1em 0 -1em;
 }
 header.site-header #announcement a {
-	display: block;
-	overflow: hidden;
-	position: relative;
 	color: #222;
 }
 #navShow {
@@ -1075,6 +1072,24 @@ input[type="search"].search-field {
 	display: block;
 	margin: 0 auto 1.75em;
 }
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
 blockquote.alignleft {
 	margin: 0.3157894737em 1.4736842105em 1.473684211em 0;
 }
@@ -1184,8 +1199,16 @@ blockquote:after,
 	display: none;
 }
 figure {
+	margin: 0 0.2em 0.5em 0.2em;
+	width: auto;
+	display: inline-block;
+	padding: 0.5em;
+	background: #efefef;
+}
+.wp-caption {
 	padding: 0.7em;
 	background: #efefef;
+	width: auto;
 }
 figcaption, .wp-caption .wp-caption-text {
 	text-align: center;
@@ -1193,6 +1216,9 @@ figcaption, .wp-caption .wp-caption-text {
 	color: #333;
 	line-height: 1.4;
 	margin-top: 0.35em;
+}
+p.wp-caption-text {
+	margin-bottom: 0;
 }
 .post-edit-link {
 	display: inline-block;
@@ -1530,4 +1556,13 @@ h3.accordion-title.open:before {
 		padding: 5px;
 		width: 48.5%;
 	}
+}
+.gform_wrapper .field_description_below .gfield_description, .gform_wrapper .left_label .gfield_description, .gform_wrapper .left_label .instruction, .gform_wrapper .right_label .gfield_description, .gform_wrapper .right_label .instruction {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	margin-bottom: 9px;
+	padding-bottom: 16px;
+}
+.gform_wrapper ul.gform_fields:not(.top_label) .gfield_label {
+	margin-bottom: 4px !important;
 }
