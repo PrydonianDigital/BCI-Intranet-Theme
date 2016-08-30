@@ -32,8 +32,8 @@ function add_bci_user_details( $user ) {
             <tr>
                 <th><label for="extras">Health &amp; Safety Roles</label></th>
                 <td><input type="checkbox" name="main_safety" id="main_safety" value="yes" <?php if (esc_attr( get_the_author_meta( "main_safety", $user->ID )) == "yes") echo "checked"; ?> /> Main Safety<br />
-                <input type="checkbox" name="fire_marshall" id="fire_marshall" value="yes" <?php if (esc_attr( get_the_author_meta( "fire_marshall", $user->ID )) == "yes") echo "checked"; ?> /> Fire Marshall<br />
-                <input type="checkbox" name="first_aider" id="first_aider" value="yes" <?php if (esc_attr( get_the_author_meta( "first_aider", $user->ID )) == "yes") echo "checked"; ?> /> First Aider<br />
+                <input type="checkbox" name="fire_marshall" id="fire_marshall" value="yes" <?php if (esc_attr( get_the_author_meta( "fire_marshall", $user->ID )) == "yes") echo "checked"; ?> /> Fire Marshalls<br />
+                <input type="checkbox" name="first_aider" id="first_aider" value="yes" <?php if (esc_attr( get_the_author_meta( "first_aider", $user->ID )) == "yes") echo "checked"; ?> /> First Aiders<br />
                 </td>
             </tr>
             <tr>
