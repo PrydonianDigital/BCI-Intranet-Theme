@@ -414,3 +414,8 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 		return $mime_types;
 	}
 	add_filter('upload_mimes', 'my_myme_types', 1, 1);
+
+	add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
+	function my_embed_oembed_html($html, $url, $attr, $post_id) {
+		return '<div class="oEmbed">' . $html . '</div>';
+	}
