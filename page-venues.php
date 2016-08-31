@@ -4,7 +4,10 @@
 
 		<div class="small-12 large-9 column" role="main">
 
-			<h2 class="page-title">Book a Room</h2>
+			<?php $title = get_post_meta( get_the_ID(), "_word_title", true ); ?>
+			<?php if($title != 'on') { ?>
+				<h2 class="page-title">Book A Room</h2>
+			<?php } else {} ?>
 
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

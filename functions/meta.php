@@ -19,6 +19,12 @@
 			'id'   => $prefix . 'argh',
 			'type' => 'title',
 		) );
+		$cmb_anti->add_field( array(
+			'name' => 'Page Title',
+			'description' => __( 'Hide page title?.', 'bci' ),
+			'id'   => $prefix . 'title',
+			'type' => 'checkbox',
+		) );
 	}
 
 	// Apps
