@@ -618,6 +618,18 @@
 			'type' => 'text_small',
 		) );
 		$cmb_user->add_field( array(
+			'desc' => __( 'Fax', 'bci' ),
+			'id' => $prefix . 'fTitle',
+			'on_front' => true,
+			'type' => 'title',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( '', 'bci' ),
+			'id' => $prefix . 'fax',
+			'on_front' => true,
+			'type' => 'text',
+		) );
+		$cmb_user->add_field( array(
 			'desc' => __( 'Building', 'bci' ),
 			'id' => $prefix . 'buildTitle',
 			'on_front' => true,
