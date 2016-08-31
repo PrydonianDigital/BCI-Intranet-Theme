@@ -11,6 +11,8 @@
 				<h2 class="page-title"><?php the_title(); ?></h2>
 			<?php } else {} ?>
 
+				<p><a id="tour" href="#">Reset the homepage tour</a>
+
 				<?php global $current_user; get_currentuserinfo();
 				$userID = $current_user->ID; echo get_avatar( $userID, 64 ); ?>
 

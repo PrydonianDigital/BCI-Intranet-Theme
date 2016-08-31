@@ -576,7 +576,7 @@
 			'type' => 'title',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Do not put your Centre Role in here (Centre Lead, Lab Manager, etc). Use the <a href="/my-profile/my-centre-profile/">Centre Profile</a> checkboxes for this.', 'bci' ),
+			'desc' => __( 'Do not put your Centre Role in here (Centre Lead, Lab Manager, etc). Use the <a href="/my-profile/my-centre-profile/">Centre Profile</a> checkboxes for this. If one of those is your job title, leave this blank.', 'bci' ),
 			'id' => $prefix . 'title',
 			'on_front' => true,
 			'type' => 'text',
@@ -616,6 +616,28 @@
 			'id' => $prefix . 'ext',
 			'on_front' => true,
 			'type' => 'text_small',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Building', 'bci' ),
+			'id' => $prefix . 'buildTitle',
+			'on_front' => true,
+			'type' => 'title',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( '', 'bci' ),
+			'id' => $prefix . 'building',
+			'on_front' => true,
+			'type' => 'select',
+			'options' => array(
+				'Old Anatomy Building' => 'Old Anatomy Building',
+				'John Vane Science Centre' => 'John Vane Science Centre',
+				'Joseph Rotblat Building' => 'Joseph Rotblat Building',
+				'Dean Rees House' => 'Dean Rees House',
+				'The William Harvey Heart Centre' => 'The William Harvey Heart Centre',
+				'Lodge House' => 'Lodge House',
+				'Dawson Hall' => 'Dawson Hall',
+				'Wolfson Institute' =>'Wolfson Institute'
+			)
 		) );
 		$cmb_user->add_field( array(
 			'desc' => __( '<i class="nav-balloons"></i> Birthday (optional)', 'bci' ),

@@ -24,24 +24,25 @@
 				<span class="larger"><?php echo $current_user->user_firstname ?> <?php echo $current_user->user_lastname ?><br /></span>
 				<span class="larger"><?php echo $current_user->_me_title; ?> |
 				<?php
-					$centreName = $current_user->_usercentre_centre;
-					switch ($centreName) {
-						case '1644':
+					$centre = $current_user->_usercentre_centre;
+					$centreName = get_the_title($centre);
+					switch (true) {
+						case stristr($centreName, 'Inflammation'):
 							echo 'Centre for Cancer & Inflammation';
 							break;
-						case '1648':
-							echo 'Centre for Experimental Cancer Medicine';
-							break;
-						case '1643':
-							echo 'Centre for Haemato-Oncology';
-							break;
-						case '1645':
-							echo 'Centre for Molecular Oncology';
-							break;
-						case '1646':
+						case stristr($centreName, 'Ageing'):
 							echo 'Centre for Stem Cells in Cancer & Ageing';
 							break;
-						case '1647':
+						case stristr($centreName, 'Medicine'):
+							echo 'Centre for Experimental Cancer Medicine';
+							break;
+						case stristr($centreName, '-Oncology'):
+							echo 'Centre for Haemato-Oncology';
+							break;
+						case stristr($centreName, ' Oncology'):
+							echo 'Centre for Molecular Oncology';
+							break;
+						case stristr($centreName, 'Biology'):
 							echo 'Centre for Tumour Biology';
 							break;
 						default:
@@ -50,7 +51,7 @@
 				?><br /></span>
 				Barts Cancer Institute - a Cancer Research UK Centre of Excellence<br />
 				Queen Mary University of London<br />
-				Old Anatomy Building Charterhouse Square, London EC1M 6BQ</p>
+				<?php echo $current_user->_me_building ?>, Charterhouse Square, London EC1M 6BQ</p>
 				Tel: +44 (0)20 7882 <?php echo $current_user->_me_ext; ?> | Email: <a href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a><br />
 				<a href="http://www.bci.qmul.ac.uk">http://www.bci.qmul.ac.uk</a><br />
 				<img src="http://dev.intranet.qmcr.qmul.ac.uk/wp-content/uploads/2013/01/Barts-SMD-blue.png" width="250" /><br />
