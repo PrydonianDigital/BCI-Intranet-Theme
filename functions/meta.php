@@ -775,6 +775,11 @@
 			'id'   => '_doc',
 			'type' => 'file',
 		) );
+		$cmb_doc->add_group_field( $doc_group, array(
+			'name' => 'Reason for new version',
+			'id'   => '_reason',
+			'type' => 'text',
+		) );
 	}
 
 	// Links Info
