@@ -182,30 +182,33 @@
 			$args = array('parent' => 0);
 			$cats = get_categories($args);
 				foreach ($cats as $cat) {
-					echo '<div class="row">';
-					$cat_id= $cat->term_id;
-					echo '<div class="large-12 small-12 columns"><h4 class="home-category">Latest news in '.$cat->name.'</h4></div>';
-					$the_query = new WP_Query(
-						array(
-							'category_name' => $cat->slug,
-							'posts_per_page' => 3,
-							'post__not_in' => get_option( 'sticky_posts' )
-						)
-					);
-					if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post();
-					?>
-						<div <?php post_class('home-news small-12 large-4 columns'); ?>>
-						<?php if ( has_post_thumbnail() ) : ?>
-							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-								<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
-							</a>
-						<?php endif; ?>
-						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-						<small class="meta"><?php the_time('l jS F, Y') ?></small>
-						<?php the_excerpt(); ?>
-						</div>
-					<?php endwhile; endif;
-					echo '</div>';
+					$hide = get_term_meta( $cat->term_id, "_cat_hide", true );
+					if($hide != 'on') {
+						echo '<div class="row">';
+						$cat_id= $cat->term_id;
+						echo '<div class="large-12 small-12 columns"><h4 class="home-category">Latest news in '.$cat->name.'</h4></div>';
+						$the_query = new WP_Query(
+							array(
+								'category_name' => $cat->slug,
+								'posts_per_page' => 3,
+								'post__not_in' => get_option( 'sticky_posts' )
+							)
+						);
+						if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post();
+						?>
+							<div <?php post_class('home-news small-12 large-4 columns'); ?>>
+							<?php if ( has_post_thumbnail() ) : ?>
+								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+									<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
+								</a>
+							<?php endif; ?>
+							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+							<small class="meta"><?php the_time('l jS F, Y') ?></small>
+							<?php the_excerpt(); ?>
+							</div>
+						<?php endwhile; endif;
+						echo '</div>';
+					}
 				} ?>
 
 		</div>

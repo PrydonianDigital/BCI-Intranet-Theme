@@ -27,6 +27,23 @@
 		) );
 	}
 
+	// Categories
+	add_action( 'cmb2_admin_init', 'category_hide' );
+	function category_hide() {
+		$prefix = '_cat_';
+		$cmb_anti = new_cmb2_box( array(
+			'id' => $prefix . 'twat',
+			'title' => __( 'Home Page', 'bci' ),
+			'object_types' => array( 'term' ),
+			'taxonomies' => array( 'category' ),
+		) );
+		$cmb_anti->add_field( array(
+			'name' => 'Hide on home page',
+			'id'   => $prefix . 'hide',
+			'type' => 'checkbox',
+		) );
+	}
+
 	// Apps
 	add_action( 'cmb2_init', 'App_Details' );
 	function App_Details() {
