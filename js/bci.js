@@ -15,6 +15,11 @@ $s(function() {
 		$s(this).toggleClass('nav-minus-circle nav-plus-circle');
 		$s('.sitemap ul.submenu').slideToggle();
 	});
+	$s('#tour').on('click', function(e){
+		e.preventDefault();
+		localStorage.removeItem('BCITour_end');
+		localStorage.removeItem('BCITour_current_step');
+	});
 
 	$s('#announcementClose').on('click', function(e){
 		$s('#announcement').hide();
