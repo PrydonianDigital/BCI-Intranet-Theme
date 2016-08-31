@@ -34,7 +34,7 @@
 	function main_search() {
 		$args = array();
 		$args['wp_query'] = array(
-			'post_type' => array('page', 'post', 'tribe_events', 'centre'),
+			'post_type' => array('page', 'post', 'tribe_events', 'centre', 'doc'),
 			'orderby' => 'title',
 			'order' => 'ASC'
 		);
@@ -65,7 +65,7 @@
 			'type' => 'post_type',
 			'format' => 'checkbox',
 			'label' => 'Search by:',
-			'values' => array('page' => '<i class="nav-file"></i> Pages', 'centre' => '<i class="nav-office"></i> Centres', 'post' => '<i class="nav-newspaper"></i> News', 'tribe_events' => '<i class="nav-calendar"></i> Events') ,
+			'values' => array('page' => '<i class="nav-file"></i> Pages', 'centre' => '<i class="nav-office"></i> Centres', 'post' => '<i class="nav-newspaper"></i> News', 'tribe_events' => '<i class="nav-calendar"></i> Events', 'doc' => '<i class="nav-file-text-o"></i> Documents') ,
 			'default_all' => true
 		);
 		$args['fields'][] = array(
