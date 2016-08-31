@@ -419,3 +419,27 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	function my_embed_oembed_html($html, $url, $attr, $post_id) {
 		return '<div class="oEmbed">' . $html . '</div>';
 	}
+
+	// Hide Centre Events from main Events page
+	add_action( 'pre_get_posts', 'tribe_exclude_events_category_month_list' );
+	function tribe_exclude_events_category_month_list( $query ) {
+
+		if ( isset( $query->query_vars['eventDisplay'] ) && ! is_singular( 'tribe_events' ) ) {
+
+			if ( $query->query_vars['eventDisplay'] == 'list' && ! is_tax( Tribe__Events__Main::TAXONOMY ) || $query->query_vars['eventDisplay'] == 'month' && $query->query_vars['post_type'] == Tribe__Events__Main::POSTTYPE && ! is_tax( Tribe__Events__Main::TAXONOMY ) && empty( $query->query_vars['suppress_filters'] ) ) {
+
+				$query->set( 'tax_query', array(
+
+					array(
+						'taxonomy' => Tribe__Events__Main::TAXONOMY,
+						'field'    => 'slug',
+						'terms'    => array( 'centres' ),
+						'operator' => 'NOT IN'
+					)
+				) );
+			}
+
+		}
+
+		return $query;
+	}
