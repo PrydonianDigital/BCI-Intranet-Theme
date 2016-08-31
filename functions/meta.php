@@ -667,6 +667,12 @@
 			'type' => 'checkbox',
 		) );
 		$cmb_user->add_field( array(
+			'desc' => __( 'Postdoc Forum', 'bci' ),
+			'id' => $prefix . 'postdoc_forum',
+			'on_front' => true,
+			'type' => 'checkbox',
+		) );
+		$cmb_user->add_field( array(
 			'desc' => __( 'Postdoc Mentors', 'bci' ),
 			'id' => $prefix . 'postdoc_mentor',
 			'on_front' => true,

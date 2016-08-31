@@ -1,5 +1,203 @@
 <?php
 
+	function BCI_SMT_forum_widget() {
+		register_widget( 'BCI_smt_forum' );
+	}
+	add_action( 'widgets_init', 'BCI_smt_forum_widget' );
+	class BCI_SMT_forum extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_smt_forum', 'description' => __( 'Lists SMT members', 'bci' ) );
+			parent::__construct( 'smt_forum', __( 'BCI SMT Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key' 		=> '_me_smt',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key' 		=> '_usercentre_centre',
+						'compare'	=> 'EXISTS'
+					)
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_SMT_forum">';
+				echo '<h2>'. $title .'</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'SMT members', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
+	function BCI_athena_swan_widget() {
+		register_widget( 'BCI_athena_swan' );
+	}
+	add_action( 'widgets_init', 'BCI_athena_swan_widget' );
+	class BCI_athena_swan extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_athena_swan', 'description' => __( 'Lists Athena SWAN members', 'bci' ) );
+			parent::__construct( 'athena_swan', __( 'BCI Athena SWAN Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key' 		=> '_me_athena_swan',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key' 		=> '_usercentre_centre',
+						'compare'	=> 'EXISTS'
+					)
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_athena_swan">';
+				echo '<h2>'. $title .'</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Athena SWAN members', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
+	function BCI_admin_forum_widget() {
+		register_widget( 'BCI_admin_forum' );
+	}
+	add_action( 'widgets_init', 'BCI_admin_forum_widget' );
+	class BCI_admin_forum extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_admin_forum', 'description' => __( 'Lists Admin Forum members', 'bci' ) );
+			parent::__construct( 'admin_forum', __( 'BCI Admin Forum Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key' 		=> '_me_admin',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key' 		=> '_usercentre_centre',
+						'compare'	=> 'EXISTS'
+					)
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_admin_forum">';
+				echo '<h2>'. $title .'</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Admin Forum members', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
 	function BCI_comms_committee_widget() {
 		register_widget( 'BCI_comms_committee' );
 	}
@@ -10,6 +208,7 @@
 			parent::__construct( 'comms_committee', __( 'BCI Comms Committee Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'meta_query' 	=> array(
 					array(
@@ -27,7 +226,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_comms_committee">';
-				echo '<h2>Comms Committee members</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -42,6 +241,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'BCI Comms Committee', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_it_staff_widget() {
@@ -54,6 +271,7 @@
 			parent::__construct( 'it_staff', __( 'IT Operational Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'meta_query' 	=> array(
 					array(
@@ -72,7 +290,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_it_staff">';
-				echo '<h2>IT Operational Group</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -88,6 +306,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'IT Operational Group', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_it_group_widget() {
@@ -100,6 +336,7 @@
 			parent::__construct( 'it_group', __( 'BCC IT Users Group Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'meta_query' 	=> array(
 					array(
@@ -118,7 +355,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_it_group">';
-				echo '<h2>BCC IT Users Group</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -134,6 +371,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'IT Users Group', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_lab_manager_widget() {
@@ -146,6 +401,7 @@
 			parent::__construct( 'lab_manager', __( 'BCI Lab Managers Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -167,7 +423,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_lab_manager">';
-				echo '<h2>Lab Managers</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -182,6 +438,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Lab Managers', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_centre_mailing_widget() {
@@ -194,6 +468,7 @@
 			parent::__construct( 'centre_mailing', __( 'BCI Centre Mailing List Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array (
 				'post_type'              => array( 'centre' ),
 				'posts_per_page'         => '-1',
@@ -201,7 +476,7 @@
 			$managers = new WP_Query( $args );
 			if ( $managers->have_posts() ) {
 			echo '<li class="widget widget_centre_administrator">';
-			echo '<h2>Centre Mailing List</h2>';
+				echo '<h2>'.$title.'</h2>';
 			echo '<ul class="new-joiners">';
 				while ( $managers->have_posts() ) {
 					$managers->the_post();
@@ -215,6 +490,24 @@
 			} else {}
 			wp_reset_postdata();
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Centre Mailing List', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_centre_administrator_widget() {
@@ -227,6 +520,7 @@
 			parent::__construct( 'centre_administrator', __( 'BCI Centre Administrators Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -248,7 +542,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_centre_administrator">';
-				echo '<h2>Centre Administrators</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -263,6 +557,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Centre Administrators', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_centre_roles_widget() {
@@ -275,6 +587,7 @@
 			parent::__construct( 'centre_roles', __( 'BCI Centre Leads Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -296,7 +609,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_centre_roles">';
-				echo '<h2>Centre Leads</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -311,6 +624,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Centre Leads', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_social_comms_widget() {
@@ -323,6 +654,7 @@
 			parent::__construct( 'social_comms', __( 'BCI Social Committee Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -343,7 +675,7 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_social_comms">';
-				echo '<h2>Social Committee members</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
@@ -358,6 +690,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Social Committee', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_phd_forum_widget() {
@@ -366,10 +716,11 @@
 	add_action( 'widgets_init', 'BCI_phd_forum_widget' );
 	class BCI_phd_forum extends WP_Widget {
 		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_phd_forum', 'description' => __( 'Lists Social Committee', 'bci' ) );
+			$widget_ops = array( 'classname' => 'widget_phd_forum', 'description' => __( 'Lists PhD Forum', 'bci' ) );
 			parent::__construct( 'phd_forum', __( 'BCI PhD Forum Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -390,12 +741,12 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_phd_forum">';
-				echo '<h2>PhD Forum members</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
@@ -405,6 +756,90 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'PhD Forum members', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
+	function BCI_postdoc_forum_widget() {
+		register_widget( 'BCI_postdoc_forum' );
+	}
+	add_action( 'widgets_init', 'BCI_postdoc_forum_widget' );
+	class BCI_postdoc_forum extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_postdoc_forum', 'description' => __( 'Lists Postdoc Forum members', 'bci' ) );
+			parent::__construct( 'postdoc_forum', __( 'BCI Postdoc Forum Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key' 		=> '_me_postdoc_forum',
+						'value'     => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key' 		=> '_usercentre_centre',
+						'compare'	=> 'EXISTS'
+					)
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_postdoc_forum">';
+				echo '<h2>'. $title .'</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Postdoc Forum members', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_postdoc_reps_widget() {
@@ -413,10 +848,11 @@
 	add_action( 'widgets_init', 'BCI_postdoc_reps_widget' );
 	class BCI_postdoc_reps extends WP_Widget {
 		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_postdoc_reps', 'description' => __( 'Lists Social Committee', 'bci' ) );
+			$widget_ops = array( 'classname' => 'widget_postdoc_reps', 'description' => __( 'Lists Postdoc Reps', 'bci' ) );
 			parent::__construct( 'postdoc_reps', __( 'BCI Postdoc Reps Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -437,12 +873,12 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_postdoc_reps">';
-				echo '<h2>Postdoc Reps</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
@@ -452,6 +888,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Postdoc Reps', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_postdoc_mentors_widget() {
@@ -460,10 +914,11 @@
 	add_action( 'widgets_init', 'BCI_postdoc_mentors_widget' );
 	class BCI_postdoc_mentors extends WP_Widget {
 		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_postdoc_mentors', 'description' => __( 'Lists Social Committee', 'bci' ) );
+			$widget_ops = array( 'classname' => 'widget_postdoc_mentors', 'description' => __( 'Lists Postdoc mentors', 'bci' ) );
 			parent::__construct( 'postdoc_mentors', __( 'BCI Postdoc Mentors Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -484,12 +939,12 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_postdoc_mentors">';
-				echo '<h2>Postdoc Mentors</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
@@ -499,6 +954,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Postdoc Mentors', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_student_reps_widget() {
@@ -507,10 +980,11 @@
 	add_action( 'widgets_init', 'BCI_student_reps_widget' );
 	class BCI_student_reps extends WP_Widget {
 		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_student_reps', 'description' => __( 'Lists Social Committee', 'bci' ) );
+			$widget_ops = array( 'classname' => 'widget_student_reps', 'description' => __( 'Lists Student Reps', 'bci' ) );
 			parent::__construct( 'student_reps', __( 'BCI Student Reps Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -531,12 +1005,12 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_student_reps">';
-				echo '<h2>Student Reps</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
@@ -546,6 +1020,24 @@
 				echo '';
 			}
 		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Student Reps', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
 	}
 
 	function BCI_exec_widget() {
@@ -554,10 +1046,11 @@
 	add_action( 'widgets_init', 'BCI_exec_widget' );
 	class BCI_exec extends WP_Widget {
 		function __construct() {
-			$widget_ops = array( 'classname' => 'widget_exec', 'description' => __( 'Lists Social Committee', 'bci' ) );
+			$widget_ops = array( 'classname' => 'widget_exec', 'description' => __( 'Lists Exec Board', 'bci' ) );
 			parent::__construct( 'exec', __( 'BCI Exec Board Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'orderby'		=> 'meta_value',
 				'meta_key'		=> '_usercentre_centre',
@@ -578,12 +1071,12 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget widget_exec">';
-				echo '<h2>Exec Board members</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
 				}
@@ -592,6 +1085,24 @@
 			} else {
 				echo '';
 			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Exec Board', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
 		}
 	}
 
@@ -605,6 +1116,7 @@
 			parent::__construct( 'new-joiners-widget', __( 'BCI New Joiners Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array(
 				'date_query' => array(
 					array(
@@ -616,13 +1128,13 @@
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
 				echo '<li class="widget new-joiners-widget">';
-				echo '<h2>Staff Changes</h2>';
+				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
 				echo '<li>We welcome the following new starters:</li>';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
-					$department = get_the_author_meta( 'department', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $new_joiners_info->description . '</li>';
 				}
 				echo '</ul>';
@@ -630,6 +1142,24 @@
 			} else {
 				echo '';
 			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'New Joiners', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
 		}
 	}
 
