@@ -38,7 +38,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -104,7 +104,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -170,7 +170,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -233,7 +233,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -298,7 +298,7 @@
 					$bccit = get_the_author_meta( '_me_bccit', $new_joiners_info->ID );
 					$ittitle = get_the_author_meta( '_me_ittitle', $new_joiners_info->ID );
 					$it = get_the_author_meta( '_me_it', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $ittitle . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $ittitle . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -363,7 +363,7 @@
 					$bccit = get_the_author_meta( '_me_bccit', $new_joiners_info->ID );
 					$ittitle = get_the_author_meta( '_me_ittitle', $new_joiners_info->ID );
 					$it = get_the_author_meta( '_me_it', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $bccittitle . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $bccittitle . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -430,7 +430,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -549,7 +549,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -616,7 +616,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -682,7 +682,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -748,7 +748,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -814,7 +814,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -880,7 +880,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -946,7 +946,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -1012,7 +1012,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -1078,7 +1078,7 @@
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
 					$dept = get_the_title($department);
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $dept . '</li>';
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
@@ -1135,7 +1135,8 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
-					echo '<li><a href="/author/' . $new_joiners_info->display_name . '/">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> - ' . $new_joiners_info->description . '</li>';
+					$dept = get_the_title($department);
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
 				echo '</li>';
