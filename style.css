@@ -1380,7 +1380,7 @@ article.item a.readmore {
 	overflow: hidden;
 }
 #tribe-events-pg-template {
-	max-width: 1280px !important;
+	max-width: 1562px !important;
 }
 .tribe-list-widget .tribe-event-duration {
 	font-size: 1.3rem;
@@ -1586,4 +1586,12 @@ h3.accordion-title.open:before {
 }
 #emailSignature a {
 	color: blue;
+}
+#emailSignature table {
+	width: 600px !important;
+}
+#emailSignature table, #emailSignature tr, #emailSignature td {
+	border: 0 !important;
+	border-collapse: collapse !important;
+	padding: 0 !important;
 }
