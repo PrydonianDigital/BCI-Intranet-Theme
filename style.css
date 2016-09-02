@@ -1598,3 +1598,32 @@ h3.accordion-title.open:before {
 	border-collapse: collapse !important;
 	padding: 0 !important;
 }
+.su-tabs {
+	padding: 3px !important;
+	background: #2B167B !important;
+}
+.su-tabs-nav span {
+	font-family: 'Roboto' !important;
+	font-size: 2.2rem !important;
+	color: #fff !important;
+	font-weight: bold !important;
+}
+.su-tabs-nav span.su-tabs-current, .su-tabs-nav span:hover {
+	color: #111 !important;
+}
+.su-tabs-pane {
+	font-family: 'Roboto' !important;
+	font-size: 1.8rem !important;
+}
+.su-accordion {
+	border: 1px solid #efefef;
+}
+.su-spoiler-title {
+	font-size: 2.2rem !important;
+	color: #fff !important;
+	background: #2B167B !important;
+}
+.su-spoiler {
+	margin-bottom: 0 !important;
+	border-bottom: 1px solid #efefef;
+}
