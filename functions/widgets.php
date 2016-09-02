@@ -1117,6 +1117,7 @@
 		}
 		function widget( $args, $instance) {
 			$title = apply_filters( 'widget_title', $instance['title']);
+			$blurb = apply_filters( 'widget_title', $instance['blurb']);
 			$args = array(
 				'date_query' => array(
 					array(
@@ -1130,7 +1131,7 @@
 				echo '<li class="widget new-joiners-widget">';
 				echo '<h2>'.$title.'</h2>';
 				echo '<ul class="new-joiners">';
-				echo '<li>We welcome the following new starters:</li>';
+				echo '<li>'.$blurb.'</li>';
 				foreach ($new_joiners as $new_joiner) {
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
@@ -1150,16 +1151,26 @@
 			} else {
 				$title = __( 'New Joiners', 'bci' );
 			}
+			if ( isset( $instance[ 'blurb' ] ) ) {
+				$blurb = $instance[ 'blurb' ];
+			} else {
+				$blurb = __( 'We welcome the following new starters:', 'bci' );
+			}
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'blurb' ); ?>"><?php _e( 'Description:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'blurb' ); ?>" name="<?php echo $this->get_field_name( 'blurb' ); ?>" type="text" value="<?php echo esc_attr( $blurb ); ?>">
 		</p>
 		<?php
 		}
 		function update($new_instance, $old_instance) {
 			$instance = $old_instance;
 			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['blurb'] = strip_tags($new_instance['blurb']);
 			return $instance;
 		}
 	}
