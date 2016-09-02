@@ -1617,6 +1617,8 @@ h3.accordion-title.open:before {
 }
 .su-accordion {
 	border: 1px solid #efefef;
+	margin-top: 1em !important;
+	margin-bottom: 1em !important;
 }
 .su-spoiler-title {
 	font-size: 2.2rem !important;
