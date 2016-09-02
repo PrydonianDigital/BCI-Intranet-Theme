@@ -24,12 +24,12 @@
 	// Custom oEmbed Template
 	add_action( 'embed_head', 'embed_styles' );
 	function embed_styles() {
-	    echo '<style>';
-	    echo '@import "https://fonts.googleapis.com/css?family=Roboto:400,500,700";';
-	    echo '.wp-embed-footer {display:none !important;}';
-	    echo '.wp-embed {font-family: "Roboto" !important; color: #222 !important;}';
-	    echo '.wp-embed-heading {color: #25023B !important;}';
-	    echo '</style>';
+		echo '<style>';
+		echo '@import "https://fonts.googleapis.com/css?family=Roboto:400,500,700";';
+		echo '.wp-embed-footer {display:none !important;}';
+		echo '.wp-embed {font-family: "Roboto" !important; color: #222 !important;}';
+		echo '.wp-embed-heading {color: #25023B !important;}';
+		echo '</style>';
 	}
 
 	// Searches

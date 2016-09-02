@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 abstract class CMB2_Type_Taxonomy_Base extends CMB2_Type_Multi_Base {
 

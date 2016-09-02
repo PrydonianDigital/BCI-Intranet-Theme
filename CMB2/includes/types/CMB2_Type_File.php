@@ -6,19 +6,19 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_File extends CMB2_Type_File_Base {
 
 	public function render() {
-		$field      = $this->field;
+		$field	  = $this->field;
 		$meta_value = $field->escaped_value();
-		$options    = (array) $field->options();
+		$options	= (array) $field->options();
 		$img_size   = $field->args( 'preview_size' );
 		$query_args = $field->args( 'query_args' );
-		$output     = '';
+		$output	 = '';
 
 		// if options array and 'url' => false, then hide the url field
 		$input_type = array_key_exists( 'url', $options ) && false === $options['url'] ? 'hidden' : 'text';
@@ -76,16 +76,16 @@ class CMB2_Type_File extends CMB2_Type_File_Base {
 				}
 
 				$output .= $this->img_status_output( array(
-					'image'     => $image,
-					'tag'       => 'div',
+					'image'	 => $image,
+					'tag'	   => 'div',
 					'cached_id' => $cached_id,
 				) );
 
 			} else {
 
 				$output .= $this->file_status_output( array(
-					'value'     => $meta_value,
-					'tag'       => 'div',
+					'value'	 => $meta_value,
+					'tag'	   => 'div',
 					'cached_id' => $cached_id,
 				) );
 

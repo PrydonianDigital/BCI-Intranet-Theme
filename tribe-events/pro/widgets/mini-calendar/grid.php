@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php
 $days_of_week = tribe_events_get_days_of_week( 'min' );
-$week         = 0;
+$week		 = 0;
 $mini_cal_widget_id = Tribe__Events__Utils__Id_Generator::generate_id( 'tribe-mini-calendar-month', 'tribe-mini-calendar-month' );
 
 ?>

@@ -36,9 +36,9 @@
 						$users = get_post_meta( get_the_ID(), '_potw_user', true );
 						$user_split = explode( ',', str_replace( ' ', '', $users ) );
 						foreach ( $user_split as $user ) {
-						    $user = get_user_by( 'id', $user );
-						    $name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
-						    echo '<b>' . $name . '</b>, ';
+							$user = get_user_by( 'id', $user );
+							$name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
+							echo '<b>' . $name . '</b>, ';
 						}
 					?></h3>
 					<small class="meta"><?php the_time('l jS F, Y') ?></small>
@@ -83,22 +83,22 @@
 				$children = get_pages('child_of='.$post->ID);
 				if( count( $children ) != 0 ) {
 					if($post->post_parent){
-					    $parent_title = get_the_title($post->post_parent);
-					    $children = wp_list_pages("title_li=&include=".$post->post_parent."&echo=0");
-					    $children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
+						$parent_title = get_the_title($post->post_parent);
+						$children = wp_list_pages("title_li=&include=".$post->post_parent."&echo=0");
+						$children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
 					} else {
-					    $parent_title = get_the_title($post->ID);
-					    $children = wp_list_pages("title_li=&include=".$post->ID."&echo=0");
-					    $children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
+						$parent_title = get_the_title($post->ID);
+						$children = wp_list_pages("title_li=&include=".$post->ID."&echo=0");
+						$children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
 					}
 					if ($parent_title) { ?>
-					    <h2><?php echo $parent_title; ?> Sub Pages <i class="nav-plus-circle"></i></h2>
+						<h2><?php echo $parent_title; ?> Sub Pages <i class="nav-plus-circle"></i></h2>
 					<?php }
 
 					if ($children) { ?>
-					    <ul class="submenu">
-					        <?php echo $children; ?>
-					    </ul>
+						<ul class="submenu">
+							<?php echo $children; ?>
+						</ul>
 					<?php }
 				}
 				?>

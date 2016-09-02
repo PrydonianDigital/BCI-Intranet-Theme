@@ -428,7 +428,7 @@ nav#sideNav a {
 }
 .sitemap ul li:before {
 	font-family: 'nav';
-    content: "\f0f6";
+	content: "\f0f6";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -437,7 +437,7 @@ nav#sideNav a {
 }
 ul.users li:before {
 	font-family: 'nav';
-    content: "\f007";
+	content: "\f007";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -446,7 +446,7 @@ ul.users li:before {
 }
 ul.cal li:before {
 	font-family: 'nav';
-    content: "\f073";
+	content: "\f073";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -455,7 +455,7 @@ ul.cal li:before {
 }
 ul.doc li:before {
 	font-family: 'nav';
-    content: "\f0f6";
+	content: "\f0f6";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -464,7 +464,7 @@ ul.doc li:before {
 }
 ul.posts li:before {
 	font-family: 'nav';
-    content: "\f1ea";
+	content: "\f1ea";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -473,7 +473,7 @@ ul.posts li:before {
 }
 ul.centre li:before {
 	font-family: 'nav';
-    content: "\e903";
+	content: "\e903";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;
@@ -482,7 +482,7 @@ ul.centre li:before {
 }
 ul.links li:before {
 	font-family: 'nav';
-    content: "\f0c1";
+	content: "\f0c1";
 	margin: 0 0.2em 0 -1.5em;
 	color: #555;
 	display: block;

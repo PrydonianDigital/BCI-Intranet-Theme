@@ -15,15 +15,15 @@
 
 					<?php
 						$args = array (
-							'meta_query'     => array(
+							'meta_query'	 => array(
 								array(
-									'key'       => '_usercentre_centre_lead',
-									'value'     => 'on',
+									'key'	   => '_usercentre_centre_lead',
+									'value'	 => 'on',
 									'compare'   => 'LIKE',
 								),
 								array(
-									'key'       => '_usercentre_centre',
-									'value'     => $post->ID,
+									'key'	   => '_usercentre_centre',
+									'value'	 => $post->ID,
 									'compare'   => 'LIKE',
 								),
 							),
@@ -40,15 +40,15 @@
 
 					<?php
 						$args = array (
-							'meta_query'     => array(
+							'meta_query'	 => array(
 								array(
-									'key'       => '_usercentre_centre_administrator',
-									'value'     => 'on',
+									'key'	   => '_usercentre_centre_administrator',
+									'value'	 => 'on',
 									'compare'   => 'LIKE',
 								),
 								array(
-									'key'       => '_usercentre_centre',
-									'value'     => $post->ID,
+									'key'	   => '_usercentre_centre',
+									'value'	 => $post->ID,
 									'compare'   => 'LIKE',
 								),
 							),
@@ -66,15 +66,15 @@
 
 					<?php
 						$args = array (
-							'meta_query'     => array(
+							'meta_query'	 => array(
 								array(
-									'key'       => '_usercentre_lab_manager',
-									'value'     => 'on',
+									'key'	   => '_usercentre_lab_manager',
+									'value'	 => 'on',
 									'compare'   => 'LIKE',
 								),
 								array(
-									'key'       => '_usercentre_centre',
-									'value'     => $post->ID,
+									'key'	   => '_usercentre_centre',
+									'value'	 => $post->ID,
 									'compare'   => 'LIKE',
 								),
 							),
@@ -91,15 +91,15 @@
 
 					<?php
 						$args = array (
-							'meta_query'     => array(
+							'meta_query'	 => array(
 								array(
-									'key'       => '_usercentre_deputy_lab_manager',
-									'value'     => 'on',
+									'key'	   => '_usercentre_deputy_lab_manager',
+									'value'	 => 'on',
 									'compare'   => 'LIKE',
 								),
 								array(
-									'key'       => '_usercentre_centre',
-									'value'     => $post->ID,
+									'key'	   => '_usercentre_centre',
+									'value'	 => $post->ID,
 									'compare'   => 'LIKE',
 								),
 							),

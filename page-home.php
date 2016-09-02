@@ -42,30 +42,30 @@
 
 			<?php
 			$defaults = [
-			    'fields'                 => 'ids',
-			    'update_post_term_cache' => false,
-			    'update_post_meta_cache' => false,
-			    'cache_results'          => false
+				'fields'				 => 'ids',
+				'update_post_term_cache' => false,
+				'update_post_meta_cache' => false,
+				'cache_results'		  => false
 			];
 			$args = [
-			    'post_type'      => 'potw',
-			    'posts_per_page' => '1',
+				'post_type'	  => 'potw',
+				'posts_per_page' => '1',
 			];
 			$args1 = [
-			    'post_type'      => 'potm',
-			    'posts_per_page' => '1',
+				'post_type'	  => 'potm',
+				'posts_per_page' => '1',
 			];
 			$post_query = get_posts( array_merge( $defaults, $args  ) );
 			$page_query = get_posts( array_merge( $defaults, $args1 ) );
 			$post_ids = array_merge ( $post_query, $page_query ); //. You can swop around here
 			if ( $post_ids ) {
-			    $final_args = [
-			        'post_type' => ['potw', 'potm'],
-			        'post__in'  => $post_ids,
-			        'orderby'   => 'post__in', // If you need to keep the order from $post_ids
-			        'order'     => 'ASC' // If you need to keep the order from $post_ids
-			    ];
-			    $loop = new WP_Query( $final_args );
+				$final_args = [
+					'post_type' => ['potw', 'potm'],
+					'post__in'  => $post_ids,
+					'orderby'   => 'post__in', // If you need to keep the order from $post_ids
+					'order'	 => 'ASC' // If you need to keep the order from $post_ids
+				];
+				$loop = new WP_Query( $final_args );
 				if ( $loop->have_posts() ) : ?>
 			<div class="row">
 				<div class="large-12 small-12 columns">
@@ -131,9 +131,9 @@
 									$users = get_post_meta( get_the_ID(), '_potw_user', true );
 									$user_split = explode( ',', str_replace( ' ', '', $users ) );
 									foreach ( $user_split as $user ) {
-									    $user = get_user_by( 'id', $user );
-									    $name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
-									    echo $name . ' ';
+										$user = get_user_by( 'id', $user );
+										$name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
+										echo $name . ' ';
 									}
 								?></h6>
 								<small class="meta"><?php the_time('l jS F, Y') ?></small>

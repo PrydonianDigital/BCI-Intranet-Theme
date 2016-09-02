@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Types {
 
@@ -66,15 +66,15 @@ class CMB2_Types {
 		 *
 		 * The dynamic portion of the hook name, $fieldtype, refers to the field type.
 		 *
-		 * @param array  $field              The passed in `CMB2_Field` object
-		 * @param mixed  $escaped_value      The value of this field escaped.
-		 *                                   It defaults to `sanitize_text_field`.
-		 *                                   If you need the unescaped value, you can access it
-		 *                                   via `$field->value()`
-		 * @param int    $object_id          The ID of the current object
-		 * @param string $object_type        The type of object you are working with.
-		 *                                   Most commonly, `post` (this applies to all post-types),
-		 *                                   but could also be `comment`, `user` or `options-page`.
+		 * @param array  $field			  The passed in `CMB2_Field` object
+		 * @param mixed  $escaped_value	  The value of this field escaped.
+		 *								   It defaults to `sanitize_text_field`.
+		 *								   If you need the unescaped value, you can access it
+		 *								   via `$field->value()`
+		 * @param int	$object_id		  The ID of the current object
+		 * @param string $object_type		The type of object you are working with.
+		 *								   Most commonly, `post` (this applies to all post-types),
+		 *								   but could also be `comment`, `user` or `options-page`.
 		 * @param object $field_type_object  This `CMB2_Types` object
 		 */
 		do_action( "cmb2_render_$fieldtype", $this->field, $this->field->escaped_value(), $this->field->object_id, $this->field->object_type, $this );
@@ -110,7 +110,7 @@ class CMB2_Types {
 	 * @param  string $method  Method to call on the CMB2_Type object.
 	 * @param  mixed  $default Default fallback value if method is not found.
 	 *
-	 * @return mixed           Results from called method.
+	 * @return mixed		   Results from called method.
 	 */
 	protected function proxy_method( $method, $default, $args = array() ) {
 		if ( is_object( $this->type ) && method_exists( $this->type, $method ) ) {
@@ -127,7 +127,7 @@ class CMB2_Types {
 	 * @since  2.0.0
 	 * @param  string  $text_key Key in field's options array
 	 * @param  string  $fallback Fallback text
-	 * @return string            Text
+	 * @return string			Text
 	 */
 	public function _text( $text_key, $fallback = '' ) {
 		return $this->field->string( $text_key, $fallback );
@@ -136,8 +136,8 @@ class CMB2_Types {
 	/**
 	 * Determine a file's extension
 	 * @since  1.0.0
-	 * @param  string       $file File url
-	 * @return string|false       File extension or false
+	 * @param  string	   $file File url
+	 * @return string|false	   File extension or false
 	 */
 	public function get_file_ext( $file ) {
 		return cmb2_utils()->get_file_ext( $file );
@@ -147,7 +147,7 @@ class CMB2_Types {
 	 * Get the file name from a url
 	 * @since  2.0.0
 	 * @param  string $value File url or path
-	 * @return string        File name
+	 * @return string		File name
 	 */
 	public function get_file_name_from_path( $value ) {
 		return cmb2_utils()->get_file_name_from_path( $value );
@@ -156,16 +156,16 @@ class CMB2_Types {
 	/**
 	 * Combines attributes into a string for a form element
 	 * @since  1.1.0
-	 * @param  array  $attrs        Attributes to concatenate
+	 * @param  array  $attrs		Attributes to concatenate
 	 * @param  array  $attr_exclude Attributes that should NOT be concatenated
-	 * @return string               String of attributes for form element
+	 * @return string			   String of attributes for form element
 	 */
 	public function concat_attrs( $attrs, $attr_exclude = array() ) {
 		$attr_exclude[] = 'rendered';
 		$attributes = '';
 		foreach ( $attrs as $attr => $val ) {
 			$excluded = in_array( $attr, (array) $attr_exclude, true );
-			$empty    = false === $val && 'value' !== $attr;
+			$empty	= false === $val && 'value' !== $attr;
 			if ( ! $excluded && ! $empty ) {
 				// if data attribute, use single quote wraps, else double
 				$quotes = false !== stripos( $attr, 'data-' ) ? "'" : '"';
@@ -206,7 +206,7 @@ class CMB2_Types {
 	public function repeatable_rows() {
 		$meta_value = array_filter( (array) $this->field->escaped_value() );
 		// check for default content
-		$default    = $this->field->get_default();
+		$default	= $this->field->get_default();
 
 		// check for saved data
 		if ( ! empty( $meta_value ) ) {
@@ -265,8 +265,8 @@ class CMB2_Types {
 	 * Generates description markup
 	 * @since  1.0.0
 	 * @param  boolean $paragraph Paragraph tag or span
-	 * @param  boolean $echo      Whether to echo description or only return it
-	 * @return string             Field's description markup
+	 * @param  boolean $echo	  Whether to echo description or only return it
+	 * @return string			 Field's description markup
 	 */
 	public function _desc( $paragraph = false, $echo = false, $repeat_group = false ) {
 		// Prevent description from printing multiple times for repeatable fields
@@ -294,7 +294,7 @@ class CMB2_Types {
 	 * Generate field name attribute
 	 * @since  1.1.0
 	 * @param  string  $suffix For multi-part fields
-	 * @return string          Name attribute
+	 * @return string		  Name attribute
 	 */
 	public function _name( $suffix = '' ) {
 		return $this->field->args( '_name' ) . ( $this->field->args( 'repeatable' ) ? '[' . $this->iterator . ']' : '' ) . $suffix;
@@ -304,7 +304,7 @@ class CMB2_Types {
 	 * Generate field id attribute
 	 * @since  1.1.0
 	 * @param  string  $suffix For multi-part fields
-	 * @return string          Id attribute
+	 * @return string		  Id attribute
 	 */
 	public function _id( $suffix = '' ) {
 		return $this->field->id() . $suffix . ( $this->field->args( 'repeatable' ) ? '_' . $this->iterator . '" data-iterator="' . $this->iterator : '' );
@@ -315,7 +315,7 @@ class CMB2_Types {
 	 * @since  1.1.0
 	 * @param  array  $args Override arguments
 	 * @param  array  $type Field type
-	 * @return string       Form input element
+	 * @return string	   Form input element
 	 */
 	public function input( $args = array(), $type = __FUNCTION__ ) {
 		$this->type = new CMB2_Type_Text( $this, $args, $type );
@@ -326,7 +326,7 @@ class CMB2_Types {
 	 * Handles outputting an 'textarea' element
 	 * @since  1.1.0
 	 * @param  array  $args Override arguments
-	 * @return string       Form textarea element
+	 * @return string	   Form textarea element
 	 */
 	public function textarea( $args = array() ) {
 		$this->type = new CMB2_Type_Textarea( $this, $args );

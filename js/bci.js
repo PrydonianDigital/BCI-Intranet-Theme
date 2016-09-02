@@ -1,11 +1,11 @@
 var $s = jQuery.noConflict();
 
 $s(window).load(function() {
-    setTimeout(function() {
+	setTimeout(function() {
 		var headH = $s('.site-header').outerHeight(true);
 		$s('.site-inner').attr('style', 'padding-top: calc(' + headH + 'px + 2em);');
 		$s('#appNav').attr('style', 'top: ' + headH + 'px;');
-    }, 0.1);
+	}, 0.1);
 });
 
 $s(function() {

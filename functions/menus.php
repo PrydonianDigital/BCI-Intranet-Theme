@@ -11,28 +11,28 @@
 
 	function bci_sidebars() {
 		$args = array(
-			'id'            => 'mainsidebar',
-			'name'          => __( 'Main Sidebar', 'bci' ),
+			'id'			=> 'mainsidebar',
+			'name'		  => __( 'Main Sidebar', 'bci' ),
 		);
 		register_sidebar( $args );
 		$args = array(
-			'id'            => 'homesidebar',
-			'name'          => __( 'Home Sidebar', 'bci' ),
+			'id'			=> 'homesidebar',
+			'name'		  => __( 'Home Sidebar', 'bci' ),
 		);
 		register_sidebar( $args );
 		$args = array(
-			'id'            => 'footer1',
-			'name'          => __( 'Footer Area 1', 'bci' ),
+			'id'			=> 'footer1',
+			'name'		  => __( 'Footer Area 1', 'bci' ),
 		);
 		register_sidebar( $args );
 		$args = array(
-			'id'            => 'footer2',
-			'name'          => __( 'Footer Area 2', 'bci' ),
+			'id'			=> 'footer2',
+			'name'		  => __( 'Footer Area 2', 'bci' ),
 		);
 		register_sidebar( $args );
 		$args = array(
-			'id'            => 'footer3',
-			'name'          => __( 'Footer Area 3', 'bci' ),
+			'id'			=> 'footer3',
+			'name'		  => __( 'Footer Area 3', 'bci' ),
 		);
 		register_sidebar( $args );
 	}

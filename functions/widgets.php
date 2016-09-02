@@ -18,7 +18,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_smt',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -84,7 +84,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_athena_swan',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -150,7 +150,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_admin',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -213,7 +213,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_coms_committee',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -275,13 +275,13 @@
 			$args = array(
 				'meta_query' 	=> array(
 					array(
-						'key'       => '_me_it',
-						'value'     => 'on',
+						'key'	   => '_me_it',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
-						'key'       => '_usercentre_centre',
-						'value'     => $post->ID,
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
 						'compare'   => 'LIKE',
 					),
 				)
@@ -340,13 +340,13 @@
 			$args = array(
 				'meta_query' 	=> array(
 					array(
-						'key'       => '_me_bccit',
-						'value'     => 'on',
+						'key'	   => '_me_bccit',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
-						'key'       => '_usercentre_centre',
-						'value'     => $post->ID,
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
 						'compare'   => 'LIKE',
 					),
 				)
@@ -408,13 +408,13 @@
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
-						'key'       => '_usercentre_lab_manager',
-						'value'     => 'on',
+						'key'	   => '_usercentre_lab_manager',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
-						'key'       => '_usercentre_centre',
-						'value'     => $post->ID,
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
 						'compare'   => 'LIKE',
 					),
 				)
@@ -470,8 +470,8 @@
 		function widget( $args, $instance) {
 			$title = apply_filters( 'widget_title', $instance['title']);
 			$args = array (
-				'post_type'              => array( 'centre' ),
-				'posts_per_page'         => '-1',
+				'post_type'			  => array( 'centre' ),
+				'posts_per_page'		 => '-1',
 			);
 			$managers = new WP_Query( $args );
 			if ( $managers->have_posts() ) {
@@ -527,13 +527,13 @@
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
-						'key'       => '_usercentre_centre_administrator',
-						'value'     => 'on',
+						'key'	   => '_usercentre_centre_administrator',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
-						'key'       => '_usercentre_centre',
-						'value'     => $post->ID,
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
 						'compare'   => 'LIKE',
 					),
 				)
@@ -594,13 +594,13 @@
 				'order'			=> 'DESC',
 				'meta_query' 	=> array(
 					array(
-						'key'       => '_usercentre_centre_lead',
-						'value'     => 'on',
+						'key'	   => '_usercentre_centre_lead',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
-						'key'       => '_usercentre_centre',
-						'value'     => $post->ID,
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
 						'compare'   => 'LIKE',
 					),
 				)
@@ -662,7 +662,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_social_committee',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -728,7 +728,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_phd_forum',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -794,7 +794,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_postdoc_forum',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -860,7 +860,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_postdoc_rep',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -926,7 +926,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_postdoc_mentor',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -992,7 +992,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_student_reps',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(
@@ -1058,7 +1058,7 @@
 				'meta_query' 	=> array(
 					array(
 						'key' 		=> '_me_exec',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'LIKE',
 					),
 					array(

@@ -4,14 +4,14 @@
 
 		<div class="small-12 large-9 column pageInner" role="main">
 
-		    <?php
-		    	$curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
-		    ?>
+			<?php
+				$curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+			?>
 
-		    <h2 class="page-title"><?php echo $curauth->_me_ttitle; ?> <?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h2>
-		    <?php $userID = $curauth->ID; echo get_avatar( $userID, 128 ); ?>
-		    <h3>
-			    <?php
+			<h2 class="page-title"><?php echo $curauth->_me_ttitle; ?> <?php echo $curauth->first_name; ?> <?php echo $curauth->last_name; ?></h2>
+			<?php $userID = $curauth->ID; echo get_avatar( $userID, 128 ); ?>
+			<h3>
+				<?php
 					if($curauth->_usercentre_centre_lead == 'on') {
 						echo 'Centre Lead';
 					}
@@ -30,7 +30,7 @@
 			<p><i class="nav-phone"></i> x<?php echo $curauth->_me_ext; ?></p>
 			<p><i class="nav-envelope"></i> <a href="mailto:<?php echo $curauth->user_email ?>"><?php echo $curauth->user_email ?></a></p>
 			<?php echo $curauth->description; ?>
-		    <?php
+			<?php
 				if($curauth->_usercentre_main_safety == 'on') {
 					echo '<p>Local Safety Officers</p>';
 				}
@@ -41,7 +41,7 @@
 					echo '<p>First Aiders</p>';
 				}
 			?>
-		    <?php
+			<?php
 				if($curauth->_me_social_committee == 'on') {
 					echo '<p>Social Committee</p>';
 				}

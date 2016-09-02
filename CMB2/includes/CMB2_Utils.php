@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Utils {
 
@@ -23,7 +23,7 @@ class CMB2_Utils {
 	 * Utility method that attempts to get an attachment's ID by it's url
 	 * @since  1.0.0
 	 * @param  string  $img_url Attachment url
-	 * @return int|false            Attachment ID or false
+	 * @return int|false			Attachment ID or false
 	 */
 	public function image_id_from_url( $img_url ) {
 		$attachment_id = 0;
@@ -39,12 +39,12 @@ class CMB2_Utils {
 		$query_args = array(
 			'post_type'   => 'attachment',
 			'post_status' => 'inherit',
-			'fields'      => 'ids',
+			'fields'	  => 'ids',
 			'meta_query'  => array(
 				array(
 					'value'   => $file,
 					'compare' => 'LIKE',
-					'key'     => '_wp_attachment_metadata',
+					'key'	 => '_wp_attachment_metadata',
 				),
 			)
 		);
@@ -55,7 +55,7 @@ class CMB2_Utils {
 
 			foreach ( $query->posts as $post_id ) {
 				$meta = wp_get_attachment_metadata( $post_id );
-				$original_file       = basename( $meta['file'] );
+				$original_file	   = basename( $meta['file'] );
 				$cropped_image_files = isset( $meta['sizes'] ) ? wp_list_pluck( $meta['sizes'], 'file' ) : array();
 				if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
 					$attachment_id = $post_id;
@@ -72,7 +72,7 @@ class CMB2_Utils {
 	 * Utility method that returns time string offset by timezone
 	 * @since  1.0.0
 	 * @param  string $tzstring Time string
-	 * @return string           Offset time string
+	 * @return string		   Offset time string
 	 */
 	public function timezone_offset( $tzstring ) {
 		$tz_offset = 0;
@@ -108,7 +108,7 @@ class CMB2_Utils {
 	 */
 	public function timezone_string() {
 		$current_offset = get_option( 'gmt_offset' );
-		$tzstring       = get_option( 'timezone_string' );
+		$tzstring	   = get_option( 'timezone_string' );
 
 		// Remove old Etc mappings. Fallback to gmt_offset.
 		if ( false !== strpos( $tzstring, 'Etc/GMT' ) ) {
@@ -132,7 +132,7 @@ class CMB2_Utils {
 	 * Returns a timestamp, first checking if value already is a timestamp.
 	 * @since  2.0.0
 	 * @param  string|int $string Possible timestamp string
-	 * @return int   	            Time stamp
+	 * @return int   				Time stamp
 	 */
 	public function make_valid_time_stamp( $string ) {
 		if ( ! $string ) {
@@ -148,7 +148,7 @@ class CMB2_Utils {
 	 * Determine if a value is a valid timestamp
 	 * @since  2.0.0
 	 * @param  mixed  $timestamp Value to check
-	 * @return boolean           Whether value is a valid timestamp
+	 * @return boolean		   Whether value is a valid timestamp
 	 */
 	public function is_valid_time_stamp( $timestamp ) {
 		return (string) (int) $timestamp === (string) $timestamp
@@ -160,7 +160,7 @@ class CMB2_Utils {
 	 * Checks if a value is 'empty'. Still accepts 0.
 	 * @since  2.0.0
 	 * @param  mixed $value Value to check
-	 * @return bool         True or false
+	 * @return bool		 True or false
 	 */
 	public function isempty( $value ) {
 		return null === $value || '' === $value || false === $value;
@@ -170,7 +170,7 @@ class CMB2_Utils {
 	 * Checks if a value is not 'empty'. 0 doesn't count as empty.
 	 * @since  2.2.2
 	 * @param  mixed $value Value to check
-	 * @return bool         True or false
+	 * @return bool		 True or false
 	 */
 	public function notempty( $value ){
 		return null !== $value && '' !== $value && false !== $value;
@@ -180,7 +180,7 @@ class CMB2_Utils {
 	 * Filters out empty values (not including 0).
 	 * @since  2.2.2
 	 * @param  mixed $value Value to check
-	 * @return bool         True or false
+	 * @return bool		 True or false
 	 */
 	function filter_empty( $value ) {
 		return array_filter( $value, array( $this, 'notempty' ) );
@@ -190,7 +190,7 @@ class CMB2_Utils {
 	 * Insert a single array item inside another array at a set position
 	 * @since  2.0.2
 	 * @param  array &$array   Array to modify. Is passed by reference, and no return is needed.
-	 * @param  array $new      New array to insert
+	 * @param  array $new	  New array to insert
 	 * @param  int   $position Position in the main array to insert the new array
 	 */
 	public function array_insert( &$array, $new, $position ) {
@@ -227,7 +227,7 @@ class CMB2_Utils {
 	 * Converts a system path to a URL
 	 * @since  2.2.2
 	 * @param  string $dir Directory path to convert.
-	 * @return string      Converted URL.
+	 * @return string	  Converted URL.
 	 */
 	public static function get_url_from_dir( $dir ) {
 		$dir = self::normalize_path( $dir );
@@ -294,9 +294,9 @@ class CMB2_Utils {
 	/**
 	 * Get timestamp from text date
 	 * @since  2.2.0
-	 * @param  string $value       Date value
+	 * @param  string $value	   Date value
 	 * @param  string $date_format Expected date format
-	 * @return mixed               Unix timestamp representing the date.
+	 * @return mixed			   Unix timestamp representing the date.
 	 */
 	public function get_timestamp_from_value( $value, $date_format ) {
 		$date_object = date_create_from_format( $date_format, $value );
@@ -369,9 +369,9 @@ class CMB2_Utils {
 	 * @since  2.2.0
 	 *
 	 * @param  string  $function Function name
-	 * @param  int     $line     Line number
-	 * @param  mixed   $msg      Message to output
-	 * @param  mixed   $debug    Variable to print_r
+	 * @param  int	 $line	 Line number
+	 * @param  mixed   $msg	  Message to output
+	 * @param  mixed   $debug	Variable to print_r
 	 */
 	public function log_if_debug( $function, $line, $msg, $debug = null ) {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
@@ -382,8 +382,8 @@ class CMB2_Utils {
 	/**
 	 * Determine a file's extension
 	 * @since  1.0.0
-	 * @param  string       $file File url
-	 * @return string|false       File extension or false
+	 * @param  string	   $file File url
+	 * @return string|false	   File extension or false
 	 */
 	public function get_file_ext( $file ) {
 		$parsed = @parse_url( $file, PHP_URL_PATH );
@@ -394,7 +394,7 @@ class CMB2_Utils {
 	 * Get the file name from a url
 	 * @since  2.0.0
 	 * @param  string $value File url or path
-	 * @return string        File name
+	 * @return string		File name
 	 */
 	public function get_file_name_from_path( $value ) {
 		$parts = explode( '/', $value );
@@ -405,7 +405,7 @@ class CMB2_Utils {
 	 * Check if WP version is at least $version.
 	 * @since  2.2.2
 	 * @param  string  $version WP version string to compare.
-	 * @return bool             Result of comparison check.
+	 * @return bool			 Result of comparison check.
 	 */
 	public function wp_at_least( $version ) {
 		global $wp_version;

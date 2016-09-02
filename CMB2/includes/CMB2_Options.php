@@ -4,16 +4,16 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 
 /**
  * Retrieves an instance of CMB2_Option based on the option key
  *
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  */
 class CMB2_Options {
 	/**
@@ -38,7 +38,7 @@ class CMB2_Options {
  * for a specific option key
  *
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  */
 class CMB2_Option {
 
@@ -57,7 +57,7 @@ class CMB2_Option {
 	/**
 	 * Initiate option object
 	 * @param string $option_key Option key where data will be saved.
-	 *                           Leave empty for temporary data store.
+	 *						   Leave empty for temporary data store.
 	 * @since 2.0.0
 	 */
 	public function __construct( $option_key = '' ) {
@@ -79,7 +79,7 @@ class CMB2_Option {
 	 * Removes an option from an option array
 	 * @since  1.0.1
 	 * @param  string  $field_id Option array field key
-	 * @return array             Modified options
+	 * @return array			 Modified options
 	 */
 	public function remove( $field_id, $resave = false ) {
 
@@ -101,7 +101,7 @@ class CMB2_Option {
 	 * @since  1.0.1
 	 * @param  string  $field_id Option array field key
 	 * @param  mixed   $default  Fallback value for the option
-	 * @return array             Requested field or default
+	 * @return array			 Requested field or default
 	 */
 	public function get( $field_id, $default = false ) {
 		$opts = $this->get_options();
@@ -119,10 +119,10 @@ class CMB2_Option {
 	 * Updates Option data
 	 * @since  1.0.1
 	 * @param  string  $field_id   Option array field key
-	 * @param  mixed   $value      Value to update data with
-	 * @param  bool    $resave     Whether to re-save the data
-	 * @param  bool    $single     Whether data should not be an array
-	 * @return boolean             Return status of update
+	 * @param  mixed   $value	  Value to update data with
+	 * @param  bool	$resave	 Whether to re-save the data
+	 * @param  bool	$single	 Whether data should not be an array
+	 * @return boolean			 Return status of update
 	 */
 	public function update( $field_id, $value = '', $resave = false, $single = true ) {
 		$this->get_options();
@@ -153,7 +153,7 @@ class CMB2_Option {
 	 *
 	 * @since  1.0.1
 	 * @param  array $options Optional options to override
-	 * @return bool           Success/Failure
+	 * @return bool		   Success/Failure
 	 */
 	public function set( $options = array() ) {
 		$this->options = ! empty( $options ) || empty( $options ) && empty( $this->key )
@@ -181,7 +181,7 @@ class CMB2_Option {
 	 *
 	 * @since  1.0.1
 	 * @param  mixed $default Optional. Default value to return if the option does not exist.
-	 * @return mixed          Value set for the option.
+	 * @return mixed		  Value set for the option.
 	 */
 	public function get_options( $default = null ) {
 		if ( empty( $this->options ) && ! empty( $this->key ) ) {

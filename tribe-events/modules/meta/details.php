@@ -127,10 +127,10 @@ $website = tribe_get_event_website_link();
 		<?php
 		echo tribe_get_event_categories(
 			get_the_id(), array(
-				'before'       => '',
-				'sep'          => ', ',
-				'after'        => '',
-				'label'        => null, // An appropriate plural/singular label will be provided
+				'before'	   => '',
+				'sep'		  => ', ',
+				'after'		=> '',
+				'label'		=> null, // An appropriate plural/singular label will be provided
 				'label_before' => '<dt>',
 				'label_after'  => '</dt>',
 				'wrap_before'  => '<dd class="tribe-events-event-categories">',

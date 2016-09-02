@@ -18,7 +18,7 @@ global $post;
 $venue_details = tribe_get_venue_details();
 
 // Venue microformats
-$has_venue         = ( $venue_details ) ? ' vcard' : '';
+$has_venue		 = ( $venue_details ) ? ' vcard' : '';
 $has_venue_address = ( ! empty( $venue_details['address'] ) ) ? ' location' : '';
 ?>
 

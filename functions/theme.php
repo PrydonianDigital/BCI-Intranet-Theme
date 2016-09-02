@@ -432,8 +432,8 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 
 					array(
 						'taxonomy' => Tribe__Events__Main::TAXONOMY,
-						'field'    => 'slug',
-						'terms'    => array( 'centres' ),
+						'field'	=> 'slug',
+						'terms'	=> array( 'centres' ),
 						'operator' => 'NOT IN'
 					)
 				) );

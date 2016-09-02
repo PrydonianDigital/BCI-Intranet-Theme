@@ -22,10 +22,10 @@ global $post;
  * $post global referencing something other than the event we're interested
  * in.
  */
-$day      = tribe_events_get_current_month_day();
+$day	  = tribe_events_get_current_month_day();
 $event_id = "{$post->ID}-{$day['daynum']}";
-$link     = tribe_get_event_link( $post );
-$title    = get_the_title( $post );
+$link	 = tribe_get_event_link( $post );
+$title	= get_the_title( $post );
 
 /**
  * How to Use the Javascript Templating System in this View
@@ -54,8 +54,8 @@ $title    = get_the_title( $post );
  *
  * Two new template tags have been introduced to power this system:
  *
- *     tribe_events_template_data()
- *     tribe_prepare_for_json().
+ *	 tribe_events_template_data()
+ *	 tribe_prepare_for_json().
  *
  * tribe_events_template_data( $post_object, $additional_data )
  * ============================================================
@@ -88,10 +88,10 @@ $title    = get_the_title( $post );
  * lets say that the key name we want to use is "hello" in our js template. The following example shows how we would go
  * about adding the custom post meta and appending it to our event json string that is output in the markup.
  *
- *    $additional_data = array();
- *    $string = get_post_meta( get_the_ID(), 'hello_meta' ); // this string can be anything
- *    $additional_data['hello'] = $string;
- *    echo tribe_events_template_data( $post, $additional_data ); ?>
+ *	$additional_data = array();
+ *	$string = get_post_meta( get_the_ID(), 'hello_meta' ); // this string can be anything
+ *	$additional_data['hello'] = $string;
+ *	echo tribe_events_template_data( $post, $additional_data ); ?>
  *
  * Explanation: we create an empty array to cram our data into. We can add as much as we want, there are no limits on
  * data attribute length in the html5 spec. We want to call this data with the word "hello" in the js template, so that
@@ -107,12 +107,12 @@ $title    = get_the_title( $post );
  *
  * The template has 3 modes when parsing these.
  *
- *    [[ ]] is for executing javascript you place between the expression. Note below how we test for the presence of an
- *          end time and image thumbnail using this.
+ *	[[ ]] is for executing javascript you place between the expression. Note below how we test for the presence of an
+ *		  end time and image thumbnail using this.
  *
- *    [[= ]] Is for a string with escaped html.
+ *	[[= ]] Is for a string with escaped html.
  *
- *    [[=raw ]] Is for a string with html preserved. make sure to test for xss vulnerabilities using this method.
+ *	[[=raw ]] Is for a string with html preserved. make sure to test for xss vulnerabilities using this method.
  *
  * Now lets look at the tooltip template. Compare the keys in it to the json string in section 2 above to map out whats
  * going on.

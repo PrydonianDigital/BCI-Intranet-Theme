@@ -29,7 +29,7 @@
 				'meta_query'		=> array(
 					array(
 						'key'		=> '_usercentre_main_safety',
-						'value'     => 'on',
+						'value'	 => 'on',
 						'compare'   => 'EXISTS',
 					),
 				),
@@ -58,8 +58,8 @@
 				'number'			=> '-1',
 				'meta_query'		=> array(
 					array(
-						'key'       => '_usercentre_first_aider',
-						'value'     => 'on',
+						'key'	   => '_usercentre_first_aider',
+						'value'	 => 'on',
 						'compare'   => 'EXISTS',
 					),
 				),
@@ -88,8 +88,8 @@
 				'number'			=> '-1',
 				'meta_query'		=> array(
 					array(
-						'key'       => '_usercentre_fire_marshall',
-						'value'     => 'on',
+						'key'	   => '_usercentre_fire_marshall',
+						'value'	 => 'on',
 						'compare'   => 'EXISTS',
 					),
 				),
@@ -120,22 +120,22 @@
 				$children = get_pages('child_of='.$post->ID);
 				if( count( $children ) != 0 ) {
 					if($post->post_parent){
-					    $parent_title = get_the_title($post->post_parent);
-					    $children = wp_list_pages("title_li=&include=".$post->post_parent."&echo=0");
-					    $children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
+						$parent_title = get_the_title($post->post_parent);
+						$children = wp_list_pages("title_li=&include=".$post->post_parent."&echo=0");
+						$children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
 					} else {
-					    $parent_title = get_the_title($post->ID);
-					    $children = wp_list_pages("title_li=&include=".$post->ID."&echo=0");
-					    $children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
+						$parent_title = get_the_title($post->ID);
+						$children = wp_list_pages("title_li=&include=".$post->ID."&echo=0");
+						$children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
 					}
 					if ($parent_title) { ?>
-					    <h2><?php echo $parent_title; ?> Sub Pages <i class="nav-plus-circle"></i></h2>
+						<h2><?php echo $parent_title; ?> Sub Pages <i class="nav-plus-circle"></i></h2>
 					<?php }
 
 					if ($children) { ?>
-					    <ul class="submenu">
-					        <?php echo $children; ?>
-					    </ul>
+						<ul class="submenu">
+							<?php echo $children; ?>
+						</ul>
 					<?php }
 				}
 				?>

@@ -54,7 +54,7 @@ if ( is_array( $meta ) ) {
  * @since 4.5.0 Added `$thumbnail_id` parameter.
  *
  * @param string $image_size   Thumbnail image size.
- * @param int    $thumbnail_id Attachment ID.
+ * @param int	$thumbnail_id Attachment ID.
  */
 $image_size = apply_filters( 'embed_thumbnail_image_size', $image_size, $thumbnail_id );
 
@@ -69,8 +69,8 @@ $shape = $measurements[0] / $measurements[1] >= 1.75 ? 'rectangular' : 'square';
  * @since 4.4.0
  * @since 4.5.0 Added `$thumbnail_id` parameter.
  *
- * @param string $shape        Thumbnail image shape. Either 'rectangular' or 'square'.
- * @param int    $thumbnail_id Attachment ID.
+ * @param string $shape		Thumbnail image shape. Either 'rectangular' or 'square'.
+ * @param int	$thumbnail_id Attachment ID.
  */
 $shape = apply_filters( 'embed_thumbnail_image_shape', $shape, $thumbnail_id );
 

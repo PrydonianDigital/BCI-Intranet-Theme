@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 
@@ -16,8 +16,8 @@ class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 		$field = $this->field;
 
 		$args = wp_parse_args( $this->args, array(
-			'value'      => $field->escaped_value(),
-			'desc'       => $this->_desc(),
+			'value'	  => $field->escaped_value(),
+			'desc'	   => $this->_desc(),
 			'datepicker' => array(),
 			'timepicker' => array(),
 		) );
@@ -43,7 +43,7 @@ class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 		$date_args = wp_parse_args( $args['datepicker'], array(
 			'class' => 'cmb2-text-small cmb2-datepicker',
 			'name'  => $this->_name( '[date]' ),
-			'id'    => $this->_id( '_date' ),
+			'id'	=> $this->_id( '_date' ),
 			'value' => $has_good_value ? $this->field->get_timestamp_format( 'date_format', $args['value'] ) : '',
 			'desc'  => '',
 		) );
@@ -58,7 +58,7 @@ class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 		$time_args = wp_parse_args( $args['timepicker'], array(
 			'class' => 'cmb2-timepicker text-time',
 			'name'  => $this->_name( '[time]' ),
-			'id'    => $this->_id( '_time' ),
+			'id'	=> $this->_id( '_time' ),
 			'value' => $has_good_value ? $this->field->get_timestamp_format( 'time_format', $args['value'] ) : '',
 			'desc'  => $args['desc'],
 			'js_dependencies' => array( 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-datetimepicker' ),

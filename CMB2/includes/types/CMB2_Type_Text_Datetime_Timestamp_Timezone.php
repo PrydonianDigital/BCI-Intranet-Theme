@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_Text_Datetime_Timestamp_Timezone extends CMB2_Type_Base {
 
@@ -16,10 +16,10 @@ class CMB2_Type_Text_Datetime_Timestamp_Timezone extends CMB2_Type_Base {
 		$field = $this->field;
 
 		$args = wp_parse_args( $this->args, array(
-			'value'                   => $field->escaped_value(),
-			'desc'                    => $this->_desc( true ),
+			'value'				   => $field->escaped_value(),
+			'desc'					=> $this->_desc( true ),
 			'text_datetime_timestamp' => array(),
-			'select_timezone'         => array(),
+			'select_timezone'		 => array(),
 		) );
 
 		$args['value'] = $field->escaped_value();
@@ -31,24 +31,24 @@ class CMB2_Type_Text_Datetime_Timestamp_Timezone extends CMB2_Type_Base {
 		$value = $tzstring = '';
 
 		if ( $datetime && $datetime instanceof DateTime ) {
-			$tz       = $datetime->getTimezone();
+			$tz	   = $datetime->getTimezone();
 			$tzstring = $tz->getName();
-			$value    = $datetime->getTimestamp();
+			$value	= $datetime->getTimestamp();
 		}
 
 		$timestamp_args = wp_parse_args( $args['text_datetime_timestamp'], array(
-			'desc'     => '',
-			'value'    => $value,
+			'desc'	 => '',
+			'value'	=> $value,
 			'rendered' => true,
 		) );
 		$datetime_timestamp = $this->types->text_datetime_timestamp( $timestamp_args );
 
 		$timezone_select_args = wp_parse_args( $args['select_timezone'], array(
-			'class'    => 'cmb2_select cmb2-select-timezone',
-			'name'     => $this->_name( '[timezone]' ),
-			'id'       => $this->_id( '_timezone' ),
+			'class'	=> 'cmb2_select cmb2-select-timezone',
+			'name'	 => $this->_name( '[timezone]' ),
+			'id'	   => $this->_id( '_timezone' ),
 			'options'  => wp_timezone_choice( $tzstring ),
-			'desc'     => $args['desc'],
+			'desc'	 => $args['desc'],
 			'rendered' => true,
 		) );
 		$select = $this->types->select( $timezone_select_args );

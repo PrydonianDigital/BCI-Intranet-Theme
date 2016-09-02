@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_File_List extends CMB2_Type_File_Base {
 
@@ -16,10 +16,10 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 		$field = $this->field;
 
 		$meta_value = $field->escaped_value();
-		$name       = $this->_name();
+		$name	   = $this->_name();
 		$img_size   = $field->args( 'preview_size' );
 		$query_args = $field->args( 'query_args' );
-		$output     = '';
+		$output	 = '';
 
 		$output .= parent::render( array(
 			'type'  => 'hidden',
@@ -43,28 +43,28 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 
 			foreach ( $meta_value as $id => $fullurl ) {
 				$id_input = parent::render( array(
-					'type'    => 'hidden',
+					'type'	=> 'hidden',
 					'value'   => $fullurl,
-					'name'    => $name . '[' . $id . ']',
-					'id'      => 'filelist-' . $id,
+					'name'	=> $name . '[' . $id . ']',
+					'id'	  => 'filelist-' . $id,
 					'data-id' => $id,
-					'desc'    => '',
+					'desc'	=> '',
 					'class'   => false,
 				) );
 
 				if ( $this->is_valid_img_ext( $fullurl ) ) {
 
 					$output .= $this->img_status_output( array(
-						'image'    => wp_get_attachment_image( $id, $img_size ),
-						'tag'      => 'li',
+						'image'	=> wp_get_attachment_image( $id, $img_size ),
+						'tag'	  => 'li',
 						'id_input' => $id_input,
 					) );
 
 				} else {
 
 					$output .= $this->file_status_output( array(
-						'value'    => $fullurl,
-						'tag'      => 'li',
+						'value'	=> $fullurl,
+						'tag'	  => 'li',
 						'id_input' => $id_input,
 					) );
 

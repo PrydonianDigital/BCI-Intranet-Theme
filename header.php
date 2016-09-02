@@ -127,7 +127,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 				$user_id = $current_user->ID;
 				$array = get_user_meta( $user_id, '_user_app', true );
 				if( $array ) {
-				    foreach( $array as $key => $value) {
+					foreach( $array as $key => $value) {
 						$app_id = $value;
 						$post_id = get_post($app_id);
 				?>
@@ -147,7 +147,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 						<h5><?php echo $post_id->post_title; ?></h5>
 					</div>
 				<?php
-				    }
+					}
 				} else {
 					echo 'You have no apps in your App Dock.<br/>Please <a href="/my-profile/my-apps/" class="button"><i class="nav-plus"></i> add apps</a> to see them here.';
 				}

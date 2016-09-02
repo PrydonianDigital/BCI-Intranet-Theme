@@ -7,9 +7,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_hookup {
 
@@ -149,7 +149,7 @@ class CMB2_hookup {
 
 		$this->taxonomies = (array) $this->cmb->prop( 'taxonomies' );
 		$show_on_term_add = $this->cmb->prop( 'new_term_section' );
-		$priority         = $this->get_priority( 8 );
+		$priority		 = $this->get_priority( 8 );
 
 		foreach ( $this->taxonomies as $taxonomy ) {
 			// Display our form data
@@ -295,7 +295,7 @@ class CMB2_hookup {
 				'field_args'  => $this->columns[ $column_name ]['field'],
 				'object_type' => $this->object_type,
 				'object_id'   => $this->cmb->object_id( $object_id ),
-				'cmb_id'      => $this->cmb->cmb_id,
+				'cmb_id'	  => $this->cmb->cmb_id,
 			) );
 
 			$this->cmb->get_field( $field )->render_column();
@@ -350,7 +350,7 @@ class CMB2_hookup {
 	 * Add 'closed' class to metabox
 	 * @since  2.0.0
 	 * @param  array  $classes Array of classes
-	 * @return array           Modified array of classes
+	 * @return array		   Modified array of classes
 	 */
 	public function close_metabox_class( $classes ) {
 		$classes[] = 'closed';
@@ -431,9 +431,9 @@ class CMB2_hookup {
 		/**
 		 * Filter to determine if metabox should show. Default is true
 		 *
-		 * @param array  $show          Default is true, show the metabox
+		 * @param array  $show		  Default is true, show the metabox
 		 * @param mixed  $meta_box_args Array of the metabox arguments
-		 * @param mixed  $cmb           The CMB2 instance
+		 * @param mixed  $cmb		   The CMB2 instance
 		 */
 		$show = (bool) apply_filters( 'cmb2_show_on', $show, $this->cmb->meta_box, $this->cmb );
 
@@ -444,7 +444,7 @@ class CMB2_hookup {
 	 * Get the CMB priority property set to numeric hook priority.
 	 * @since  2.2.0
 	 * @param  integer $default Default display hook priority.
-	 * @return integer          Hook priority.
+	 * @return integer		  Hook priority.
 	 */
 	public function get_priority( $default = 10 ) {
 		$priority = $this->cmb->prop( 'priority' );
@@ -472,8 +472,8 @@ class CMB2_hookup {
 	/**
 	 * Save data from post metabox
 	 * @since  1.0.0
-	 * @param  int    $post_id Post ID
-	 * @param  mixed  $post    Post object
+	 * @param  int	$post_id Post ID
+	 * @param  mixed  $post	Post object
 	 * @return null
 	 */
 	public function save_post( $post_id, $post = false ) {
@@ -499,7 +499,7 @@ class CMB2_hookup {
 	/**
 	 * Save data from comment metabox
 	 * @since  2.0.9
-	 * @param  int    $comment_id Comment ID
+	 * @param  int	$comment_id Comment ID
 	 * @return null
 	 */
 	public function save_comment( $comment_id ) {
@@ -527,8 +527,8 @@ class CMB2_hookup {
 	/**
 	 * Save data from term fields
 	 * @since  2.2.0
-	 * @param  int    $term_id  Term ID
-	 * @param  int    $tt_id    Term Taxonomy ID
+	 * @param  int	$term_id  Term ID
+	 * @param  int	$tt_id	Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
 	 * @return null
 	 */
@@ -544,8 +544,8 @@ class CMB2_hookup {
 	/**
 	 * Delete term meta when a term is deleted.
 	 * @since  2.2.0
-	 * @param  int    $term_id  Term ID
-	 * @param  int    $tt_id    Term Taxonomy ID
+	 * @param  int	$term_id  Term ID
+	 * @param  int	$tt_id	Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
 	 * @return null
 	 */
@@ -564,7 +564,7 @@ class CMB2_hookup {
 	 * Determines if the current object is able to be saved
 	 * @since  2.0.9
 	 * @param  string  $type Current post_type or comment_type
-	 * @return bool          Whether object can be saved
+	 * @return bool		  Whether object can be saved
 	 */
 	public function can_save( $type = '' ) {
 		return (
@@ -583,7 +583,7 @@ class CMB2_hookup {
 	 * Determine if taxonomy of term being modified is cmb2-editable.
 	 * @since  2.2.0
 	 * @param  string $taxonomy Taxonomy of term being modified.
-	 * @return bool             Whether taxonomy is editable.
+	 * @return bool			 Whether taxonomy is editable.
 	 */
 	public function taxonomy_can_save( $taxonomy ) {
 		if ( empty( $this->taxonomies ) || ! in_array( $taxonomy, $this->taxonomies ) ) {
@@ -602,10 +602,10 @@ class CMB2_hookup {
 	/**
 	 * Ensures WordPress hook only gets fired once
 	 * @since  2.0.0
-	 * @param string   $action        The name of the filter to hook the $hook callback to.
-	 * @param callback $hook          The callback to be run when the filter is applied.
-	 * @param integer  $priority      Order the functions are executed
-	 * @param int      $accepted_args The number of arguments the function accepts.
+	 * @param string   $action		The name of the filter to hook the $hook callback to.
+	 * @param callback $hook		  The callback to be run when the filter is applied.
+	 * @param integer  $priority	  Order the functions are executed
+	 * @param int	  $accepted_args The number of arguments the function accepts.
 	 */
 	public function once( $action, $hook, $priority = 10, $accepted_args = 1 ) {
 		$key = md5( serialize( func_get_args() ) );

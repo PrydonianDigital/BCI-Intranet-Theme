@@ -4,16 +4,16 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 
 /**
  * Helper function to provide directory path to CMB2
  * @since  2.0.0
  * @param  string  $path Path to append
- * @return string        Directory with optional path appended
+ * @return string		Directory with optional path appended
  */
 function cmb2_dir( $path = '' ) {
 	return CMB2_DIR . $path;
@@ -72,15 +72,15 @@ function cmb2_options( $key ) {
  * @since  2.0.0
  * @param  array   $args Arguments. Accepts:
  *
- *         'url'         - URL to retrieve the oEmbed from,
- *         'object_id'   - $post_id,
- *         'object_type' - 'post',
- *         'oembed_args' - $embed_args, // array containing 'width', etc
- *         'field_id'    - false,
- *         'cache_key'   - false,
- *         'wp_error'    - true/false, // To return a wp_error object if no embed found.
+ *		 'url'		 - URL to retrieve the oEmbed from,
+ *		 'object_id'   - $post_id,
+ *		 'object_type' - 'post',
+ *		 'oembed_args' - $embed_args, // array containing 'width', etc
+ *		 'field_id'	- false,
+ *		 'cache_key'   - false,
+ *		 'wp_error'	- true/false, // To return a wp_error object if no embed found.
  *
- * @return string        oEmbed string
+ * @return string		oEmbed string
  */
 function cmb2_get_oembed( $args = array() ) {
 	$oembed = cmb2_ajax()->get_oembed_no_edit( $args );
@@ -115,8 +115,8 @@ add_action( 'cmb2_do_oembed', 'cmb2_do_oembed' );
  * @since  1.0.1
  * @param  string  $option_key Option key
  * @param  string  $field_id   Option array field key
- * @param  mixed   $default    Optional default fallback value
- * @return array               Options array or specific field
+ * @param  mixed   $default	Optional default fallback value
+ * @return array			   Options array or specific field
  */
 function cmb2_get_option( $option_key, $field_id = '', $default = false ) {
 	return cmb2_options( $option_key )->get( $field_id, $default );
@@ -127,9 +127,9 @@ function cmb2_get_option( $option_key, $field_id = '', $default = false ) {
  * @since  2.0.0
  * @param  string  $option_key Option key
  * @param  string  $field_id   Option array field key
- * @param  mixed   $value      Value to update data with
- * @param  boolean $single     Whether data should not be an array
- * @return boolean             Success/Failure
+ * @param  mixed   $value	  Value to update data with
+ * @param  boolean $single	 Whether data should not be an array
+ * @return boolean			 Success/Failure
  */
 function cmb2_update_option( $option_key, $field_id, $value, $single = true ) {
 	if ( cmb2_options( $option_key )->update( $field_id, $value, false, $single ) ) {
@@ -142,12 +142,12 @@ function cmb2_update_option( $option_key, $field_id, $value, $single = true ) {
 /**
  * Get a CMB2 field object.
  * @since  1.1.0
- * @param  array  $meta_box    Metabox ID or Metabox config array
- * @param  array  $field_id    Field ID or all field arguments
- * @param  int    $object_id   Object ID
+ * @param  array  $meta_box	Metabox ID or Metabox config array
+ * @param  array  $field_id	Field ID or all field arguments
+ * @param  int	$object_id   Object ID
  * @param  string $object_type Type of object being saved. (e.g., post, user, comment, or options-page).
- *                             Defaults to metabox object type.
- * @return CMB2_Field|null     CMB2_Field object unless metabox config cannot be found
+ *							 Defaults to metabox object type.
+ * @return CMB2_Field|null	 CMB2_Field object unless metabox config cannot be found
  */
 function cmb2_get_field( $meta_box, $field_id, $object_id = 0, $object_type = '' ) {
 
@@ -166,12 +166,12 @@ function cmb2_get_field( $meta_box, $field_id, $object_id = 0, $object_type = ''
 /**
  * Get a field's value.
  * @since  1.1.0
- * @param  array  $meta_box    Metabox ID or Metabox config array
- * @param  array  $field_id    Field ID or all field arguments
- * @param  int    $object_id   Object ID
+ * @param  array  $meta_box	Metabox ID or Metabox config array
+ * @param  array  $field_id	Field ID or all field arguments
+ * @param  int	$object_id   Object ID
  * @param  string $object_type Type of object being saved. (e.g., post, user, comment, or options-page).
- *                             Defaults to metabox object type.
- * @return mixed               Maybe escaped value
+ *							 Defaults to metabox object type.
+ * @return mixed			   Maybe escaped value
  */
 function cmb2_get_field_value( $meta_box, $field_id, $object_id = 0, $object_type = '' ) {
 	$field = cmb2_get_field( $meta_box, $field_id, $object_id, $object_type );
@@ -182,7 +182,7 @@ function cmb2_get_field_value( $meta_box, $field_id, $object_id = 0, $object_typ
  * Because OOP can be scary
  * @since  2.0.2
  * @param  array $meta_box_config Metabox Config array
- * @return CMB2 object            Instantiated CMB2 object
+ * @return CMB2 object			Instantiated CMB2 object
  */
 function new_cmb2_box( array $meta_box_config ) {
 	return cmb2_get_metabox( $meta_box_config );
@@ -191,10 +191,10 @@ function new_cmb2_box( array $meta_box_config ) {
 /**
  * Retrieve a CMB2 instance by the metabox ID
  * @since  2.0.0
- * @param  mixed  $meta_box    Metabox ID or Metabox config array
- * @param  int    $object_id   Object ID
+ * @param  mixed  $meta_box	Metabox ID or Metabox config array
+ * @param  int	$object_id   Object ID
  * @param  string $object_type Type of object being saved. (e.g., post, user, comment, or options-page).
- *                             Defaults to metabox object type.
+ *							 Defaults to metabox object type.
  * @return CMB2 object
  */
 function cmb2_get_metabox( $meta_box, $object_id = 0, $object_type = '' ) {
@@ -226,9 +226,9 @@ function cmb2_get_metabox( $meta_box, $object_id = 0, $object_type = '' ) {
 /**
  * Returns array of sanitized field values from a metabox (without saving them)
  * @since  2.0.3
- * @param  mixed $meta_box         Metabox ID or Metabox config array
+ * @param  mixed $meta_box		 Metabox ID or Metabox config array
  * @param  array $data_to_sanitize Array of field_id => value data for sanitizing (likely $_POST data).
- * @return mixed                   Array of sanitized values or false if no CMB2 object found
+ * @return mixed				   Array of sanitized values or false if no CMB2 object found
  */
 function cmb2_get_metabox_sanitized_values( $meta_box, array $data_to_sanitize ) {
 	$cmb = cmb2_get_metabox( $meta_box );
@@ -239,14 +239,14 @@ function cmb2_get_metabox_sanitized_values( $meta_box, array $data_to_sanitize )
  * Retrieve a metabox form
  * @since  2.0.0
  * @param  mixed   $meta_box  Metabox config array or Metabox ID
- * @param  int     $object_id Object ID
- * @param  array   $args      Optional arguments array
- * @return string             CMB2 html form markup
+ * @param  int	 $object_id Object ID
+ * @param  array   $args	  Optional arguments array
+ * @return string			 CMB2 html form markup
  */
 function cmb2_get_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
 
 	$object_id = $object_id ? $object_id : get_the_ID();
-	$cmb       = cmb2_get_metabox( $meta_box, $object_id );
+	$cmb	   = cmb2_get_metabox( $meta_box, $object_id );
 
 	ob_start();
 	// Get cmb form
@@ -261,8 +261,8 @@ function cmb2_get_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
  * Display a metabox form & save it on submission
  * @since  1.0.0
  * @param  mixed   $meta_box  Metabox config array or Metabox ID
- * @param  int     $object_id Object ID
- * @param  array   $args      Optional arguments array
+ * @param  int	 $object_id Object ID
+ * @param  array   $args	  Optional arguments array
  */
 function cmb2_print_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
 
@@ -325,8 +325,8 @@ function cmb2_print_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
  * Display a metabox form (or optionally return it) & save it on submission
  * @since  1.0.0
  * @param  mixed   $meta_box  Metabox config array or Metabox ID
- * @param  int     $object_id Object ID
- * @param  array   $args      Optional arguments array
+ * @param  int	 $object_id Object ID
+ * @param  array   $args	  Optional arguments array
  */
 function cmb2_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
 	if ( ! isset( $args['echo'] ) || $args['echo'] ) {
@@ -369,7 +369,7 @@ if ( ! function_exists( 'date_create_from_format' ) ) {
 			 */
 			'%04d-%02d-%02d %02d:%02d:%02d',
 			$parsed_time['tm_year'] + 1900,  // This will be "111", so we need to add 1900.
-			$parsed_time['tm_mon'] + 1,      // This will be the month minus one, so we add one.
+			$parsed_time['tm_mon'] + 1,	  // This will be the month minus one, so we add one.
 			$parsed_time['tm_mday'],
 			$parsed_time['tm_hour'],
 			$parsed_time['tm_min'],

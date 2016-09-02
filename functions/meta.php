@@ -917,14 +917,14 @@
 	function potw_meta() {
 		$prefix = '_potw_';
 		$cmb_user = new_cmb2_box( array(
-		    'id'			=> $prefix . 'edit_metabox',
-		    'title'			=> __( 'Photo Info', 'bci' ),
-		    'object_types'	=> array( 'potw', ), // Post type
+			'id'			=> $prefix . 'edit_metabox',
+			'title'			=> __( 'Photo Info', 'bci' ),
+			'object_types'	=> array( 'potw', ), // Post type
 		) );
 		$cmb_user->add_field( array(
-		    'name' 			=> __( 'Photo Credit', 'bci' ),
-		    'id'			=> $prefix . 'user',
-		    'type'			=> 'user_search_text',
+			'name' 			=> __( 'Photo Credit', 'bci' ),
+			'id'			=> $prefix . 'user',
+			'type'			=> 'user_search_text',
 		) );
 	}
 
@@ -1130,7 +1130,7 @@
 			'id' => $prefix . 'hide',
 			'title' => __( 'Hide from Centre Archive', 'bci' ),
 			'object_types' => array( 'centre' ),
-			'context'      => 'side', //  'normal', 'advanced', or 'side'
+			'context'	  => 'side', //  'normal', 'advanced', or 'side'
 		) );
 		$cmb_block->add_field( array(
 			'name' => '',

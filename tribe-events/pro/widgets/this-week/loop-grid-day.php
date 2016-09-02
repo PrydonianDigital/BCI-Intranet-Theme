@@ -47,10 +47,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						$view_all_label = sprintf(
 						  _n(
-						    'View %1$s %2$s',
-						    'View All %1$s %2$s',
-						    $day['total_events'],
-						    'tribe-events-calendar-pro'
+							'View %1$s %2$s',
+							'View All %1$s %2$s',
+							$day['total_events'],
+							'tribe-events-calendar-pro'
 						  ),
 						  $day['total_events'],
 						  $label_text

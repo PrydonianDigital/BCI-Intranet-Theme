@@ -2,7 +2,7 @@
  * Controls the behaviours of custom metabox fields.
  *
  * @author WebDevStudios
- * @see    https://github.com/WebDevStudios/CMB2
+ * @see	https://github.com/WebDevStudios/CMB2
  */
 
  // TODO: fix this.
@@ -20,13 +20,13 @@ window.CMB2 = (function(window, document, $, undefined){
 
 	// CMB2 functionality object
 	var cmb = {
-		idNumber        : false,
-		repeatEls       : 'input:not([type="button"],[id^=filelist]),select,textarea,.cmb2-media-status',
-		noEmpty         : 'input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),textarea',
-		repeatUpdate    : 'input:not([type="button"]),select,textarea,label',
+		idNumber		: false,
+		repeatEls	   : 'input:not([type="button"],[id^=filelist]),select,textarea,.cmb2-media-status',
+		noEmpty		 : 'input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),textarea',
+		repeatUpdate	: 'input:not([type="button"]),select,textarea,label',
 		styleBreakPoint : 450,
 		mediaHandlers   : {},
-		neweditor_id    : [],
+		neweditor_id	: [],
 		defaults : {
 			time_picker  : l10n.defaults.time_picker,
 			date_picker  : l10n.defaults.date_picker,
@@ -54,7 +54,7 @@ window.CMB2 = (function(window, document, $, undefined){
 		$(document).trigger( 'cmb_pre_init', cmb );
 
 		cmb.log( 'CMB2 localized data', l10n );
-		var $metabox     = cmb.metabox();
+		var $metabox	 = cmb.metabox();
 		var $repeatGroup = $metabox.find('.cmb-repeatable-group');
 
 		/**
@@ -159,8 +159,8 @@ window.CMB2 = (function(window, document, $, undefined){
 	cmb.handleFileClick = function( evt ) {
 		evt.preventDefault();
 
-		var $el    = $( this );
-		var $td    = $el.closest( '.cmb-td' );
+		var $el	= $( this );
+		var $td	= $el.closest( '.cmb-td' );
 		var isList = $td.find( '.cmb2-upload-button' ).hasClass( 'cmb2-upload-list' );
 		cmb.attach_id = isList ? $el.find( 'input[type="hidden"]' ).data( 'id' ) : $td.find( '.cmb2-upload-file-id' ).val();
 
@@ -174,9 +174,9 @@ window.CMB2 = (function(window, document, $, undefined){
 			return;
 		}
 
-		var media         = cmb.media;
-		media.field       = formfield;
-		media.$field      = $id( media.field );
+		var media		 = cmb.media;
+		media.field	   = formfield;
+		media.$field	  = $id( media.field );
 		media.fieldData   = media.$field.data();
 		media.previewSize = media.fieldData.previewsize;
 		media.fieldName   = media.$field.attr('name');
@@ -351,12 +351,12 @@ window.CMB2 = (function(window, document, $, undefined){
 		$inputs.each( function(){
 			var $newInput = $( this );
 			var isEditor  = $newInput.hasClass( 'wp-editor-area' );
-			var oldFor    = $newInput.attr( 'for' );
-			var oldVal    = $newInput.val();
-			var type      = $newInput.prop( 'type' );
+			var oldFor	= $newInput.attr( 'for' );
+			var oldVal	= $newInput.val();
+			var type	  = $newInput.prop( 'type' );
 			var checkable = 'radio' === type || 'checkbox' === type ? oldVal : false;
 			// var $next  = $newInput.next();
-			var attrs     = {};
+			var attrs	 = {};
 			var newID, oldID;
 			if ( oldFor ) {
 				attrs = { 'for' : oldFor.replace( '_'+ prevNum, '_'+ cmb.idNumber ) };
@@ -364,9 +364,9 @@ window.CMB2 = (function(window, document, $, undefined){
 				var oldName = $newInput.attr( 'name' );
 				// Replace 'name' attribute key
 				var newName = oldName ? oldName.replace( '['+ prevNum +']', '['+ cmb.idNumber +']' ) : '';
-				oldID       = $newInput.attr( 'id' );
-				newID       = oldID ? oldID.replace( '_'+ prevNum, '_'+ cmb.idNumber ) : '';
-				attrs       = {
+				oldID	   = $newInput.attr( 'id' );
+				newID	   = oldID ? oldID.replace( '_'+ prevNum, '_'+ cmb.idNumber ) : '';
+				attrs	   = {
 					id: newID,
 					name: newName,
 					// value: '',
@@ -418,7 +418,7 @@ window.CMB2 = (function(window, document, $, undefined){
 	cmb.newRowHousekeeping = function( $row ) {
 
 		var $colorPicker = $row.find( '.wp-picker-container' );
-		var $list        = $row.find( '.cmb2-media-status' );
+		var $list		= $row.find( '.cmb2-media-status' );
 
 		if ( $colorPicker.length ) {
 			// Need to clean-up colorpicker before appending
@@ -511,7 +511,7 @@ window.CMB2 = (function(window, document, $, undefined){
 		var $oldRow  = $table.find('.cmb-repeatable-grouping').last();
 		var prevNum  = parseInt( $oldRow.data('iterator') );
 		cmb.idNumber = prevNum + 1;
-		var $row     = $oldRow.clone();
+		var $row	 = $oldRow.clone();
 
 		cmb.newRowHousekeeping( $row.data( 'title', $this.data( 'grouptitle' ) ) ).cleanRow( $row, prevNum, true );
 		$row.find( '.cmb-add-row-button' ).prop( 'disabled', false );
@@ -533,12 +533,12 @@ window.CMB2 = (function(window, document, $, undefined){
 	cmb.addAjaxRow = function( evt ) {
 		evt.preventDefault();
 
-		var $this         = $( this );
-		var $table        = $id( $this.data('selector') );
-		var $emptyrow     = $table.find('.empty-row');
-		var prevNum       = parseInt( $emptyrow.find('[data-iterator]').data('iterator') );
-		cmb.idNumber      = prevNum + 1;
-		var $row          = $emptyrow.clone();
+		var $this		 = $( this );
+		var $table		= $id( $this.data('selector') );
+		var $emptyrow	 = $table.find('.empty-row');
+		var prevNum	   = parseInt( $emptyrow.find('[data-iterator]').data('iterator') );
+		cmb.idNumber	  = prevNum + 1;
+		var $row		  = $emptyrow.clone();
 
 		cmb.newRowHousekeeping( $row ).cleanRow( $row, prevNum );
 
@@ -618,7 +618,7 @@ window.CMB2 = (function(window, document, $, undefined){
 		$this.trigger( 'cmb2_shift_rows_enter', $this );
 
 		var $parent   = $this.parents( '.cmb-repeatable-grouping' );
-		var $goto     = $this.hasClass( 'move-up' ) ? $parent.prev( '.cmb-repeatable-grouping' ) : $parent.next( '.cmb-repeatable-grouping' );
+		var $goto	 = $this.hasClass( 'move-up' ) ? $parent.prev( '.cmb-repeatable-grouping' ) : $parent.next( '.cmb-repeatable-grouping' );
 
 		if ( ! $goto.length ) {
 			return;
@@ -724,7 +724,7 @@ window.CMB2 = (function(window, document, $, undefined){
 	cmb.initDateTimePickers = function( $selector, method, defaultKey ) {
 		if ( $selector.length ) {
 			$selector[ method ]( 'destroy' ).each( function() {
-				var $this     = $( this );
+				var $this	 = $( this );
 				var fieldOpts = $this.data( method ) || {};
 				var options   = $.extend( {}, cmb.defaults[ defaultKey ], fieldOpts );
 				$this[ method ]( cmb.datePickerSetupOpts( fieldOpts, options, method ) );
@@ -858,10 +858,10 @@ window.CMB2 = (function(window, document, $, undefined){
 	 */
 	cmb.resizeoEmbeds = function() {
 		cmb.metabox().each( function() {
-			var $this      = $( this );
+			var $this	  = $( this );
 			var $tableWrap = $this.parents('.inside');
-			var isSide     = $this.parents('.inner-sidebar').length || $this.parents( '#side-sortables' ).length;
-			var isSmall    = isSide;
+			var isSide	 = $this.parents('.inner-sidebar').length || $this.parents( '#side-sortables' ).length;
+			var isSmall	= isSide;
 			var isSmallest = false;
 			if ( ! $tableWrap.length )  {
 				return true; // continue
@@ -871,7 +871,7 @@ window.CMB2 = (function(window, document, $, undefined){
 			var tableW = $tableWrap.width();
 
 			if ( cmb.styleBreakPoint > tableW ) {
-				isSmall    = true;
+				isSmall	= true;
 				isSmallest = ( cmb.styleBreakPoint - 62 ) > tableW;
 			}
 
@@ -891,8 +891,8 @@ window.CMB2 = (function(window, document, $, undefined){
 			}
 
 			$children.each( function() {
-				var $this     = $( this );
-				var iwidth    = $this.width();
+				var $this	 = $( this );
+				var iwidth	= $this.width();
 				var iheight   = $this.height();
 				var _newWidth = newWidth;
 				if ( $this.parents( '.cmb-repeat-row' ).length && ! isSmall ) {
@@ -937,12 +937,12 @@ window.CMB2 = (function(window, document, $, undefined){
 		}
 
 		// get field id
-		var field_id         = $obj.attr('id');
-		var $context         = $obj.closest( '.cmb-td' );
+		var field_id		 = $obj.attr('id');
+		var $context		 = $obj.closest( '.cmb-td' );
 		var $embed_container = $context.find( '.embed-status' );
-		var $embed_wrap      = $context.find( '.embed_wrap' );
-		var $child_el        = $embed_container.find( ':first-child' );
-		var oembed_width     = $embed_container.length && $child_el.length ? $child_el.width() : $obj.width();
+		var $embed_wrap	  = $context.find( '.embed_wrap' );
+		var $child_el		= $embed_container.find( ':first-child' );
+		var oembed_width	 = $embed_container.length && $child_el.length ? $child_el.width() : $obj.width();
 
 		cmb.log( 'oembed_url', oembed_url, field_id );
 
@@ -961,12 +961,12 @@ window.CMB2 = (function(window, document, $, undefined){
 				dataType : 'json',
 				url : l10n.ajaxurl,
 				data : {
-					'action'          : 'cmb2_oembed_handler',
-					'oembed_url'      : oembed_url,
-					'oembed_width'    : oembed_width > 300 ? oembed_width : 300,
-					'field_id'        : field_id,
-					'object_id'       : $obj.data( 'objectid' ),
-					'object_type'     : $obj.data( 'objecttype' ),
+					'action'		  : 'cmb2_oembed_handler',
+					'oembed_url'	  : oembed_url,
+					'oembed_width'	: oembed_width > 300 ? oembed_width : 300,
+					'field_id'		: field_id,
+					'object_id'	   : $obj.data( 'objectid' ),
+					'object_type'	 : $obj.data( 'objecttype' ),
 					'cmb2_ajax_nonce' : l10n.ajax_nonce
 				},
 				success: function(response) {

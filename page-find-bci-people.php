@@ -17,9 +17,9 @@
 
 				<?php
 				$args = array (
-					'number'         => '-1',
-					'order'          => 'ASC',
-					'orderby'        => 'last_name',
+					'number'		 => '-1',
+					'order'		  => 'ASC',
+					'orderby'		=> 'last_name',
 				);
 				$all_users = new WP_User_Query( $args );
 				if ( ! empty( $all_users->results ) ) {

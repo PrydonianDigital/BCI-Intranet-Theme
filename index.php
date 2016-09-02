@@ -11,10 +11,10 @@
 				<div <?php post_class('news'); ?>>
 					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 					<?php if (class_exists('MultiPostThumbnails')) :
-					    MultiPostThumbnails::the_post_thumbnail(
-					        get_post_type(),
-					        'secondary-image'
-					    );
+						MultiPostThumbnails::the_post_thumbnail(
+							get_post_type(),
+							'secondary-image'
+						);
 					endif; ?>
 					<?php the_excerpt(); ?>
 					<small class="meta">Posted on <?php the_time('l jS F, Y') ?> at <?php the_time() ?> and is filed under <?php the_category(', ') ?>.</small>

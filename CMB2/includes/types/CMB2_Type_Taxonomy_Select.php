@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_Taxonomy_Select extends CMB2_Type_Taxonomy_Base {
 
@@ -16,8 +16,8 @@ class CMB2_Type_Taxonomy_Select extends CMB2_Type_Taxonomy_Base {
 		$names = $this->get_object_terms();
 
 		$saved_term  = is_wp_error( $names ) || empty( $names ) ? $this->field->get_default() : $names[key( $names )]->slug;
-		$terms       = $this->get_terms();
-		$options     = '';
+		$terms	   = $this->get_terms();
+		$options	 = '';
 		$option_none = $this->field->args( 'show_option_none' );
 
 		if ( ! empty( $option_none ) ) {

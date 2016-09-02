@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 abstract class CMB2_Type_Base {
 
@@ -34,7 +34,7 @@ abstract class CMB2_Type_Base {
 	 * Constructor
 	 * @since 2.2.2
 	 * @param CMB2_Types $types
-	 * @param array      $args
+	 * @param array	  $args
 	 */
 	public function __construct( CMB2_Types $types, $args = array() ) {
 		$this->types = $types;
@@ -53,7 +53,7 @@ abstract class CMB2_Type_Base {
 	 * Stores the rendered field output.
 	 * @since  2.2.2
 	 * @param  string|CMB2_Type_Base $rendered Rendered output.
-	 * @return string|CMB2_Type_Base           Rendered output or this object.
+	 * @return string|CMB2_Type_Base		   Rendered output or this object.
 	 */
 	public function rendered( $rendered ) {
 		if ( $this->args['rendered'] ) {
@@ -77,10 +77,10 @@ abstract class CMB2_Type_Base {
 	/**
 	 * Handles parsing and filtering attributes while preserving any passed in via field config.
 	 * @since  1.1.0
-	 * @param  string $element       Element for filter
+	 * @param  string $element	   Element for filter
 	 * @param  array  $type_defaults Type default arguments
-	 * @param  array  $type_args     Type override arguments
-	 * @return array                 Parsed and filtered arguments
+	 * @param  array  $type_args	 Type override arguments
+	 * @return array				 Parsed and filtered arguments
 	 */
 	public function parse_args( $element, $type_defaults, $type_args = array() ) {
 		$type_args = empty( $type_args ) ? $this->args : $type_args;
@@ -95,9 +95,9 @@ abstract class CMB2_Type_Base {
 		 * Filter attributes for a field type.
 		 * The dynamic portion of the hook name, $element, refers to the field type.
 		 * @since 1.1.0
-		 * @param array  $args              The array of attribute arguments.
-		 * @param array  $type_defaults          The array of default values.
-		 * @param array  $field             The `CMB2_Field` object.
+		 * @param array  $args			  The array of attribute arguments.
+		 * @param array  $type_defaults		  The array of default values.
+		 * @param array  $field			 The `CMB2_Field` object.
 		 * @param object $field_type_object This `CMB2_Types` object.
 		 */
 		$args = apply_filters( "cmb2_{$element}_attributes", $args, $type_defaults, $this->field, $this->types );

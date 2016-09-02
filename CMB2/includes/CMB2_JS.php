@@ -4,9 +4,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_JS {
 
@@ -83,10 +83,10 @@ class CMB2_JS {
 		wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), CMB2_VERSION );
 		wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), array( 'iris' ), CMB2_VERSION );
 		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', array(
-			'clear'         => __( 'Clear', 'cmb2' ),
+			'clear'		 => __( 'Clear', 'cmb2' ),
 			'defaultString' => __( 'Default', 'cmb2' ),
-			'pick'          => __( 'Select Color', 'cmb2' ),
-			'current'       => __( 'Current Color', 'cmb2' ),
+			'pick'		  => __( 'Select Color', 'cmb2' ),
+			'current'	   => __( 'Current Color', 'cmb2' ),
 		) );
 	}
 
@@ -96,39 +96,39 @@ class CMB2_JS {
 	 */
 	protected static function localize( $debug ) {
 		$l10n = array(
-			'ajax_nonce'       => wp_create_nonce( 'ajax_nonce' ),
-			'ajaxurl'          => admin_url( '/admin-ajax.php' ),
-			'script_debug'     => $debug,
+			'ajax_nonce'	   => wp_create_nonce( 'ajax_nonce' ),
+			'ajaxurl'		  => admin_url( '/admin-ajax.php' ),
+			'script_debug'	 => $debug,
 			'up_arrow_class'   => 'dashicons dashicons-arrow-up-alt2',
 			'down_arrow_class' => 'dashicons dashicons-arrow-down-alt2',
-			'defaults'         => array(
+			'defaults'		 => array(
 				'color_picker' => false,
 				'date_picker'  => array(
-					'changeMonth'     => true,
-					'changeYear'      => true,
-					'dateFormat'      => _x( 'mm/dd/yy', 'Valid formatDate string for jquery-ui datepicker', 'cmb2' ),
-					'dayNames'        => explode( ',', __( 'Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday', 'cmb2' ) ),
-					'dayNamesMin'     => explode( ',', __( 'Su, Mo, Tu, We, Th, Fr, Sa', 'cmb2' ) ),
+					'changeMonth'	 => true,
+					'changeYear'	  => true,
+					'dateFormat'	  => _x( 'mm/dd/yy', 'Valid formatDate string for jquery-ui datepicker', 'cmb2' ),
+					'dayNames'		=> explode( ',', __( 'Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday', 'cmb2' ) ),
+					'dayNamesMin'	 => explode( ',', __( 'Su, Mo, Tu, We, Th, Fr, Sa', 'cmb2' ) ),
 					'dayNamesShort'   => explode( ',', __( 'Sun, Mon, Tue, Wed, Thu, Fri, Sat', 'cmb2' ) ),
-					'monthNames'      => explode( ',', __( 'January, February, March, April, May, June, July, August, September, October, November, December', 'cmb2' ) ),
+					'monthNames'	  => explode( ',', __( 'January, February, March, April, May, June, July, August, September, October, November, December', 'cmb2' ) ),
 					'monthNamesShort' => explode( ',', __( 'Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec', 'cmb2' ) ),
-					'nextText'        => __( 'Next', 'cmb2' ),
-					'prevText'        => __( 'Prev', 'cmb2' ),
-					'currentText'     => __( 'Today', 'cmb2' ),
-					'closeText'       => __( 'Done', 'cmb2' ),
-					'clearText'       => __( 'Clear', 'cmb2' ),
+					'nextText'		=> __( 'Next', 'cmb2' ),
+					'prevText'		=> __( 'Prev', 'cmb2' ),
+					'currentText'	 => __( 'Today', 'cmb2' ),
+					'closeText'	   => __( 'Done', 'cmb2' ),
+					'clearText'	   => __( 'Clear', 'cmb2' ),
 				),
 				'time_picker'  => array(
 					'timeOnlyTitle' => __( 'Choose Time', 'cmb2' ),
-					'timeText'      => __( 'Time', 'cmb2' ),
-					'hourText'      => __( 'Hour', 'cmb2' ),
-					'minuteText'    => __( 'Minute', 'cmb2' ),
-					'secondText'    => __( 'Second', 'cmb2' ),
+					'timeText'	  => __( 'Time', 'cmb2' ),
+					'hourText'	  => __( 'Hour', 'cmb2' ),
+					'minuteText'	=> __( 'Minute', 'cmb2' ),
+					'secondText'	=> __( 'Second', 'cmb2' ),
 					'currentText'   => __( 'Now', 'cmb2' ),
-					'closeText'     => __( 'Done', 'cmb2' ),
-					'timeFormat'    => _x( 'hh:mm TT', 'Valid formatting string, as per http://trentrichardson.com/examples/timepicker/', 'cmb2' ),
+					'closeText'	 => __( 'Done', 'cmb2' ),
+					'timeFormat'	=> _x( 'hh:mm TT', 'Valid formatting string, as per http://trentrichardson.com/examples/timepicker/', 'cmb2' ),
 					'controlType'   => 'select',
-					'stepMinute'    => 5,
+					'stepMinute'	=> 5,
 				),
 			),
 			'strings' => array(
@@ -136,8 +136,8 @@ class CMB2_JS {
 				'upload_files' => __( 'Use these files', 'cmb2' ),
 				'remove_image' => __( 'Remove Image', 'cmb2' ),
 				'remove_file'  => __( 'Remove', 'cmb2' ),
-				'file'         => __( 'File:', 'cmb2' ),
-				'download'     => __( 'Download', 'cmb2' ),
+				'file'		 => __( 'File:', 'cmb2' ),
+				'download'	 => __( 'Download', 'cmb2' ),
 				'check_toggle' => __( 'Select / Deselect All', 'cmb2' ),
 			),
 		);

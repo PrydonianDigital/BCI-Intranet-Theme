@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 class CMB2_Type_Select_Timezone extends CMB2_Type_Select {
 
@@ -21,7 +21,7 @@ class CMB2_Type_Select_Timezone extends CMB2_Type_Select {
 		$this->args = wp_parse_args( $this->args, array(
 			'class'   => 'cmb2_select cmb2-select-timezone',
 			'options' => wp_timezone_choice( $this->field->escaped_value() ),
-			'desc'    => $this->_desc(),
+			'desc'	=> $this->_desc(),
 		) );
 
 		return parent::render();

@@ -8,12 +8,12 @@
 
 			<?php
 			$args = array (
-				'post_type'              => array( 'centre' ),
+				'post_type'			  => array( 'centre' ),
 				'posts_per_page'		 => -1,
-				'meta_query'             => array(
+				'meta_query'			 => array(
 					array(
-						'key'       => '_centre_no',
-						'value'     => 'on',
+						'key'	   => '_centre_no',
+						'value'	 => 'on',
 						'compare'   => 'NOT EXISTS',
 					),
 				),
@@ -36,15 +36,15 @@
 					<p class="centreLead">Centre Lead:
 						<?php
 							$args = array (
-								'meta_query'     => array(
+								'meta_query'	 => array(
 									array(
-										'key'       => '_usercentre_centre_lead',
-										'value'     => 'on',
+										'key'	   => '_usercentre_centre_lead',
+										'value'	 => 'on',
 										'compare'   => 'LIKE',
 									),
 									array(
-										'key'       => '_usercentre_centre',
-										'value'     => $post->ID,
+										'key'	   => '_usercentre_centre',
+										'value'	 => $post->ID,
 										'compare'   => 'LIKE',
 									),
 								),

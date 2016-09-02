@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author	WebDevStudios
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link	  http://webdevstudios.com
  */
 abstract class CMB2_Type_Picker_Base extends CMB2_Type_Text {
 
@@ -17,10 +17,10 @@ abstract class CMB2_Type_Picker_Base extends CMB2_Type_Text {
 	 * @since  2.2.0
 	 * @param  string  $arg  'date' or 'time'
 	 * @param  array   $args Optional arguments to modify (else use $this->field->args['attributes'])
-	 * @return array         Array of field attributes
+	 * @return array		 Array of field attributes
 	 */
 	public function parse_picker_options( $arg = 'date', $args = array() ) {
-		$att    = 'data-' . $arg . 'picker';
+		$att	= 'data-' . $arg . 'picker';
 		$update = empty( $args );
 		$atts   = array();
 		$format = $this->field->args( $arg . '_format' );

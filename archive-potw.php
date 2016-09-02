@@ -26,9 +26,9 @@
 						$users = get_post_meta( get_the_ID(), '_potw_user', true );
 						$user_split = explode( ',', str_replace( ' ', '', $users ) );
 						foreach ( $user_split as $user ) {
-						    $user = get_user_by( 'id', $user );
-						    $name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
-						    echo $name;
+							$user = get_user_by( 'id', $user );
+							$name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
+							echo $name;
 						}
 					?></h3>
 					<small class="meta"><?php the_time('l jS F, Y') ?></small>

@@ -10,8 +10,8 @@
 
 			<?php
 				$args = array(
-				    'post_type' => 'newsletter',
-				    'news_cat' => $term->slug
+					'post_type' => 'newsletter',
+					'news_cat' => $term->slug
 				);
 				$query = new WP_Query( $args );
 			?>
