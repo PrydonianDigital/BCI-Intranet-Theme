@@ -6,6 +6,10 @@
 <?php wp_head(); ?>
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
 <?php include_once('analytics.php') ?>
+<?php
+$less = new lessc;
+echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @navBg: ".bci_get_option( "color3" )."; @navSecondary: ".bci_get_option( "color2" )."; footer, header.site-header { background: @furniture; } #sideNavContainer { background: @navBg; } .single-antibody nav#sideNav li.current_page_parent,.post-type-archive-tribe_events nav#sideNav li.current_page_parent, .single-tribe_events nav#sideNav li.current_page_parent, .post-type-archive-potm nav#sideNav li.current_page_parent, .single-potm nav#sideNav li.current_page_parent, .post-type-archive-potw nav#sideNav li.current_page_parent, .single-potw nav#sideNav li.current_page_parent, .single-cell_line nav#sideNav li.current_page_parent, .single-equipment nav#sideNav li.current_page_parent, .single-centre nav#sideNav li.current_page_parent, .post-type-archive-centre nav#sideNav li.current_page_parent, .author nav#sideNav li.current_page_parent, .single-tribe_venue nav#sideNav li.current_page_parent { background: @navBg; } nav#sideNav li:hover, nav#sideNav li.current_page_item, nav#sideNav li.current_page_parent, nav#sideNav li.current-page-ancestor, .post-type-archive-tribe_events nav#sideNav li.current_page_parent:hover, .single-antibody nav#sideNav li.current_page_parent:hover, .single-antibody nav#sideNav li.nav-lab, .single-cell_line nav#sideNav li.menu-item-1602, .single-antibody nav#sideNav li.menu-item-1602, .single-equipment nav#sideNav li.menu-item-1602, .post-type-archive-centre nav#sideNav li.current-menu-item, .single-centre nav#sideNav li.current-menu-item { background: @navSecondary; }") . '</style>';
+?>
 </head>
 
 <body <?php body_class(); ?>>

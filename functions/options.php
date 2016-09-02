@@ -84,6 +84,24 @@
 				'id'   => '404content',
 				'type' => 'wysiwyg',
 			) );
+			$cmb->add_field( array(
+				'name' => __( 'Header/Footer Background Colour', 'bci' ),
+				'desc' => __( 'Choose a colour for the page header and footer', 'bci' ),
+				'id'   => 'color',
+				'type' => 'colorpicker',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Side Nav Background Colour', 'bci' ),
+				'desc' => __( 'Choose a colour for the Side Nav', 'bci' ),
+				'id'   => 'color3',
+				'type' => 'colorpicker',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Side Nav Background Highlight Colour', 'bci' ),
+				'desc' => __( 'Choose a highlight colour for the Side Nav', 'bci' ),
+				'id'   => 'color2',
+				'type' => 'colorpicker',
+			) );
 		}
 		public function settings_notices( $object_id, $updated ) {
 			if ( $object_id !== $this->key || empty( $updated ) ) {

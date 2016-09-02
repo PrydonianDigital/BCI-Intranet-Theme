@@ -18,6 +18,8 @@
 	require_once('functions/widgets.php');
 	require_once('functions/users.php');
 	require_once('functions/options.php');
+	require_once('functions/lessc.inc.php');
+
 
 	// Custom oEmbed Template
 	add_action( 'embed_head', 'embed_styles' );
