@@ -38,12 +38,6 @@ body {
 }
 footer {
 	background: #2B167B;
-	background: rgb(43,22,123); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(65,22,122,1) 0%, rgba(43,22,123,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(65,22,122,1) 0%,rgba(43,22,123,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(65,22,122,1) 0%,rgba(43,22,123,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41167a', endColorstr='#2b167b',GradientType=0 ); /* IE6-9 */
-
 	border-top: 1px solid #D0BF6A;
 	color: #fff;
 }
@@ -63,11 +57,6 @@ footer p {
 
 header.site-header {
 	background: #2B167B;
-	background: rgb(43,22,123); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(43,22,123,1) 0%, rgba(65,22,122,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(43,22,123,1) 0%,rgba(65,22,122,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(43,22,123,1) 0%,rgba(65,22,122,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b167b', endColorstr='#41167a',GradientType=0 ); /* IE6-9 */
 	padding: 0 1em;
 	position: fixed;
 	z-index: 1001;
@@ -1063,16 +1052,20 @@ input[type="search"].search-field {
 }
 .alignleft {
 	float: left;
-	margin: 0.375em 1.75em 1.75em 0;
+	margin: 0.375em 1.75em 1.75em 0 !important;
 }
 .alignright {
 	float: right;
-	margin: 0.375em 0 1.75em 1.75em;
+	margin: 0.375em 0 1.75em 1.75em !important;
 }
 .aligncenter {
 	clear: both;
 	display: block;
-	margin: 0 auto 1.75em;
+	margin: 0 auto 1.75em !important;
+}
+.su-youtube.aligncenter iframe {
+	margin: 0 auto;
+	display: block;
 }
 blockquote {
   background: #f9f9f9;
@@ -1391,6 +1384,9 @@ article.item a.readmore {
 }
 .pageInner #cmb2-metabox-_usercentre_edit_metabox .cmb-type-checkbox, .pageInner #cmb2-metabox-_me_edit_metabox .cmb-type-checkbox {
 	float: left;
+}
+.cmb2-id--me-bccit {
+	clear: both;
 }
 .pageInner ul.cmb2-list li, .pageInner #cmb2-metabox-_usercentre_edit_metabox .cmb-type-checkbox, .pageInner #cmb2-metabox-_me_edit_metabox .cmb-type-checkbox {
 	padding: 5px;
