@@ -93,11 +93,13 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 				get_currentuserinfo();
 				$user = $current_user->first_name;
 				$userID = $current_user->ID;
-				$birthday = get_user_meta( $userID, '_me_birth', true );
+				$birthDay = get_user_meta( $userID, '_me_birthDay', true );
+				$birthMonth = get_user_meta( $userID, '_me_birthMonth', true );
 				date_default_timezone_set('Europe/London');
 				$Hour = date('G');
-				$Day = date('d M');
-				if($Day == $birthday) {
+				$Day = date('d');
+				$Month = date('m');
+				if($Day == $birthDay && $Month == $birthMonth) {
 					echo "<i class='nav-balloons'></i> Happy Birthday";
 				} else {
 					if ( $Hour >= 5 && $Hour <= 11 ) {
@@ -111,7 +113,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 					}
 				}
 			?>
-			 <a href="<?php bloginfo('url'); ?>/my-profile/" id="profile"><?php echo $user; ?></a><?php if($Day == $birthday) { ?>! <i class="nav-balloons"></i><?php }?>
+			 <a href="<?php bloginfo('url'); ?>/my-profile/" id="profile"><?php echo $user; ?></a><?php if($Day == $birthDay && $Month == $birthMonth) { ?>! <i class="nav-balloons"></i><?php }?>
 			<div id="time"><?php echo date_i18n('l jS F, Y', time()); ?></div>
 			<div id="weather"></div>
 		</div>
