@@ -115,7 +115,7 @@
 		<h2>Related Links</h2>
 		<ul class="links">
 		<?php while ( $p2l->have_posts() ) : $p2l->the_post(); ?>
-			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>" <?php $blank = get_post_meta(get_the_ID(), 'link_blank', true); if($blank !=''){ ?> target="_blank"<?php } ?>><?php the_title(); ?></a></li>
+			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>" <?php $blank = get_post_meta(get_the_ID(), 'link_blank', true); if($blank !=''){ ?> target="_blank" rel="noopener"<?php } ?>><?php the_title(); ?></a></li>
 		<?php endwhile; ?>
 		</ul>
 	</div>

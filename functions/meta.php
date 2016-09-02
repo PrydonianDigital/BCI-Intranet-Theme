@@ -740,7 +740,7 @@
 			'type' => 'title',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Create your avatar at <a href="http://en.gravatar.com" target="_blank">Gravatar</a> using your QMUL email address.', 'bci' ),
+			'desc' => __( 'Create your avatar at <a href="http://en.gravatar.com" target="_blank" rel="noopener">Gravatar</a> using your QMUL email address.', 'bci' ),
 			'id' => $prefix . 'av',
 			'on_front' => true,
 			'type' => 'title',

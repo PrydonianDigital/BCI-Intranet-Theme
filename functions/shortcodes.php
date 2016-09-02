@@ -70,7 +70,7 @@
 			if ( isset( $entry['_doc'] ) )
 				$doc = esc_html( $entry['_doc'] );
 				if(end($entries) == $entry) {
-					$return_string .=  '<a href="' . $doc . '" target="_blank">' . get_the_title() . '</a>';
+					$return_string .=  '<a href="' . $doc . '" target="_blank" rel="noopener">' . get_the_title() . '</a>';
 				}
 		}
 			endwhile;
@@ -99,7 +99,7 @@
 				if ( isset( $entry['_doc'] ) )
 					$doc = esc_html( $entry['_doc'] );
 					if(end($entries) == $entry) {
-						$return_string .= '<a href="' . $doc . '" target="_blank">' . $content . '</a>';
+						$return_string .= '<a href="' . $doc . '" target="_blank" rel="noopener">' . $content . '</a>';
 					}
 			}
 			endwhile;

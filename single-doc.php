@@ -21,7 +21,7 @@
 						if ( isset( $entry['_doc'] ) )
 							$doc = esc_html( $entry['_doc'] );
 							if(end($entries) == $entry) {
-								echo 'Download: <a href="' . $doc . '" target="_blank">' . get_the_title() . '</a>';
+								echo 'Download: <a href="' . $doc . '" target="_blank" rel="noopener">' . get_the_title() . '</a>';
 							}
 					}
 					?>

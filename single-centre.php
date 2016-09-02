@@ -115,7 +115,7 @@
 					?>
 
 					<?php $link = get_post_meta(get_the_ID(), '_centre_link', true); if($link != '') : ?>
-					<h4>Centre web page: <a href="<?php echo $link; ?>" target="_blank"><?php the_title(); ?></a></h4>
+					<h4>Centre web page: <a href="<?php echo $link; ?>" target="_blank" rel="noopener"><?php the_title(); ?></a></h4>
 					<?php endif; ?>
 
 					<?php $ml = get_post_meta(get_the_ID(), '_centre_ml', true); if($ml != '') : ?>
