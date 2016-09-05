@@ -41,10 +41,23 @@
 <a href="#0" class="cd-top"><i class="nav-angle-double-up"></i></a>
 
 <?php wp_footer(); ?>
-<!--
-╔╗ ╔═╗╦  ╦╔╗╔╔╦╗╦═╗╔═╗╔╗╔╔═╗╔╦╗
-╠╩╗║  ║  ║║║║ ║ ╠╦╝╠═╣║║║║╣  ║
-╚═╝╚═╝╩  ╩╝╚╝ ╩ ╩╚═╩ ╩╝╚╝╚═╝ ╩
--->
+
+<script>
+var tour = new Tour({
+	name: "BCITour",
+	keyboard: true,
+	storage: window.localStorage,
+	debug: false,
+	backdrop: true,
+	backdropContainer: 'body',
+	steps: [
+	<?php
+		require_once 'tour.php';
+	?>
+	]});
+tour.init();
+tour.start();
+</script>
+
 </body>
 </html>
