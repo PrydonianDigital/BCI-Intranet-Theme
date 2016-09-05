@@ -472,25 +472,6 @@
 		) );
 	}
 
-	// docs in TinyMCE
-	add_action( 'cmb2_init', 'doc_tinyMCE' );
-	function doc_tinyMCE() {
-		$prefix = '_doc_';
-		$cmb_user = new_cmb2_box( array(
-			'id' => $prefix . 'edit_metabox',
-			'title' => __( 'Choose Document', 'bci' ),
-			'object_types' => array( 'post' ),
-			'show_names' => true,
-		) );
-		$cmb_user->add_field( array(
-			'desc' => __( 'Select the Document', 'bci' ),
-			'id' => $prefix . 'doc',
-			'on_front' => true,
-			'type' => 'select',
-			'options_cb' => 'doc_link',
-		) );
-	}
-
 	// Centres on User profile
 	add_action( 'cmb2_init', 'centre_user_profile_metabox' );
 	function centre_user_profile_metabox() {
