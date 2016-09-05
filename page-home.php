@@ -91,7 +91,19 @@
 									</h4>
 									<h2><?php the_title(); ?></h2>
 									<?php the_excerpt(); ?>
-									<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
+									<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+										<?php
+											$post_type = get_post_type( $post->ID );
+											switch( $post_type ) {
+												case 'potw':
+													echo '<i class="nav-file-photo-o"></i> View Picture';
+												break;
+												case 'potm':
+													echo '<i class="nav-file-text-o"></i> View Paper';
+												break;
+											}
+										?>
+									</a>
 									</div>
 								</article>
 				<?php
