@@ -79,6 +79,7 @@
 'nav-google2' => 'google2 &#xea89;',
 'nav-home2' => 'home2 &#xe900;',
 'nav-hour-glass' => 'hour-glass &#xe979;',
+'nav-cake' => 'cake &#xe91c;',
 'nav-images' => 'images &#xe914;',
 'nav-infinite' => 'infinite &#xea2f;',
 'nav-info' => 'info &#xea0c;',

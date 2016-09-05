@@ -100,7 +100,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 				$Day = date('d');
 				$Month = date('m');
 				if($Day == $birthDay && $Month == $birthMonth) {
-					echo "<i class='nav-balloons'></i> Happy Birthday";
+					echo "<i class='nav-cake'></i> Happy Birthday";
 				} else {
 					if ( $Hour >= 5 && $Hour <= 11 ) {
 						echo "Good Morning";
@@ -113,7 +113,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 					}
 				}
 			?>
-			 <a href="<?php bloginfo('url'); ?>/my-profile/" id="profile"><?php echo $user; ?></a><?php if($Day == $birthDay && $Month == $birthMonth) { ?>! <i class="nav-balloons"></i><?php }?>
+			 <a href="<?php bloginfo('url'); ?>/my-profile/" id="profile"><?php echo $user; ?></a><?php if($Day == $birthDay && $Month == $birthMonth) { ?>! <i class="nav-cake"></i><?php }?>
 			<div id="time"><?php echo date_i18n('l jS F, Y', time()); ?></div>
 			<div id="weather"></div>
 		</div>

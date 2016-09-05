@@ -24,6 +24,9 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.nav-cake:before {
+  content: "\e91c";
+}
 .nav-Agresso:before {
   content: "\e905";
 }
@@ -719,10 +722,6 @@
 }
 .nav-newspaper:before {
   content: "\f1ea";
-}
-.dashicons-newspaper:before {
-  content: "\f1ea";
-  font-family: "nav";
 }
 .nav-object-group:before {
   content: "\f247";
