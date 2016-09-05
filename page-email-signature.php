@@ -65,7 +65,7 @@
 							<font face="Arial"><font size="1">Barts Cancer Institute - a Cancer Research UK Centre of Excellence<br />
 							Queen Mary University of London<br />
 							<?php echo $current_user->_me_building ?>, Charterhouse Square, London EC1M 6BQ</p>
-							Tel: +44 (0)20 7882 <?php echo $current_user->_me_ext; ?> <?php if($fax !='') { echo '| Fax: ' . $fax; } ?> | Email: <a href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a><br />
+							T: +44 (0)20 7882 <?php echo $current_user->_me_ext; ?> <?php if($fax !='') { echo '| F: ' . $fax; } ?> | E: <a href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a><br />
 							<a href="http://www.bci.qmul.ac.uk">http://www.bci.qmul.ac.uk</a><br /><br />
 							<img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/Barts-SMD-blue.png" width="250" /><br /><br />
 							<a href="https://twitter.com/QMBCI"><img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/TW_BCIblue_whitefill_transp.png" width="35" /></a>&nbsp;
