@@ -37,6 +37,7 @@
 		}
 		function add_options_page_metabox() {
 			add_action( "cmb2_save_options-page_fields_{$this->metabox_id}", array( $this, 'settings_notices' ), 10, 2 );
+			$prefix = 'option';
 			$cmb = new_cmb2_box( array(
 				'id'		 => $this->metabox_id,
 				'hookup'	 => false,
