@@ -576,6 +576,9 @@ ul.widgets li.widget li ul ul ul ul ul ul ul {
 .tribe-events-widget-link {
 	margin: 0.5em 0;
 }
+.tribe-this-week-widget-wrapper .tribe-events-page-title {
+	text-align: left;
+}
 ol.tribe-list-widget li {
 	margin: 0;
 }
