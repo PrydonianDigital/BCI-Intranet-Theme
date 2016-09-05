@@ -15,7 +15,7 @@
 				<?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?>
 			<?php endif; ?>
 
-			<ul>
+			<ul id="primaryNav">
 				<?php wp_list_pages( array( 'title_li' => '' ) ); ?>
 			</ul>
 

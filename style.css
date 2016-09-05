@@ -426,14 +426,19 @@ nav#sideNav a {
 .sitemap ul li, ul.users li, ul.cal li, ul.doc li, ul.posts li, ul.centre li, ul.links li {
 	list-style: none;
 }
-.sitemap ul li:before {
-	font-family: 'nav';
-	content: "\f0f6";
-	margin: 0 0.2em 0 -1.5em;
-	color: #555;
-	display: block;
-	float: left;
-	vertical-align: middle;
+.sitemap ul li {
+	margin: 0;
+	border-top: 1px solid #efefef;
+	padding: 0.5em;
+}
+.sitemap ul li .children li {
+	border: none;
+}
+.sitemap ul li .children:first-child li {
+	padding-top: 0 !important;
+}
+.sitemap ul li .children:first-child li, .sitemap ul li .children:last-child li {
+	padding-bottom: 0 !important;
 }
 ul.users li:before {
 	font-family: 'nav';
@@ -1628,4 +1633,7 @@ h3.accordion-title.open:before {
 .su-spoiler {
 	margin-bottom: 0 !important;
 	border-bottom: 1px solid #efefef;
+}
+.tribe-nav-label, .tribe-this-week-nav-link.nav-previous, .tribe-this-week-nav-link.nav-next {
+	font-family: 'Roboto';
 }
