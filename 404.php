@@ -10,7 +10,11 @@
 				echo '<img src="' . bci_get_option( '404image' ) . '">';
 			} ?>
 
-			<?php echo wpautop(bci_get_option( '404content' )); ?>
+			<?php
+				$wysiwyg = apply_filters( 'the_content', bci_get_option( '404content' ) );
+				echo $wysiwyg;
+			?>
+
 
 		</div>
 
