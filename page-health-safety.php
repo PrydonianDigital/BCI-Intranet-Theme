@@ -82,7 +82,7 @@
 				echo '<p>No people have this role.</p>';
 			}
 			?>
-			<h3>Fire Marshalls</h3>
+			<h3>Fire Marshals</h3>
 			<?php
 			$args = array (
 				'number'			=> '-1',
@@ -113,7 +113,7 @@
 			}
 			?>
 
-			
+
 
 			<div class="sitemap">
 				<?php

@@ -35,7 +35,7 @@
 					echo '<p>Local Safety Officers</p>';
 				}
 				if($curauth->_usercentre_fire_marshall == 'on') {
-					echo '<p>Fire Marshalls</p>';
+					echo '<p>Fire Marshals</p>';
 				}
 				if($curauth->_usercentre_first_aider == 'on') {
 					echo '<p>First Aiders</p>';
