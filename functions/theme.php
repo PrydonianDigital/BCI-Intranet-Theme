@@ -10,6 +10,7 @@
 		add_image_size( 'header', '1172', '200', true );
 		add_image_size( 'display', '300', '250', true );
 		add_image_size( 'thumbnail-news', '227', '108', true );
+		add_image_size('post-secondary-image-thumbnail', 150, 150);
 		add_theme_support( 'title-tag' );
 		remove_action( 'wp_head', 'wp_generator' );
 		remove_action( 'wp_head', 'rsd_link' );

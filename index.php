@@ -15,7 +15,7 @@
 							get_post_type(),
 							'secondary-image',
 							NULL,
-							'alignleft'
+							'post-secondary-image-thumbnail'
 						);
 					endif; ?>
 					<?php the_excerpt(); ?>

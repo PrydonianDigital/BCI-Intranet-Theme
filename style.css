@@ -1066,7 +1066,7 @@ input[type="search"].search-field {
 	position: relative;
 	width: 40px;
 }
-.alignleft, .attachment-alignleft {
+.alignleft, .attachment-post-secondary-image-thumbnail {
 	float: left;
 	margin: 0.375em 1.75em 1.75em 0 !important;
 }
