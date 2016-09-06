@@ -13,7 +13,9 @@
 					<?php if (class_exists('MultiPostThumbnails')) :
 						MultiPostThumbnails::the_post_thumbnail(
 							get_post_type(),
-							'secondary-image'
+							'secondary-image',
+							NULL,
+							'alignleft'
 						);
 					endif; ?>
 					<?php the_excerpt(); ?>
