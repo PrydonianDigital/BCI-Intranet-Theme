@@ -32,6 +32,22 @@
 		echo '</style>';
 	}
 
+	// Fix Menu Hightlighting
+	add_filter('nav_menu_css_class', 'mytheme_custom_type_nav_class', 10, 2);
+	function mytheme_custom_type_nav_class($classes, $item) {
+		$post_type = get_post_type();
+		if ($post_type != 'post' && $item->object_id == get_option('page_for_posts')) {
+	    	$current_value = "current_page_parent";
+	    	$classes = array_filter($classes, function ($element) use ($current_value) { return ($element != $current_value); } );
+		}
+		$this_type_class = 'post-type-' . $post_type;
+		if (in_array( $this_type_class, $classes )) {
+	    	array_push($classes, 'current_page_parent');
+		};
+
+		return $classes;
+	}
+
 	// Searches
 	function main_search() {
 		$args = array();
