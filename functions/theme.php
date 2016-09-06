@@ -30,12 +30,13 @@
 	if (class_exists('MultiPostThumbnails')) {
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Square Feed Featured Image',
+				'label' => 'Square Featured Image',
 				'id' => 'secondary-image',
-				'post_type' => 'post'
+				'post_type' => 'post',
+				'post_type' => 'centre'
 			)
 		);
-	}
+	};
 
 	function bci_news_label() {
 		global $menu;

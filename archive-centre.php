@@ -27,11 +27,14 @@
 			?>
 				<div <?php post_class('news'); ?>>
 					<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-					<?php if ( has_post_thumbnail() ) : ?>
-						<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-							<?php the_post_thumbnail('thumbnail', array( 'class' => 'alignleft' )); ?>
-						</a>
-					<?php endif; ?>
+					<?php if (class_exists('MultiPostThumbnails')) :
+						MultiPostThumbnails::the_post_thumbnail(
+							get_post_type(),
+							'secondary-image',
+							NULL,
+							'alignleft'
+						);
+					endif; ?>
 					<?php the_excerpt(); ?>
 					<p class="centreLead">Centre Lead:
 						<?php
