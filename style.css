@@ -707,6 +707,14 @@ ul.widgets li.widget a:hover, ul.widgets li.widget a:active {
 footer ul.widgets li.widget {
 	background: none;
 }
+footer ul.widgets .widget_social_media li {
+	float: left;
+	border: 0;
+	font-size: 3.8rem;
+}
+footer ul.widgets .widget_social_media li a, footer ul.widgets .widget_social_media li a:hover {
+	text-decoration: none;
+}
 ul.widgets li.widget ul.children li.cat-item {
 	padding-left: 1em;
 }
