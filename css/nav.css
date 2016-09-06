@@ -24,6 +24,9 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.nav-flickr:before {
+  content: "\e91d";
+}
 .nav-cake:before {
   content: "\e91c";
 }
