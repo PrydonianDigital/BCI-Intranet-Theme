@@ -458,6 +458,73 @@
 		}
 	}
 
+	function BCI_deputy_lab_manager_widget() {
+		register_widget( 'BCI_deputy_lab_manager' );
+	}
+	add_action( 'widgets_init', 'BCI_deputy_lab_manager_widget' );
+	class BCI_deputy_lab_manager extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_deputy_lab_manager', 'description' => __( 'Lists Lab Managers', 'bci' ) );
+			parent::__construct( 'deputy_lab_manager', __( 'BCI Deputy Lab Managers Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array(
+				'orderby'		=> 'meta_value',
+				'meta_key'		=> '_usercentre_centre',
+				'order'			=> 'DESC',
+				'meta_query' 	=> array(
+					array(
+						'key'	   => '_usercentre_deputy_lab_manager',
+						'value'	 => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				)
+			);
+			$wp_user_query = new WP_User_Query($args);
+			$new_joiners = $wp_user_query->get_results();
+			if (!empty($new_joiners)) {
+				echo '<li class="widget widget_deputy_lab_manager">';
+				echo '<h2>'.$title.'</h2>';
+				echo '<ul class="new-joiners">';
+				foreach ($new_joiners as $new_joiner) {
+					$new_joiners_info = get_userdata($new_joiner->ID);
+					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
+					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
+					$dept = get_the_title($department);
+					echo '<li><a href="'. get_author_posts_url( $new_joiners_info->ID, get_the_author_meta( $new_joiners_info->first_name ) ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
+				}
+				echo '</ul>';
+				echo '</li>';
+			} else {
+				echo '';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Deputy Lab Managers', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
 	function BCI_centre_mailing_widget() {
 		register_widget( 'BCI_centre_mailing' );
 	}
