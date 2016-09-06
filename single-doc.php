@@ -24,7 +24,10 @@
 					}
 					?>
 
-					<?php $desc = get_post_meta( get_the_ID(), 'doc_desc', true ); echo $desc; ?>
+					<?php $desc = get_post_meta( get_the_ID(), 'doc_desc', true ); ?>
+					<?php if($desc != '') { ?>
+					<p><?php echo $desc; ?></p>
+					<?php } ?>
 
 					<small class="updated meta">Last updated by: <?php the_modified_author(); ?> on <?php the_modified_date('jS F, Y'); ?></small>
 
