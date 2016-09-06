@@ -5,42 +5,6 @@
 		<div class="small-12 large-9 column" role="main">
 
 			<?php
-				$stickies = get_option( 'sticky_posts' );
-				if ( $stickies ) {
-					$args = [
-						'post_type'				=> 'post',
-						'post__in'				=> $stickies,
-						'ignore_sticky_posts'	=> 1
-					];
-					$the_query = new WP_Query($args);
-					if ( $the_query->have_posts() ) {
-			?>
-			<div class="featured owl-carousel row" id="featured-slider">
-			<?php
-						while ( $the_query->have_posts() ) {
-								$the_query->the_post();
-								$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-
-			?>
-					<article class="item large-12 small-12 columns" style="background-image: url(<?php echo $url; ?>)">
-					<div>
-					<h2><?php the_title(); ?></h2>
-					<?php the_excerpt(); ?>
-					<a class="readmore" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">Read more</a>
-					</div>
-				</article>
-			<?php
-
-						}
-						wp_reset_postdata();
-					}
-			?>
-			</div>
-			<?php
-				}
-			?>
-
-			<?php
 			$defaults = [
 				'fields'				 => 'ids',
 				'update_post_term_cache' => false,
@@ -55,12 +19,21 @@
 				'post_type'	  => 'potm',
 				'posts_per_page' => '1',
 			];
-			$post_query = get_posts( array_merge( $defaults, $args  ) );
-			$page_query = get_posts( array_merge( $defaults, $args1 ) );
-			$post_ids = array_merge ( $post_query, $page_query ); //. You can swop around here
+			$stickies = get_option( 'sticky_posts' );
+			if ( $stickies ) {
+				$args3 = [
+					'post_type'				=> 'post',
+					'post__in'				=> $stickies,
+					'ignore_sticky_posts'	=> 1
+				];
+			}
+			$potw_query = get_posts( array_merge( $defaults, $args  ) );
+			$potm_query = get_posts( array_merge( $defaults, $args1 ) );
+			$news_query = get_posts( array_merge( $defaults, $args3 ) );
+			$post_ids = array_merge ( $potw_query, $potm_query, $news_query ); //. You can swop around here
 			if ( $post_ids ) {
 				$final_args = [
-					'post_type' => ['potw', 'potm'],
+					'post_type' => ['potw', 'potm', 'post'],
 					'post__in'  => $post_ids,
 					'orderby'   => 'post__in', // If you need to keep the order from $post_ids
 					'order'	 => 'ASC' // If you need to keep the order from $post_ids
@@ -69,7 +42,7 @@
 				if ( $loop->have_posts() ) : ?>
 			<div class="row">
 				<div class="large-12 small-12 columns">
-					<h4 class="home-category">Picture of the Week / Paper of the Month</h4>
+					<h4 class="home-category">Featured</h4>
 					<div class="featured owl-carousel" id="featured-slider">
 					<?php while ( $loop->have_posts() ) : $loop->the_post();
 					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
@@ -86,6 +59,9 @@
 												case 'potm':
 													echo 'Paper of the Month';
 												break;
+												default:
+													echo '';
+												break;
 											}
 										?>
 									</h4>
@@ -100,6 +76,9 @@
 												break;
 												case 'potm':
 													echo '<i class="nav-file-text-o"></i> View Paper';
+												break;
+												default:
+													echo 'Read More';
 												break;
 											}
 										?>
