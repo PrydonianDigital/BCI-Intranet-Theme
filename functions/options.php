@@ -86,6 +86,48 @@
 				'type' => 'wysiwyg',
 			) );
 			$cmb->add_field( array(
+				'name' => __( 'Twitter', 'bci' ),
+				'desc' => __( 'Enter the BCI Twitter username', 'bci' ),
+				'id'   => 'twitter',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Facebook', 'bci' ),
+				'desc' => __( 'Enter the BCI Facebook username', 'bci' ),
+				'id'   => 'facebook',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'LinkedIn', 'bci' ),
+				'desc' => __( 'Enter the BCI LinkedIn username', 'bci' ),
+				'id'   => 'linkedin',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Pinterest', 'bci' ),
+				'desc' => __( 'Enter the BCI Pinterest username', 'bci' ),
+				'id'   => 'pinterest',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Flickr', 'bci' ),
+				'desc' => __( 'Enter the BCI Flickr username', 'bci' ),
+				'id'   => 'flickr',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'G+', 'bci' ),
+				'desc' => __( 'Enter the BCI G+ username', 'bci' ),
+				'id'   => 'google',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'YouTube', 'bci' ),
+				'desc' => __( 'Enter the BCI YouTube username', 'bci' ),
+				'id'   => 'youtube',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
 				'name' => __( 'Header/Footer Background Colour', 'bci' ),
 				'desc' => __( 'Choose a colour for the page header and footer', 'bci' ),
 				'id'   => 'color',

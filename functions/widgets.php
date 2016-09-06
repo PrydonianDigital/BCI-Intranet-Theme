@@ -1,5 +1,56 @@
 <?php
 
+	function BCI_social_media_widget() {
+		register_widget( 'BCI_social_media' );
+	}
+	add_action( 'widgets_init', 'BCI_social_media_widget' );
+	class BCI_social_media extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_social_media', 'description' => __( 'Lists Student Reps', 'bci' ) );
+			parent::__construct( 'social_media', __( 'BCI Social Media Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$twitter = bci_get_option( 'twitter' );
+			$facebook = bci_get_option( 'facebook' );
+			$flickr = bci_get_option( 'flickr' );
+			$linkedin = bci_get_option( 'linkedin' );
+			$pinterest = bci_get_option( 'pinterest' );
+			$google = bci_get_option( 'google' );
+			$youtube = bci_get_option( 'youtube' );
+			echo '<li class="widget widget_social_media">';
+			echo '<h2 class="widgettitle">'. $title .'</h2>';
+			echo '<ul>';
+			echo '<li><a href="https://www.facebook.com/'.$facebook.'/" target="_blank" rel="noopener"><i class="nav-facebook"></i></a><li>';
+			echo '<li><a href="https://twitter.com/'.$twitter.'/" target="_blank" rel="noopener"><i class="nav-twitter"></i></a><li>';
+			echo '<li><a href="http://www.flickr.com/photos/'.$flickr.'/" target="_blank" rel="noopener"><i class="nav-flickr"></i></a><li>';
+			echo '<li><a href="http://www.linkedin.com/company/'.$linkedin.'/" target="_blank" rel="noopener"><i class="nav-linkedin"></i></a><li>';
+			echo '<li><a href="http://www.pinterest.com/'.$pinterest.'/" target="_blank" rel="noopener"><i class="nav-pinterest"></i></a><li>';
+			echo '<li><a href="https://plus.google.com/u/0/'.$google.'/posts" target="_blank" rel="noopener"><i class="nav-google-plus"></i></a><li>';
+			echo '<li><a href="http://www.youtube.com/user/'.$youtube.'/" target="_blank" rel="noopener"><i class="nav-youtube"></i></a><li>';
+			echo '</ul>';
+			echo '</li>';
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Social Media', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
 	function BCI_SMT_forum_widget() {
 		register_widget( 'BCI_smt_forum' );
 	}
