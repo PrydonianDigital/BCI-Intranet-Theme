@@ -48,6 +48,118 @@
 		return $classes;
 	}
 
+	// Footer text in Dashboard
+	function remove_footer_admin () {
+		echo "Barts Cancer Institute Intranet";
+	}
+	add_filter('admin_footer_text', 'remove_footer_admin');
+
+function the_breadcrumb() {
+
+        echo '
+
+<ul id="crumbs">';
+
+    if (!is_home()) {
+
+        echo '
+
+    <li><a href="';
+
+        echo get_option('home');
+
+        echo '">';
+
+        bloginfo('name');
+
+        echo "</a></li>
+
+";
+
+        if (is_category() || is_single()) {
+
+            echo '
+
+    <li>';
+
+            the_category('title_li=');
+
+            if (is_single()) {
+
+                echo "</li>
+
+    <li>";
+
+                the_title();
+
+                echo '</li>
+
+';
+
+            }
+
+        } elseif (is_page()) {
+
+            echo '
+
+    <li>';
+
+            echo the_title();
+
+            echo '</li>
+
+';
+
+        }
+
+    }
+
+    elseif (is_tag()) {single_tag_title();}
+
+    elseif (is_day()) {echo"
+
+    <li>Archive for "; the_time('F jS, Y'); echo'</li>
+
+';}
+
+    elseif (is_month()) {echo"
+
+    <li>Archive for "; the_time('F, Y'); echo'</li>
+
+';}
+
+    elseif (is_year()) {echo"
+
+    <li>Archive for "; the_time('Y'); echo'</li>
+
+';}
+
+    elseif (is_author()) {echo"
+
+    <li>Author Archive"; echo'</li>
+
+';}
+
+    elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "
+
+    <li>Blog Archives"; echo'</li>
+
+';}
+
+    elseif (is_search()) {echo"
+
+    <li>Search Results"; echo'</li>
+
+';}
+
+
+
+    echo '</ul>
+
+';
+
+}
+
 	// Searches
 	function main_search() {
 		$args = array();
