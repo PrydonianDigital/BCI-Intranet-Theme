@@ -17,7 +17,7 @@
 
 			<?php the_content(); ?>
 
-			<?php get_template_part( 'related/related' ); ?>
+
 
 			<div class="sitemap">
 				<?php

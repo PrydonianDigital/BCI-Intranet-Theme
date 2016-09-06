@@ -13,18 +13,13 @@
 					<?php endif; ?>
 
 					<?php
-					$entries = get_post_meta( get_the_ID(), 'doc_version', true );
-					foreach ((array) $entries as $key => $entry) {
-						$doc = '';
-						if ( isset( $entry['_doc'] ) )
-							$doc = esc_html( $entry['_doc'] );
-							if(end($entries) == $entry) {
-								echo 'Download: <a href="' . $doc . '" target="_blank" rel="noopener">' . get_the_title() . '</a>';
-							}
-					}
+					$entries = get_post_meta( get_the_ID(), 'link_url', true );
+
+					echo 'Visit: <a href="' . $entries . '" target="_blank" rel="noopener">' . get_the_title() . '</a>';
+
 					?>
 
-					<?php $desc = get_post_meta( get_the_ID(), 'doc_desc', true ); echo $desc; ?>
+					<?php $desc = get_post_meta( get_the_ID(), 'link_desc', true ); echo $desc; ?>
 
 					<small class="updated meta">Last updated by: <?php the_modified_author(); ?> on <?php the_modified_date('jS F, Y'); ?></small>
 

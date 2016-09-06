@@ -113,7 +113,7 @@
 			}
 			?>
 
-			<?php get_template_part( 'related/related' ); ?>
+			
 
 			<div class="sitemap">
 				<?php

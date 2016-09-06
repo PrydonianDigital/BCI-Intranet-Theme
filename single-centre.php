@@ -146,7 +146,7 @@
 					endif;
 					?>
 
-					<?php get_template_part( 'related/related' ); ?>
+					
 
 					<small class="updated meta">("<em><?php the_title(); ?></em>" last updated <?php the_modified_date('jS F, Y'); ?>)<br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 

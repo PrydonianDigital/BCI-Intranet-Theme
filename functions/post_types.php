@@ -139,7 +139,7 @@
 			'label'				 => __( 'Document', 'bci' ),
 			'description'		   => __( 'Documents', 'bci' ),
 			'labels'				=> $labels,
-			'supports'			  => array( 'title', 'editor' ),
+			'supports'			  => array( 'title' ),
 			'hierarchical'		  => false,
 			'public'				=> true,
 			'show_ui'			   => true,

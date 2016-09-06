@@ -868,6 +868,11 @@
 			'title' => __( 'Document', 'bci' ),
 			'object_types' => array( 'doc' ),
 		) );
+		$cmb_doc->add_field( array(
+			'desc' => __( 'Document Description', 'bci' ),
+			'id' => $prefix . 'desc',
+			'type' => 'textarea',
+		) );
 		$doc_group = $cmb_doc->add_field( array(
 			'id' => $prefix . 'version',
 			'type' => 'group',
@@ -899,6 +904,11 @@
 			'id' => $prefix . 'link',
 			'title' => __( 'Link', 'bci' ),
 			'object_types' => array( 'link' ),
+		) );
+		$cmb_news->add_field( array(
+			'desc' => __( 'Link Description', 'bci' ),
+			'id' => $prefix . 'desc',
+			'type' => 'textarea',
 		) );
 		$cmb_news->add_field( array(
 			'desc' => __( 'Link URL', 'bci' ),
