@@ -1058,15 +1058,15 @@ input[type="search"].search-field {
 	position: relative;
 	width: 40px;
 }
-.alignleft {
+.alignleft, .attachment-alignleft {
 	float: left;
 	margin: 0.375em 1.75em 1.75em 0 !important;
 }
-.alignright {
+.alignright, .attachment-alignright {
 	float: right;
 	margin: 0.375em 0 1.75em 1.75em !important;
 }
-.aligncenter {
+.aligncenter, .attachment-aligncenter {
 	clear: both;
 	display: block;
 	margin: 0 auto 1.75em !important;
@@ -1403,6 +1403,12 @@ article.item a.readmore {
 	line-height: 1.3;
 	margin: 0.5em 0;
 	border-bottom: 1px solid #efefef;
+}
+.pageInner #cmb2-metabox-_me_edit_metabox .cmb-type-checkbox.cmb2-id--me-tourNO {
+	width: 100%;
+}
+input#_me_tourRESET {
+	display: none
 }
 .pageInner ul.cmb2-list li label {
 	display: block;
