@@ -569,6 +569,24 @@
 			'show_names' => true,
 		) );
 		$cmb_user->add_field( array(
+			'desc' => __( 'Home Page Tour', 'bci' ),
+			'id' => $prefix . 'hTour',
+			'on_front' => true,
+			'type' => 'title',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Click this link to <a id="tour" href="#">reset the homepage tour</a>.', 'bci' ),
+			'id' => $prefix . 'tourRESET',
+			'on_front' => true,
+			'type' => 'text',
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Tick this box to never show the tour again.', 'bci' ),
+			'id' => $prefix . 'tourNO',
+			'on_front' => true,
+			'type' => 'checkbox',
+		) );
+		$cmb_user->add_field( array(
 			'desc' => __( 'My Job Title', 'bci' ),
 			'id' => $prefix . 'jTitle',
 			'on_front' => true,

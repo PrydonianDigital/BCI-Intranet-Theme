@@ -42,6 +42,12 @@
 
 <?php wp_footer(); ?>
 
+<?php
+global $current_user;
+get_currentuserinfo();
+$userID = $current_user->ID;
+$tour = get_user_meta( $userID, '_me_tourNO', true );
+if($tour != 'on') { ?>
 <script>
 var tour = new Tour({
 	name: "BCITour",
@@ -58,6 +64,7 @@ var tour = new Tour({
 tour.init();
 tour.start();
 </script>
+<?php } ?>
 
 </body>
 </html>
