@@ -16,6 +16,8 @@
 
 				<?php echo do_shortcode('[cmb-form id="_me_edit_metabox"]'); ?>
 
+				<?php the_content(); ?>
+
 			<?php endwhile; ?>
 
 			<?php endif; ?>
