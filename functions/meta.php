@@ -545,7 +545,7 @@
 			'type' => 'checkbox',
 		) );
 		$cmb_user->add_field( array(
-			'desc' => __( 'Fire Marshall', 'bci' ),
+			'desc' => __( 'Fire Marshal', 'bci' ),
 			'id' => $prefix . 'fire_marshall',
 			'on_front' => true,
 			'type' => 'checkbox',
