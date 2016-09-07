@@ -12,6 +12,18 @@
 	},
 	{
 		placement: "bottom",
+		element: "#editProfile",
+		title: "Your Profile",
+		content: "Click here to edit your account details, such as job title, extension number, and other details."
+	},
+	{
+		placement: "bottom",
+		element: "#search",
+		title: "Search",
+		content: "Click here to access the search. You can search pages, news posts, documents, events and Centres."
+	},
+	{
+		placement: "bottom",
 		element: "#help",
 		title: "Help",
 		content: "Click here to open the Help page. This page contains useful information on how to use the new Intranet site."
