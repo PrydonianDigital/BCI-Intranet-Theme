@@ -43,28 +43,32 @@
 <?php wp_footer(); ?>
 
 <?php
-global $current_user;
-get_currentuserinfo();
-$userID = $current_user->ID;
-$tour = get_user_meta( $userID, '_me_tourNO', true );
-if($tour != 'on') { ?>
-<script>
-var tour = new Tour({
-	name: "BCITour",
-	keyboard: true,
-	storage: window.localStorage,
-	debug: false,
-	backdrop: true,
-	backdropContainer: 'body',
-	steps: [
+if (is_page('Home')) {
+	global $current_user;
+	get_currentuserinfo();
+	$userID = $current_user->ID;
+	$tour = get_user_meta( $userID, '_me_tourNO', true );
+	if($tour != 'on') { ?>
+		<script>
+		var tour = new Tour({
+			name: "BCITour",
+			keyboard: true,
+			storage: window.localStorage,
+			debug: false,
+			backdrop: true,
+			backdropContainer: 'body',
+			steps: [
+			<?php
+				require_once 'tour.php';
+			?>
+			]});
+		tour.init();
+		tour.start();
+		</script>
 	<?php
-		require_once 'tour.php';
-	?>
-	]});
-tour.init();
-tour.start();
-</script>
-<?php } ?>
+	}
+}
+?>
 
 </body>
 </html>
