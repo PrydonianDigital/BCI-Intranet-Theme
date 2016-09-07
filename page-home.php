@@ -42,7 +42,7 @@
 				if ( $loop->have_posts() ) : ?>
 			<div class="row">
 				<div class="large-12 small-12 columns">
-					<h4 class="home-category">Featured</h4>
+					<h4 class="home-category featured">Featured</h4>
 					<div class="featured owl-carousel" id="featured-slider">
 					<?php while ( $loop->have_posts() ) : $loop->the_post();
 					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
@@ -97,77 +97,6 @@
 				?>
 				</div>
 			</div>
-
-			<!--div class="row">
-
-				<div class="small-12 large-6 columns center potw">
-					<h3>Picture of the Week</h3>
-					<?php
-						$args = array (
-							'post_type' => array( 'potw' ),
-							'posts_per_page' => '1',
-						);
-						$potw = new WP_Query( $args );
-
-						if ( $potw->have_posts() ) {
-							while ( $potw->have_posts() ) {
-								$potw->the_post();
-						?>
-						<div id="potw">
-							<div>
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('display', array( 'class' => 'aligncenter' )); ?></a>
-								<h5><?php the_title(); ?></h5>
-								<h6>Photo by:
-								<?php
-									$users = get_post_meta( get_the_ID(), '_potw_user', true );
-									$user_split = explode( ',', str_replace( ' ', '', $users ) );
-									foreach ( $user_split as $user ) {
-										$user = get_user_by( 'id', $user );
-										$name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
-										echo $name . ' ';
-									}
-								?></h6>
-								<small class="meta"><?php the_time('l jS F, Y') ?></small>
-							</div>
-						</div>
-						<?php
-							}
-						} else {}
-						wp_reset_postdata();
-					?>
-					<a href="/potw/">See all</a>
-				</div>
-
-				<div class="small-12 large-6 columns center potm">
-					<h3>Paper of the Month</h3>
-					<?php
-						$args = array (
-							'post_type' => array( 'potm' ),
-							'posts_per_page' => '1',
-						);
-						$potm = new WP_Query( $args );
-
-						if ( $potm->have_posts() ) {
-							while ( $potm->have_posts() ) {
-								$potm->the_post();
-						?>
-						<div id="potm">
-							<div>
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('display', array( 'class' => 'aligncenter' )); ?></a>
-								<h5><?php the_title(); ?></h5>
-								<h6>Winner: <?php $winner = get_post_meta(get_the_ID(), '_potm_winner', true); echo $winner; ?></h6>
-								<small class="meta"><?php $date = get_post_meta(get_the_ID(), '_potm_date', true); echo $date; ?></small>
-							</div>
-						</div>
-						<?php
-							}
-						} else {}
-						wp_reset_postdata();
-					?>
-					<a href="/potm/">See all</a>
-				</div>
-
-			</div-->
 
 		<?php
 			$args = array('parent' => 0);

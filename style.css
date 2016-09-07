@@ -1554,6 +1554,9 @@ h3.accordion-title.open:before {
 		padding-left: 1em;
 		padding-right: 1em;
 	}
+	.home-category.featured {
+		display: none;
+	}
 	.owl-carousel {
 		display: none !important;
 	}
