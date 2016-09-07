@@ -723,8 +723,9 @@
 .nav-myapps:before {
   content: "\e902";
 }
-.nav-newspaper:before {
+.nav-newspaper:before, .dashicons-newspaper:before {
   content: "\f1ea";
+  font-family: 'nav' !important;
 }
 .nav-object-group:before {
   content: "\f247";
