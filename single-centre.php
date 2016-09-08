@@ -124,30 +124,6 @@
 
 					<?php the_content(); ?>
 
-					<?php
-					$connected = new WP_Query( array(
-						'connected_type' => 'n2c',
-						'connected_items' => get_queried_object(),
-						'nopaging' => true,
-					) );
-					if ( $connected->have_posts() ) :
-					?>
-
-					<div class="row">
-					<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
-					<div <?php post_class('large-6 small-12 columns'); ?>>
-						<h2><?php the_title(); ?></h2>
-						<?php the_content(); ?>
-					</div>
-					<?php endwhile; ?>
-					</div>
-					<?php
-					wp_reset_postdata();
-					endif;
-					?>
-
-					
-
 					<small class="updated meta">("<em><?php the_title(); ?></em>" last updated <?php the_modified_date('jS F, Y'); ?>)<br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 
 				</div>
