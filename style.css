@@ -859,6 +859,9 @@ small.updated {
 	border-right: 1px solid #ccc;
 	padding: 0 1em;
 }
+.home-news.event {
+	margin-bottom: 1em;
+}
 .home-news:last-child {
 	border-right: none;
 }
