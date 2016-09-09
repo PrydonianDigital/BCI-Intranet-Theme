@@ -14,6 +14,8 @@
 				<?php global $current_user; get_currentuserinfo();
 				$userID = $current_user->ID; echo get_avatar( $userID, 64 ); ?>
 
+				<a href="<?php echo wp_logout_url( get_permalink() ); ?>">Logout</a>
+
 				<?php echo do_shortcode('[cmb-form id="_me_edit_metabox"]'); ?>
 
 				<?php the_content(); ?>

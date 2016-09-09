@@ -366,48 +366,48 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	}
 
 function auto_login() {
-//	if ( !is_user_logged_in() && isset($_SERVER['LOGON_USER']) ) {
-//		$user_login = substr($_SERVER['LOGON_USER'], strrpos($_SERVER['LOGON_USER'],'\\')+1, strlen($_SERVER['LOGON_USER'])-strrpos($_SERVER['LOGON_USER'],'\\'));
-//		$user = get_user_by('login', $user_login);
-//		$user_id = $user->ID;
-//		wp_set_current_user($user_id, $user_login);
-//		wp_set_auth_cookie($user_id);
-//		do_action('wp_login', $user_login);
-//    }
+	if ( !is_user_logged_in() && isset($_SERVER['AUTH_USER']) ) {
+		$user_login = substr($_SERVER['AUTH_USER'], strrpos($_SERVER['AUTH_USER'],'\\')+1, strlen($_SERVER['AUTH_USER'])-strrpos($_SERVER['AUTH_USER'],'\\'));
+		$user = get_user_by('login', $user_login);
+		$user_id = $user->ID;
+		wp_set_current_user($user_id, $user_login);
+		wp_set_auth_cookie($user_id);
+		do_action('wp_login', $user_login);
+    }
 }
 add_action('init', 'auto_login');
 
-function v_forcelogin() {
-	if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-		return;
-	}
-	// Redirect unauthorized visitors
-	if ( !is_user_logged_in() && isset($_SERVER['LOGON_USER']) ) {
-		// Get URL
-		$url  = isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
-		$url .= '://' . $_SERVER['HTTP_HOST'];
-		// port is prepopulated here sometimes
-		if ( strpos( $_SERVER['HTTP_HOST'], ':' ) === FALSE ) {
-			$url .= in_array( $_SERVER['SERVER_PORT'], array('80', '443') ) ? '' : ':' . $_SERVER['SERVER_PORT'];
-		}
-		$url .= $_SERVER['REQUEST_URI'];
-		// Apply filters
-		$whitelist = apply_filters( 'v_forcelogin_whitelist', array() );
-		$redirect_url = apply_filters( 'v_forcelogin_redirect', $url );
-		// Redirect visitors
-		if ( preg_replace('/\?.*/', '', $url) != preg_replace('/\?.*/', '', wp_login_url()) && !in_array($url, $whitelist) ) {
-			wp_safe_redirect( wp_login_url( $redirect_url ), 302 ); exit();
-		}
-	} else {
-		// Only allow Multisite users access to their assigned sites
-		if ( function_exists('is_multisite') && is_multisite() ) {
-			global $current_user; get_currentuserinfo();
-			if ( !is_user_member_of_blog( $current_user->ID ) && !is_super_admin() )
-				wp_die( __( "You're not authorized to access this site.", 'wp-force-login' ), get_option('blogname') . ' &rsaquo; ' . __( "Error", 'wp-force-login' ) );
-		}
-	}
-}
-add_action('init', 'v_forcelogin');
+//function v_forcelogin() {
+//	if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+//		return;
+//	}
+//	// Redirect unauthorized visitors
+//	if ( !is_user_logged_in() && isset($_SERVER['LOGON_USER']) ) {
+//		// Get URL
+//		$url  = isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
+//		$url .= '://' . $_SERVER['HTTP_HOST'];
+//		// port is prepopulated here sometimes
+//		if ( strpos( $_SERVER['HTTP_HOST'], ':' ) === FALSE ) {
+//			$url .= in_array( $_SERVER['SERVER_PORT'], array('80', '443') ) ? '' : ':' . $_SERVER['SERVER_PORT'];
+//		}
+//		$url .= $_SERVER['REQUEST_URI'];
+//		// Apply filters
+//		$whitelist = apply_filters( 'v_forcelogin_whitelist', array() );
+//		$redirect_url = apply_filters( 'v_forcelogin_redirect', $url );
+//		// Redirect visitors
+//		if ( preg_replace('/\?.*/', '', $url) != preg_replace('/\?.*/', '', wp_login_url()) && !in_array($url, $whitelist) ) {
+//			wp_safe_redirect( wp_login_url( $redirect_url ), 302 ); exit();
+//		}
+//	} else {
+//		// Only allow Multisite users access to their assigned sites
+//		if ( function_exists('is_multisite') && is_multisite() ) {
+//			global $current_user; get_currentuserinfo();
+//			if ( !is_user_member_of_blog( $current_user->ID ) && !is_super_admin() )
+//				wp_die( __( "You're not authorized to access this site.", 'wp-force-login' ), get_option('blogname') . ' &rsaquo; ' . __( "Error", 'wp-force-login' ) );
+//		}
+//	}
+//}
+//add_action('init', 'v_forcelogin');
 
 
 	remove_action('tribe_events_single_event_after_the_content', array('Tribe__Events__iCal', 'single_event_links'));
