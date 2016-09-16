@@ -1,5 +1,45 @@
 <?php
 
+	function BCI_login_widget() {
+		register_widget( 'BCI_login' );
+	}
+	add_action( 'widgets_init', 'BCI_login_widget' );
+	class BCI_login extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_login', 'description' => __( 'Login', 'bci' ) );
+			parent::__construct( 'login', __( 'BCI Login Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			if ( !is_user_logged_in() ){
+			$title = apply_filters( 'widget_title', $instance['title']);
+			echo '<li class="widget widget_social_media">';
+			echo '<h2 class="widgettitle">'. $title .'</h2>';
+			echo '<ul>';
+			echo wp_login_form( $args );
+			echo '</ul>';
+			echo '</li>';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Login', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
 	function BCI_social_media_widget() {
 		register_widget( 'BCI_social_media' );
 	}
