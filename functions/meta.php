@@ -495,6 +495,7 @@
 			'on_front' => true,
 			'type' => 'select',
 			'options_cb' => 'cent_link',
+			'show_option_none' => true
 		) );
 		$cmb_user->add_field( array(
 			'desc' => __( 'Centre Role', 'bci' ),
@@ -666,7 +667,8 @@
 				'Lodge House' => 'Lodge House',
 				'Dawson Hall' => 'Dawson Hall',
 				'Wolfson Institute' =>'Wolfson Institute'
-			)
+			),
+			'show_option_none' => true
 		) );
 		$cmb_user->add_field( array(
 			'desc' => __( '<i class="nav-balloons"></i> Birthday (optional)', 'bci' ),
