@@ -13,11 +13,18 @@ function wporg_custom_admin_menu() {
 function wporg_options_page() {
 ?>
 <div class="wrap">
-	<style>
-		@import <?php get_bloginfo('template_directory'); ?>'/css/nav.css';
-	</style>
+<style>
+.iconfont {
+	font-size: 1.6rem;
+}
+.iconfont li {
+	padding: 0.5em;
+	width: 33.332%;
+	display: inline-block;
+}
+</style>
 <h1>Font Icon List</h1>
-<ul>
+<ul class="iconfont">
 <li class="nav-flickr"> nav-flickr</li>
 <li class="nav-cake"> nav-cake</li>
 <li class="nav-Agresso"> nav-Agresso</li>
