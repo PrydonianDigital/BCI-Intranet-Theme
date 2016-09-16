@@ -1674,3 +1674,6 @@ h3.accordion-title.open:before {
 #notices .small-12.large-6 {
 	padding: 0.5em;
 }
+.iconfont i {
+	font-family: 'nav';
+}

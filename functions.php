@@ -19,6 +19,7 @@
 	require_once('functions/users.php');
 	require_once('functions/options.php');
 	require_once('functions/lessc.inc.php');
+	require_once('icons.php');
 
 
 	// Custom oEmbed Template
