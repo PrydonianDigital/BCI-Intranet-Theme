@@ -78,13 +78,15 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 		</div>
 
 		<div id="apps" class="<?php $user = wp_get_current_user(); if ( in_array( 'administrator', (array) $user->roles ) ) { ?>wide<?php } ?>">
-			<?php if(current_user_can('activate_plugins')) { ?>
+			<?php if(current_user_can('activate_plugins') && is_user_logged_in() ) { ?>
 				<a class="appsButton close dash" id="dash"  href="<?php echo admin_url(); ?>" title="Dashboard"><i class="nav-equalizer2"></i></a>
 			<?php } ?>
 			<a class="appsButton close search" id="search"  href="<?php bloginfo('url'); ?>/search/" title="Search"><i class="nav-search"></i></a>
+			<?php if( is_user_logged_in() ) { ?>
 			<a class="appsButton close editApps" id="editProfile"  href="<?php bloginfo('url'); ?>/my-profile/" title="Edit my profile"><i class="nav-useredit"></i></a>
 			<a class="appsButton close editApps" id="editApps"  href="<?php bloginfo('url'); ?>/my-profile/my-apps/" title="Edit my apps"><i class="nav-cogs"></i></a>
 			<a class="appsButton close" id="openApps" href="#" title="View my apps"><i class="nav-myapps"></i></a>
+			<?php } ?>
 		</div>
 
 		<div id="userInfo">
