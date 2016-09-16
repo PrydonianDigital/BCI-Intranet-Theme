@@ -209,6 +209,10 @@ header.site-header #announcement a {
 	border-bottom: 1px solid #2d592e;
 	line-height: 1.1;
 }
+.tribe-events-notices {
+	margin-left: auto;
+	margin-right: auto;
+}
 #announcement {
 	background: #E0E000;
 	color: #222 !important;
@@ -419,6 +423,9 @@ nav#sideNav a {
 .pageInner ol.tribe-list-widget {
 	list-style: none;
 	padding-left: 0;
+}
+.sitemap {
+	clear: both;
 }
 .sitemap h2 i {
 	cursor: pointer;
@@ -1659,4 +1666,11 @@ h3.accordion-title.open:before {
 }
 .tribe-nav-label, .tribe-this-week-nav-link.nav-previous, .tribe-this-week-nav-link.nav-next {
 	font-family: 'Roboto';
+}
+#notices h3 {
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+#notices .small-12.large-6 {
+	padding: 0.5em;
 }
