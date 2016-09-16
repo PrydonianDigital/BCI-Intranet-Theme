@@ -108,6 +108,8 @@
 
 		<?php endif; ?>
 
+		<?php get_template_part('related/related'); ?>
+
 		</div>
 
 		<aside class="small-12 large-3 columns sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">

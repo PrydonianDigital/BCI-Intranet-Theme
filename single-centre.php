@@ -42,32 +42,6 @@
 						$args = array (
 							'meta_query'	 => array(
 								array(
-									'key'	   => '_usercentre_centre_administrator',
-									'value'	 => 'on',
-									'compare'   => 'LIKE',
-								),
-								array(
-									'key'	   => '_usercentre_centre',
-									'value'	 => $post->ID,
-									'compare'   => 'LIKE',
-								),
-							),
-						);
-						$lead = new WP_User_Query( $args );
-						if ( ! empty( $lead->results ) ) {
-							foreach ( $lead->results as $user ) {
-								echo '<h3>Centre Administrator: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
-							}
-						} else {
-							$email = get_post_meta(get_the_ID(), '_centre_admine', true);
-							echo '<h3><a href="mailto:' . $email . '">Centre Administrator</a></h3>';
-						}
-					?>
-
-					<?php
-						$args = array (
-							'meta_query'	 => array(
-								array(
 									'key'	   => '_usercentre_lab_manager',
 									'value'	 => 'on',
 									'compare'   => 'LIKE',
@@ -114,6 +88,32 @@
 						}
 					?>
 
+					<?php
+						$args = array (
+							'meta_query'	 => array(
+								array(
+									'key'	   => '_usercentre_centre_administrator',
+									'value'	 => 'on',
+									'compare'   => 'LIKE',
+								),
+								array(
+									'key'	   => '_usercentre_centre',
+									'value'	 => $post->ID,
+									'compare'   => 'LIKE',
+								),
+							),
+						);
+						$lead = new WP_User_Query( $args );
+						if ( ! empty( $lead->results ) ) {
+							foreach ( $lead->results as $user ) {
+								echo '<h3>Centre Administrator: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
+							}
+						} else {
+							$email = get_post_meta(get_the_ID(), '_centre_admine', true);
+							echo '<h3><a href="mailto:' . $email . '">Centre Administrator</a></h3>';
+						}
+					?>
+
 					<?php $link = get_post_meta(get_the_ID(), '_centre_link', true); if($link != '') : ?>
 					<h4>Centre web page: <a href="<?php echo $link; ?>" target="_blank" rel="noopener"><?php the_title(); ?></a></h4>
 					<?php endif; ?>
@@ -122,7 +122,28 @@
 					<h4>Centre mailing list: <a href="mailto:<?php echo $ml; ?>"><i class="nav-envelope"></i> <?php echo $ml; ?></a></h4>
 					<?php endif; ?>
 
+					<?php
+						$notices = Post_Connector::API()->get_children( 'centre-to-notice', get_the_ID() );
+						if ( ! empty( $notices ) ) {
+							echo '<div class="row">';
+							echo '<div class="small-12 large-12 column">';
+							echo '<h3>Notices</h3>';
+							echo '</div>';
+							echo '</div>';
+							echo '<div class="row" id="notices">';
+							foreach( $notices as $notice ) {
+								echo '<div class="small-12 large-6 column">';
+								echo '<h3><a href="'. $notice->guid . '">'. $notice->post_title . '</a></h3>';
+								echo $notice->post_excerpt;
+								echo '</div>';
+							}
+							echo '</div>';
+						}
+					?>
+
 					<?php the_content(); ?>
+
+					<?php get_template_part('related/related'); ?>
 
 					<small class="updated meta">("<em><?php the_title(); ?></em>" last updated <?php the_modified_date('jS F, Y'); ?>)<br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 

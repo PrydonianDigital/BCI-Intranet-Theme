@@ -14,26 +14,9 @@
 
 					<?php the_content(); ?>
 
-					<small>This entry was posted on <?php the_time('l jS F, Y') ?> at <?php the_time() ?> and is filed under <?php the_category(', ') ?><br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
+					<?php get_template_part('related/related'); ?>
 
-	<?php
-	$p2l2 = new WP_Query( array(
-		'connected_type' => 'p2l2',
-		'connected_items' => $post,
-		'nopaging' => true,
-	) );
-	if ( $p2l2->have_posts() ) : ?>
-	<div class="large-6 small-12 columns">
-		<h2>Related Links</h2>
-		<ul class="links">
-		<?php while ( $p2l2->have_posts() ) : $p2l2->the_post(); ?>
-			<li><a href="<?php $link = get_post_meta(get_the_ID(), 'link_url', true); echo $link; ?>"><?php the_title(); ?></a></li>
-		<?php endwhile; ?>
-		</ul>
-	</div>
-	<?php wp_reset_postdata();
-	endif;
-	?>
+					<small>This entry was posted on <?php the_time('l jS F, Y') ?> at <?php the_time() ?> and is filed under <?php the_category(', ') ?><br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 
 				</div>
 
