@@ -377,6 +377,7 @@ function auto_login() {
 }
 add_action('init', 'auto_login');
 
+
 //function v_forcelogin() {
 //	if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 //		return;
