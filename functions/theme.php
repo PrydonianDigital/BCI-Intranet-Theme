@@ -33,8 +33,7 @@
 			array(
 				'label' => 'Square Featured Image',
 				'id' => 'secondary-image',
-				'post_type' => 'post',
-				'post_type' => 'centre'
+				'post_type' => array('post', 'centre')
 			)
 		);
 	};
