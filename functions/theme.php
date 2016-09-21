@@ -365,18 +365,24 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 		echo "<script>document.getElementById('rememberme').checked = true;</script>";
 	}
 
-function auto_login() {
-	if ( !is_user_logged_in() && isset($_SERVER['AUTH_USER']) ) {
-		$user_login = substr($_SERVER['AUTH_USER'], strrpos($_SERVER['AUTH_USER'],'\\')+1, strlen($_SERVER['AUTH_USER'])-strrpos($_SERVER['AUTH_USER'],'\\'));
-		$user = get_user_by('login', $user_login);
-		$user_id = $user->ID;
-		wp_set_current_user($user_id, $user_login);
-		wp_set_auth_cookie($user_id);
-		do_action('wp_login', $user_login);
-    }
-}
-add_action('init', 'auto_login');
+	function auto_login() {
+		if ( !is_user_logged_in() && isset($_SERVER['AUTH_USER']) ) {
+			$user_login = substr($_SERVER['AUTH_USER'], strrpos($_SERVER['AUTH_USER'],'\\')+1, strlen($_SERVER['AUTH_USER'])-strrpos($_SERVER['AUTH_USER'],'\\'));
+			$user = get_user_by('login', $user_login);
+			$user_id = $user->ID;
+			wp_set_current_user($user_id, $user_login);
+			wp_set_auth_cookie($user_id);
+			do_action('wp_login', $user_login);
+	    }
+	}
+	add_action('init', 'auto_login');
 
+	function restrict_admin() {
+		if ( ! current_user_can( 'edit_posts' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
+	                wp_redirect( site_url() );
+		}
+	}
+	add_action( 'admin_init', 'restrict_admin', 1 );
 
 //function v_forcelogin() {
 //	if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
