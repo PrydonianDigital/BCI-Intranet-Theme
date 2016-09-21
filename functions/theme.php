@@ -128,7 +128,7 @@
 	}
 
 	function my_add_excerpt_meta_box( $post_type ) {
-		if ( in_array( $post_type, array( 'post', 'page' ) ) ) {
+		if ( in_array( $post_type, array( 'post', 'page', 'tribe_events' ) ) ) {
 			 add_meta_box(
 				'postexcerpt', __( 'Excerpt' ), 'post_excerpt_meta_box', $post_type, 'test', // change to something other then normal, advanced or side
 				'high'
@@ -156,11 +156,11 @@
 
 
 		  echo '<script>jQuery(document).ready(function(){
-	jQuery("#postexcerpt .handlediv").after("<div style=\"position:absolute;top:12px;right:34px;color:#666;\"><small>Excerpt length: </small><span id=\"excerpt_counter\"></span><span style=\"font-weight:bold; padding-left:7px;\">/ 200</span><small><span style=\"font-weight:bold; padding-left:7px;\">character(s).</span></small></div>");
+	jQuery("#postexcerpt .handlediv").after("<div style=\"position:absolute;top:12px;right:34px;color:#666;\"><small>Excerpt length: </small><span id=\"excerpt_counter\"></span><span style=\"font-weight:bold; padding-left:7px;\">/ 150</span><small><span style=\"font-weight:bold; padding-left:7px;\">character(s).</span></small></div>");
 		 jQuery("span#excerpt_counter").text(jQuery("#excerpt").val().length);
 		 jQuery("#excerpt").keyup( function() {
-			 if(jQuery(this).val().length > 200){
-				jQuery(this).val(jQuery(this).val().substr(0, 200));
+			 if(jQuery(this).val().length > 150){
+				jQuery(this).val(jQuery(this).val().substr(0, 150));
 			}
 		 jQuery("span#excerpt_counter").text(jQuery("#excerpt").val().length);
 	   });
