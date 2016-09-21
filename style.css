@@ -865,12 +865,23 @@ small.updated {
 	margin: 0 0 1em 0;
 	line-height: 1.1;
 }
+.home-news h2 {
+	margin: 0 0 0.25em 0;
+	line-height: 1.1;
+	font-size: 2.4rem;
+}
 .home-news {
 	border-right: 1px solid #ccc;
 	padding: 0 1em;
 }
 .home-news.event {
 	margin-bottom: 1em;
+}
+.home-news small.meta {
+	margin: 0.25em 0 !important;
+}
+.home-news p {
+	font-size: 1.6rem;
 }
 .home-news:last-child {
 	border-right: none;

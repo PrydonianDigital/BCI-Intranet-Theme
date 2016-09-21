@@ -1,6 +1,64 @@
 <?php
 
 	// Newsletters shortcode
+	function events_list($atts){
+	   extract(shortcode_atts(array(
+		  'category'	=> '',
+		  'tag'			=> '',
+		  'limit'		=> '',
+	   ), $atts));
+		$args = array (
+			'post_type'			=> array( 'tribe_events' ),
+			'posts_per_page'	=> $limit,
+			'tax_query'			=> array(
+				'relation'		=> 'OR',
+				array(
+					'taxonomy' 	=> 'tribe_events_cat',
+					'field' 	=> 'slug',
+					'terms' 	=> $category,
+				),
+				array(
+					'taxonomy'	=> 'post_tag',
+					'field'		=> 'slug',
+					'terms'		=> $tag,
+				),
+			)
+		);
+		$query = new WP_Query( $args );
+		if ( $query->have_posts() ):
+		$news ='';
+		while ( $query->have_posts() ) : $query->the_post();
+		$venue_details = tribe_get_venue_details();
+		$event_id = get_the_ID();
+		$mini_cal_event_atts = tribe_events_get_widget_event_atts();
+		$postDate = tribe_events_get_widget_event_post_date();
+		$news .= '<div class="type-tribe_events tribe-clearfix tribe-events-category-social tribe-events-first tribe-events-last">';
+		$news .= '<div class="tribe-mini-calendar-event event-0  first  last ">';
+		$news .= '<div class="list-date">';
+		$news .= '<span class="list-dayname">' . apply_filters( 'tribe-mini_helper_tribe_events_ajax_list_dayname', date_i18n( 'M', $postDate ), $postDate, $mini_cal_event_atts['class'] ) . '</span>';
+		$news .= '<span class="list-daynumber">' . apply_filters( 'tribe-mini_helper_tribe_events_ajax_list_dayname', date_i18n( 'd', $postDate ), $postDate, $mini_cal_event_atts['class'] ) . '</span>';
+		$news .= '</div>';
+		$news .= '<div class="list-info">';
+		$news .= '<h2 class="tribe-events-title">';
+		$news .= '<a href="' . get_the_permalink() . '" rel="bookmark">'. get_the_title() .'</a>';
+		$news .= '</h2>';
+		$news .= '<div class="tribe-events-duration">';
+		$news .= tribe_events_event_schedule_details( $event_id, '<h2>', '</h2>' );
+		$news .= '</div>';
+		$news .= '<div class="tribe-events-location">';
+		$news .= implode( ', ', $venue_details );
+		$news .= '</div>';
+		$news .= '</div>';
+		$news .= '</div>';
+		$news .= '</div>';
+		endwhile;
+		endif;
+		wp_reset_query();
+		return $news;
+	}
+	add_shortcode( 'events_list','events_list' );
+
+	// Newsletters shortcode
 	function newsletter_year($atts){
 	   extract(shortcode_atts(array(
 		  'year'					=> '',
