@@ -21,6 +21,11 @@
 		);
 		register_sidebar( $args );
 		$args = array(
+			'id'			=> 'homebanner',
+			'name'		  => __( 'Home Banner', 'bci' ),
+		);
+		register_sidebar( $args );
+		$args = array(
 			'id'			=> 'footer1',
 			'name'		  => __( 'Footer Area 1', 'bci' ),
 		);

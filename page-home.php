@@ -4,6 +4,10 @@
 
 		<div class="small-12 large-9 column" role="main">
 
+			<ul class="widgets">
+				<?php dynamic_sidebar('homebanner'); ?>
+			</ul>
+
 			<?php
 			$defaults = [
 				'fields'				 => 'ids',
