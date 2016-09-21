@@ -1,3 +1,10 @@
+<?php
+get_currentuserinfo();
+global $user_ID;
+if ($user_ID == '') {
+	header('Location: /login'); exit();
+}
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />

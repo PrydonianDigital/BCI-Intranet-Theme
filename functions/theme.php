@@ -9,7 +9,7 @@
 		add_image_size( 'slider', '815', '228', true );
 		add_image_size( 'header', '1172', '200', true );
 		add_image_size( 'display', '300', '250', true );
-		add_image_size( 'thumbnail-news', '227', '108', true );
+		add_image_size( 'thumbnail-news', '347', '150', true );
 		add_image_size('post-secondary-image-thumbnail', 150, 150);
 		add_theme_support( 'title-tag' );
 		remove_action( 'wp_head', 'wp_generator' );
@@ -113,7 +113,7 @@
 	}
 
 	function wpdocs_custom_excerpt_length( $length ) {
-		return 20;
+		return 15;
 	}
 	add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
 
@@ -373,13 +373,13 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 			wp_set_current_user($user_id, $user_login);
 			wp_set_auth_cookie($user_id);
 			do_action('wp_login', $user_login);
-	    }
+		}
 	}
 	add_action('init', 'auto_login');
 
 	function restrict_admin() {
 		if ( ! current_user_can( 'edit_posts' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-	                wp_redirect( site_url() );
+			wp_redirect( site_url() );
 		}
 	}
 	add_action( 'admin_init', 'restrict_admin', 1 );
