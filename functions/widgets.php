@@ -1279,10 +1279,11 @@
 			$args = array(
 				'date_query' => array(
 					array(
-					'after' => '1 week ago',
-					'inclusive' => true
+						'after'		=> '1 week ago',
+						'inclusive'	=> true
+					)
 				)
-			));
+			);
 			$wp_user_query = new WP_User_Query($args);
 			$new_joiners = $wp_user_query->get_results();
 			if (!empty($new_joiners)) {
