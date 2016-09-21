@@ -127,6 +127,49 @@
 		add_post_type_support( 'page', 'excerpt' );
 	}
 
+	function my_add_excerpt_meta_box( $post_type ) {
+		if ( in_array( $post_type, array( 'post', 'page' ) ) ) {
+			 add_meta_box(
+				'postexcerpt', __( 'Excerpt' ), 'post_excerpt_meta_box', $post_type, 'test', // change to something other then normal, advanced or side
+				'high'
+			);
+		}
+	}
+	add_action( 'add_meta_boxes', 'my_add_excerpt_meta_box' );
+
+	function my_run_excerpt_meta_box() {
+		# Get the globals:
+		global $post, $wp_meta_boxes;
+
+		# Output the "advanced" meta boxes:
+		do_meta_boxes( get_current_screen(), 'test', $post );
+
+	}
+
+	add_action( 'edit_form_after_title', 'my_run_excerpt_meta_box' );
+
+	function my_remove_normal_excerpt() { /*this added on my own*/
+		remove_meta_box( 'postexcerpt' , 'post' , 'normal' );
+	}
+	add_action( 'admin_menu' , 'my_remove_normal_excerpt' );
+	function excerpt_count_js(){
+
+
+		  echo '<script>jQuery(document).ready(function(){
+	jQuery("#postexcerpt .handlediv").after("<div style=\"position:absolute;top:12px;right:34px;color:#666;\"><small>Excerpt length: </small><span id=\"excerpt_counter\"></span><span style=\"font-weight:bold; padding-left:7px;\">/ 200</span><small><span style=\"font-weight:bold; padding-left:7px;\">character(s).</span></small></div>");
+		 jQuery("span#excerpt_counter").text(jQuery("#excerpt").val().length);
+		 jQuery("#excerpt").keyup( function() {
+			 if(jQuery(this).val().length > 200){
+				jQuery(this).val(jQuery(this).val().substr(0, 200));
+			}
+		 jQuery("span#excerpt_counter").text(jQuery("#excerpt").val().length);
+	   });
+	});</script>';
+
+	}
+	add_action( 'admin_head-post.php', 'excerpt_count_js');
+	add_action( 'admin_head-post-new.php', 'excerpt_count_js');
+
 	add_filter( 'image_send_to_editor',
 		function( $html, $id, $caption, $title, $align, $url, $size, $alt ) {
 			if( current_theme_supports( 'html5' ) && ! $caption )
