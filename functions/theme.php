@@ -31,9 +31,14 @@
 	if (class_exists('MultiPostThumbnails')) {
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Square Featured Image',
+				'label' => 'Preview Featured Image',
 				'id' => 'secondary-image',
-				'post_type' => array('post', 'centre')
+				'post_type' => 'post',
+			),
+			array(
+				'label' => 'Preview Featured Image',
+				'id' => 'secondary-image',
+				'post_type' => 'centre'
 			)
 		);
 	};

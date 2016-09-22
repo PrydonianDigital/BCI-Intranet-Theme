@@ -10,7 +10,7 @@
 					<h2 class="page-title"><?php the_title(); ?></h2>
 
 					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?>
+						<?php the_post_thumbnail('header', array( 'class' => 'alignright' )); ?>
 					<?php endif; ?>
 
 					<?php
