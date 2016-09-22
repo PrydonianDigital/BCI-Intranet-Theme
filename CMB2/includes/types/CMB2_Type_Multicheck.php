@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Type_Multicheck extends CMB2_Type_Radio {
 

@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Type_Textarea_Code extends CMB2_Type_Textarea {
 
@@ -16,7 +16,7 @@ class CMB2_Type_Textarea_Code extends CMB2_Type_Textarea {
 	 * Handles outputting an 'textarea' element
 	 * @since  1.1.0
 	 * @param  array  $args Override arguments
-	 * @return string	   Form textarea element
+	 * @return string       Form textarea element
 	 */
 	public function render() {
 		return $this->rendered(

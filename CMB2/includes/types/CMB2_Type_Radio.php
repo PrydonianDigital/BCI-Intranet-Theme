@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Type_Radio extends CMB2_Type_Multi_Base {
 
@@ -25,7 +25,7 @@ class CMB2_Type_Radio extends CMB2_Type_Multi_Base {
 	 * @since 2.2.2
 	 *
 	 * @param CMB2_Types $types
-	 * @param array	  $args
+	 * @param array      $args
 	 */
 	public function __construct( CMB2_Types $types, $args = array(), $type = '' ) {
 		parent::__construct( $types, $args );

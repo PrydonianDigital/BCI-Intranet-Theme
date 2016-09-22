@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Type_Title extends CMB2_Type_Base {
 
@@ -22,10 +22,17 @@ class CMB2_Type_Title extends CMB2_Type_Base {
 			'class' => 'cmb2-metabox-title',
 			'name'  => $this->field->args( 'name' ),
 			'desc'  => $this->_desc( true ),
+			'id'    => str_replace( '_', '-', sanitize_html_class( $this->field->id() ) ),
 		) );
 
 		return $this->rendered(
-			sprintf( '<%1$s %2$s>%3$s</%1$s>%4$s', $a['tag'], $this->concat_attrs( $a, array( 'tag', 'name', 'desc' ) ), $a['name'], $a['desc'] )
+			sprintf(
+				'<%1$s %2$s>%3$s</%1$s>%4$s',
+				$a['tag'],
+				$this->concat_attrs( $a, array( 'tag', 'name', 'desc' ) ),
+				$a['name'],
+				$a['desc']
+			)
 		);
 	}
 

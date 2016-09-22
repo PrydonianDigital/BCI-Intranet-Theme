@@ -7,18 +7,11 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
-class CMB2_hookup {
-
-	/**
-	 * Array of all hooks done (to be run once)
-	 * @var   array
-	 * @since 2.0.0
-	 */
-	protected static $hooks_completed = array();
+class CMB2_hookup extends CMB2_Hookup_Base {
 
 	/**
 	 * Only allow JS registration once
@@ -35,12 +28,6 @@ class CMB2_hookup {
 	protected static $css_registration_done = false;
 
 	/**
-	 * @var   CMB2 object
-	 * @since 2.0.2
-	 */
-	protected $cmb;
-
-	/**
 	 * CMB taxonomies array for term meta
 	 * @var   array
 	 * @since 2.2.0
@@ -55,12 +42,10 @@ class CMB2_hookup {
 	protected $columns = array();
 
 	/**
-	 * The object type we are performing the hookup for
-	 * @var   string
-	 * @since 2.0.9
+	 * Constructor
+	 * @since 2.0.0
+	 * @param CMB2 $cmb The CMB2 object to hookup
 	 */
-	protected $object_type = 'post';
-
 	public function __construct( CMB2 $cmb ) {
 		$this->cmb = $cmb;
 		$this->object_type = $this->cmb->mb_object_type();
@@ -140,16 +125,16 @@ class CMB2_hookup {
 
 	public function term_hooks() {
 		if ( ! function_exists( 'get_term_meta' ) ) {
-			wp_die( __( 'Term Metadata is a WordPress > 4.4 feature. Please upgrade your WordPress install.', 'cmb2' ) );
+			wp_die( esc_html__( 'Term Metadata is a WordPress 4.4+ feature. Please upgrade your WordPress install.', 'cmb2' ) );
 		}
 
 		if ( ! $this->cmb->prop( 'taxonomies' ) ) {
-			wp_die( __( 'Term metaboxes configuration requires a \'taxonomies\' parameter', 'cmb2' ) );
+			wp_die( esc_html__( 'Term metaboxes configuration requires a "taxonomies" parameter.', 'cmb2' ) );
 		}
 
 		$this->taxonomies = (array) $this->cmb->prop( 'taxonomies' );
 		$show_on_term_add = $this->cmb->prop( 'new_term_section' );
-		$priority		 = $this->get_priority( 8 );
+		$priority         = $this->get_priority( 8 );
 
 		foreach ( $this->taxonomies as $taxonomy ) {
 			// Display our form data
@@ -194,8 +179,8 @@ class CMB2_hookup {
 
 		// Filter required styles and register stylesheet
 		$dependencies = apply_filters( 'cmb2_style_dependencies', array() );
-		wp_register_style( 'cmb2-styles', cmb2_utils()->url( "css/cmb2{$front}{$rtl}{$min}.css" ), $dependencies );
-		wp_register_style( 'cmb2-display-styles', cmb2_utils()->url( "css/cmb2-display{$rtl}{$min}.css" ), $dependencies );
+		wp_register_style( 'cmb2-styles', CMB2_Utils::url( "css/cmb2{$front}{$rtl}{$min}.css" ), $dependencies );
+		wp_register_style( 'cmb2-display-styles', CMB2_Utils::url( "css/cmb2-display{$rtl}{$min}.css" ), $dependencies );
 
 		self::$css_registration_done = true;
 	}
@@ -295,7 +280,7 @@ class CMB2_hookup {
 				'field_args'  => $this->columns[ $column_name ]['field'],
 				'object_type' => $this->object_type,
 				'object_id'   => $this->cmb->object_id( $object_id ),
-				'cmb_id'	  => $this->cmb->cmb_id,
+				'cmb_id'      => $this->cmb->cmb_id,
 			) );
 
 			$this->cmb->get_field( $field )->render_column();
@@ -342,7 +327,27 @@ class CMB2_hookup {
 				add_filter( "postbox_classes_{$post_type}_{$this->cmb->cmb_id}", array( $this, 'close_metabox_class' ) );
 			}
 
+			if ( count( $this->cmb->tax_metaboxes_to_remove ) ) {
+				$this->remove_default_tax_metaboxes( $post_type );
+			}
+
 			add_meta_box( $this->cmb->cmb_id, $this->cmb->prop( 'title' ), array( $this, 'metabox_callback' ), $post_type, $this->cmb->prop( 'context' ), $this->cmb->prop( 'priority' ) );
+		}
+	}
+
+	/**
+	 * Remove the specified default taxonomy metaboxes for a post-type.
+	 * @since 2.2.3
+	 * @param string $post_type Post type to remove the metabox for.
+	 */
+	protected function remove_default_tax_metaboxes( $post_type ) {
+		foreach ( $this->cmb->tax_metaboxes_to_remove as $taxonomy ) {
+			if ( ! taxonomy_exists( $taxonomy ) ) {
+				continue;
+			}
+
+			$mb_id = is_taxonomy_hierarchical( $taxonomy ) ? "{$taxonomy}div" : "tagsdiv-{$taxonomy}";
+			remove_meta_box( $mb_id, $post_type, 'side' );
 		}
 	}
 
@@ -350,7 +355,7 @@ class CMB2_hookup {
 	 * Add 'closed' class to metabox
 	 * @since  2.0.0
 	 * @param  array  $classes Array of classes
-	 * @return array		   Modified array of classes
+	 * @return array           Modified array of classes
 	 */
 	public function close_metabox_class( $classes ) {
 		$classes[] = 'closed';
@@ -431,9 +436,9 @@ class CMB2_hookup {
 		/**
 		 * Filter to determine if metabox should show. Default is true
 		 *
-		 * @param array  $show		  Default is true, show the metabox
+		 * @param array  $show          Default is true, show the metabox
 		 * @param mixed  $meta_box_args Array of the metabox arguments
-		 * @param mixed  $cmb		   The CMB2 instance
+		 * @param mixed  $cmb           The CMB2 instance
 		 */
 		$show = (bool) apply_filters( 'cmb2_show_on', $show, $this->cmb->meta_box, $this->cmb );
 
@@ -444,7 +449,7 @@ class CMB2_hookup {
 	 * Get the CMB priority property set to numeric hook priority.
 	 * @since  2.2.0
 	 * @param  integer $default Default display hook priority.
-	 * @return integer		  Hook priority.
+	 * @return integer          Hook priority.
 	 */
 	public function get_priority( $default = 10 ) {
 		$priority = $this->cmb->prop( 'priority' );
@@ -472,8 +477,8 @@ class CMB2_hookup {
 	/**
 	 * Save data from post metabox
 	 * @since  1.0.0
-	 * @param  int	$post_id Post ID
-	 * @param  mixed  $post	Post object
+	 * @param  int    $post_id Post ID
+	 * @param  mixed  $post    Post object
 	 * @return null
 	 */
 	public function save_post( $post_id, $post = false ) {
@@ -499,7 +504,7 @@ class CMB2_hookup {
 	/**
 	 * Save data from comment metabox
 	 * @since  2.0.9
-	 * @param  int	$comment_id Comment ID
+	 * @param  int    $comment_id Comment ID
 	 * @return null
 	 */
 	public function save_comment( $comment_id ) {
@@ -527,8 +532,8 @@ class CMB2_hookup {
 	/**
 	 * Save data from term fields
 	 * @since  2.2.0
-	 * @param  int	$term_id  Term ID
-	 * @param  int	$tt_id	Term Taxonomy ID
+	 * @param  int    $term_id  Term ID
+	 * @param  int    $tt_id    Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
 	 * @return null
 	 */
@@ -544,8 +549,8 @@ class CMB2_hookup {
 	/**
 	 * Delete term meta when a term is deleted.
 	 * @since  2.2.0
-	 * @param  int	$term_id  Term ID
-	 * @param  int	$tt_id	Term Taxonomy ID
+	 * @param  int    $term_id  Term ID
+	 * @param  int    $tt_id    Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
 	 * @return null
 	 */
@@ -564,10 +569,10 @@ class CMB2_hookup {
 	 * Determines if the current object is able to be saved
 	 * @since  2.0.9
 	 * @param  string  $type Current post_type or comment_type
-	 * @return bool		  Whether object can be saved
+	 * @return bool          Whether object can be saved
 	 */
 	public function can_save( $type = '' ) {
-		return (
+		return apply_filters( 'cmb2_can_save', (
 			$this->cmb->prop( 'save_fields' )
 			// check nonce
 			&& isset( $_POST[ $this->cmb->nonce() ] )
@@ -576,14 +581,16 @@ class CMB2_hookup {
 			&& ! ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			// get the metabox types & compare it to this type
 			&& ( $type && in_array( $type, $this->cmb->prop( 'object_types' ) ) )
-		);
+			// Don't do updates during a switch-to-blog instance.
+			&& ! ( is_multisite() && ms_is_switched() )
+		) );
 	}
 
 	/**
 	 * Determine if taxonomy of term being modified is cmb2-editable.
 	 * @since  2.2.0
 	 * @param  string $taxonomy Taxonomy of term being modified.
-	 * @return bool			 Whether taxonomy is editable.
+	 * @return bool             Whether taxonomy is editable.
 	 */
 	public function taxonomy_can_save( $taxonomy ) {
 		if ( empty( $this->taxonomies ) || ! in_array( $taxonomy, $this->taxonomies ) ) {
@@ -597,25 +604,6 @@ class CMB2_hookup {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Ensures WordPress hook only gets fired once
-	 * @since  2.0.0
-	 * @param string   $action		The name of the filter to hook the $hook callback to.
-	 * @param callback $hook		  The callback to be run when the filter is applied.
-	 * @param integer  $priority	  Order the functions are executed
-	 * @param int	  $accepted_args The number of arguments the function accepts.
-	 */
-	public function once( $action, $hook, $priority = 10, $accepted_args = 1 ) {
-		$key = md5( serialize( func_get_args() ) );
-
-		if ( in_array( $key, self::$hooks_completed ) ) {
-			return;
-		}
-
-		self::$hooks_completed[] = $key;
-		add_filter( $action, $hook, $priority, $accepted_args );
 	}
 
 	/**

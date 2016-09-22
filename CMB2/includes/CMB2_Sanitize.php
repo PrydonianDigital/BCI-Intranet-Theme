@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  *
  * @method string _id()
  */
@@ -30,7 +30,7 @@ class CMB2_Sanitize {
 	 * Setup our class vars
 	 * @since 1.1.0
 	 * @param CMB2_Field $field A CMB2 field object
-	 * @param mixed	  $value Field value
+	 * @param mixed      $value Field value
 	 */
 	public function __construct( CMB2_Field $field, $value ) {
 		$this->field = $field;
@@ -40,7 +40,7 @@ class CMB2_Sanitize {
 	/**
 	 * Catchall method if field's 'sanitization_cb' is NOT defined, or field type does not have a corresponding validation method
 	 * @since  1.0.0
-	 * @param  string $name	  Non-existent method name
+	 * @param  string $name      Non-existent method name
 	 * @param  array  $arguments All arguments passed to the method
 	 */
 	public function __call( $name, $arguments ) {
@@ -58,7 +58,11 @@ class CMB2_Sanitize {
 		 * is not what happens here.
 		 * @deprecated See documentation for "cmb2_sanitize_{$this->type()}".
 		 */
-		$override_value = apply_filters( "cmb2_validate_{$this->field->type()}", null, $this->value, $this->field->object_id, $this->field->args(), $this );
+		if ( function_exists( 'apply_filters_deprecated' ) ) {
+			$override_value = apply_filters_deprecated( "cmb2_validate_{$this->field->type()}", array( null, $this->value, $this->field->object_id, $this->field->args(), $this ), '2.0.0', "cmb2_sanitize_{$this->field->type()}" );
+		} else {
+			$override_value = apply_filters( "cmb2_validate_{$this->field->type()}", null, $this->value, $this->field->object_id, $this->field->args(), $this );
+		}
 
 		if ( null !== $override_value ) {
 			return $override_value;
@@ -79,7 +83,7 @@ class CMB2_Sanitize {
 				if ( $this->field->args( 'taxonomy' ) ) {
 					wp_set_object_terms( $this->field->object_id, $this->value, $this->field->args( 'taxonomy' ) );
 				} else {
-					cmb2_utils()->log_if_debug( __METHOD__, __LINE__, "{$this->field->type()} {$this->field->_id()} is missing the 'taxonomy' parameter." );
+					CMB2_Utils::log_if_debug( __METHOD__, __LINE__, "{$this->field->type()} {$this->field->_id()} is missing the 'taxonomy' parameter." );
 				}
 				break;
 			case 'multicheck':
@@ -111,7 +115,7 @@ class CMB2_Sanitize {
 	/**
 	 * Validate url in a meta value
 	 * @since  1.0.1
-	 * @return string		Empty string or escaped url
+	 * @return string        Empty string or escaped url
 	 */
 	public function text_url() {
 		$protocols = $this->field->args( 'protocols' );
@@ -146,7 +150,7 @@ class CMB2_Sanitize {
 	/**
 	 * Validate email in a meta value
 	 * @since  1.0.1
-	 * @return string	   Empty string or sanitized email
+	 * @return string       Empty string or sanitized email
 	 */
 	public function text_email() {
 		// for repeatable
@@ -234,7 +238,7 @@ class CMB2_Sanitize {
 	/**
 	 * Datetime to timestamp with timezone
 	 * @since  1.0.1
-	 * @return string	   Timestring
+	 * @return string       Timestring
 	 */
 	public function text_datetime_timestamp_timezone( $repeat = false ) {
 		static $utc_values = array();
@@ -263,10 +267,10 @@ class CMB2_Sanitize {
 		}
 
 		if ( empty( $tzstring ) ) {
-			$tzstring = cmb2_utils()->timezone_string();
+			$tzstring = CMB2_Utils::timezone_string();
 		}
 
-		$offset = cmb2_utils()->timezone_offset( $tzstring );
+		$offset = CMB2_Utils::timezone_offset( $tzstring );
 
 		if ( 'UTC' === substr( $tzstring, 0, 3 ) ) {
 			$tzstring = timezone_name_from_abbr( '', $offset, 0 );
@@ -297,8 +301,8 @@ class CMB2_Sanitize {
 			if ( $this->field->group ) {
 				$this->value = array(
 					'supporting_field_value' => $utc_stamp,
-					'supporting_field_id'	=> $utc_key,
-					'value'				  => $this->value,
+					'supporting_field_id'    => $utc_key,
+					'value'                  => $this->value,
 				);
 			} else {
 				// Save the utc timestamp supporting field
@@ -311,7 +315,7 @@ class CMB2_Sanitize {
 
 		} catch ( Exception $e ) {
 			$this->value = '';
-			cmb2_utils()->log_if_debug( __METHOD__, __LINE__, $e->getMessage() );
+			CMB2_Utils::log_if_debug( __METHOD__, __LINE__, $e->getMessage() );
 		}
 
 		return $this->value;
@@ -320,7 +324,7 @@ class CMB2_Sanitize {
 	/**
 	 * Sanitize textareas and wysiwyg fields
 	 * @since  1.0.1
-	 * @return string	   Sanitized data
+	 * @return string       Sanitized data
 	 */
 	public function textarea() {
 		return is_array( $this->value ) ? array_map( 'wp_kses_post', $this->value ) : wp_kses_post( $this->value );
@@ -329,7 +333,7 @@ class CMB2_Sanitize {
 	/**
 	 * Sanitize code textareas
 	 * @since  1.0.2
-	 * @return string	   Sanitized data
+	 * @return string       Sanitized data
 	 */
 	public function textarea_code( $repeat = false ) {
 		$repeat_value = $this->_check_repeat( __FUNCTION__, $repeat );
@@ -343,7 +347,7 @@ class CMB2_Sanitize {
 	/**
 	 * Handles saving of attachment post ID and sanitizing file url
 	 * @since  1.1.0
-	 * @return string		Sanitized url
+	 * @return string        Sanitized url
 	 */
 	public function file() {
 		$file_id_key = $this->field->_id() . '_id';
@@ -366,7 +370,7 @@ class CMB2_Sanitize {
 	public function _get_group_file_value_array( $id_key ) {
 		$alldata = $this->field->group->data_to_save;
 		$base_id = $this->field->group->_id();
-		$i	   = $this->field->group->index;
+		$i       = $this->field->group->index;
 
 		// Check group $alldata data
 		$id_val  = isset( $alldata[ $base_id ][ $i ][ $id_key ] )
@@ -376,7 +380,7 @@ class CMB2_Sanitize {
 		return array(
 			'value' => $this->text_url(),
 			'supporting_field_value' => $id_val,
-			'supporting_field_id'	=> $id_key,
+			'supporting_field_id'    => $id_key,
 		);
 	}
 
@@ -394,7 +398,7 @@ class CMB2_Sanitize {
 
 		// If there is no ID saved yet, try to get it from the url
 		if ( $this->value && ! $id_val ) {
-			$id_val = cmb2_utils()->image_id_from_url( $this->value );
+			$id_val = CMB2_Utils::image_id_from_url( $this->value );
 		}
 
 		return $id_field->save_field( $id_val );
@@ -424,7 +428,7 @@ class CMB2_Sanitize {
 	 * @since  1.1.0
 	 * @param  string $method Class method
 	 * @param  bool   $repeat Whether repeating or not
-	 * @return mixed		  Sanitized value
+	 * @return mixed          Sanitized value
 	 */
 	public function _check_repeat( $method, $repeat ) {
 		if ( $repeat || ! $this->field->args( 'repeatable' ) ) {
@@ -452,7 +456,7 @@ class CMB2_Sanitize {
 	 * Determine if passed value is an empty array
 	 * @since  2.0.6
 	 * @param  mixed  $to_check Value to check
-	 * @return boolean		  Whether value is an array that's empty
+	 * @return boolean          Whether value is an array that's empty
 	 */
 	public function _is_empty_array( $to_check ) {
 		if ( is_array( $to_check ) ) {

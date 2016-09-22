@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 
@@ -16,7 +16,7 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 	 * Generates html for an option element
 	 * @since  1.1.0
 	 * @param  array  $args Arguments array containing value, label, and checked boolean
-	 * @return string	   Generated option element html
+	 * @return string       Generated option element html
 	 */
 	public function select_option( $args = array() ) {
 		return sprintf( "\t" . '<option value="%s" %s>%s</option>', $args['value'], selected( isset( $args['checked'] ) && $args['checked'], true, false ), $args['label'] ) . "\n";
@@ -26,15 +26,15 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 	 * Generates html for list item with input
 	 * @since  1.1.0
 	 * @param  array  $args Override arguments
-	 * @param  int	$i	Iterator value
-	 * @return string	   Gnerated list item html
+	 * @param  int    $i    Iterator value
+	 * @return string       Gnerated list item html
 	 */
 	public function list_input( $args = array(), $i ) {
 		$a = $this->parse_args( 'list_input', array(
 			'type'  => 'radio',
 			'class' => 'cmb2-option',
 			'name'  => $this->_name(),
-			'id'	=> $this->_id( $i ),
+			'id'    => $this->_id( $i ),
 			'value' => $this->field->escaped_value(),
 			'label' => '',
 		), $args );
@@ -46,8 +46,8 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 	 * Generates html for list item with checkbox input
 	 * @since  1.1.0
 	 * @param  array  $args Override arguments
-	 * @param  int	$i	Iterator value
-	 * @return string	   Gnerated list item html
+	 * @param  int    $i    Iterator value
+	 * @return string       Gnerated list item html
 	 */
 	public function list_input_checkbox( $args, $i ) {
 		$saved_value = $this->field->escaped_value();
@@ -62,7 +62,7 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 	 * Generates html for concatenated items
 	 * @since  1.1.0
 	 * @param  array   $args Optional arguments
-	 * @return string		Concatenated html items
+	 * @return string        Concatenated html items
 	 */
 	public function concat_items( $args = array() ) {
 		$field = $this->field;
@@ -70,9 +70,13 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 		$method = isset( $args['method'] ) ? $args['method'] : 'select_option';
 		unset( $args['method'] );
 
-		$value = $field->escaped_value()
+		$value = null !== $field->escaped_value()
 			? $field->escaped_value()
 			: $field->get_default();
+
+		if ( is_numeric( $value ) ) {
+			$value = intval( $value );
+		}
 
 		$concatenated_items = ''; $i = 1;
 
@@ -90,7 +94,7 @@ abstract class CMB2_Type_Multi_Base extends CMB2_Type_Base {
 			$a['label'] = $opt_label;
 
 			// Check if this option is the value of the input
-			if ( $value == $opt_value ) {
+			if ( $value === $opt_value ) {
 				$a['checked'] = 'checked';
 			}
 

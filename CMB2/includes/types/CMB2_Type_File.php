@@ -6,19 +6,19 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Type_File extends CMB2_Type_File_Base {
 
 	public function render() {
-		$field	  = $this->field;
+		$field      = $this->field;
 		$meta_value = $field->escaped_value();
-		$options	= (array) $field->options();
+		$options    = (array) $field->options();
 		$img_size   = $field->args( 'preview_size' );
 		$query_args = $field->args( 'query_args' );
-		$output	 = '';
+		$output     = '';
 
 		// if options array and 'url' => false, then hide the url field
 		$input_type = array_key_exists( 'url', $options ) && false === $options['url'] ? 'hidden' : 'text';
@@ -33,7 +33,7 @@ class CMB2_Type_File extends CMB2_Type_File_Base {
 			'js_dependencies'  => 'media-editor',
 		) );
 
-		$output .= sprintf( '<input class="cmb2-upload-button button" type="button" value="%s" />', esc_attr( $this->_text( 'add_upload_file_text', __( 'Add or Upload File', 'cmb2' ) ) ) );
+		$output .= sprintf( '<input class="cmb2-upload-button button" type="button" value="%s" />', esc_attr( $this->_text( 'add_upload_file_text', esc_html__( 'Add or Upload File', 'cmb2' ) ) ) );
 
 		$output .= $this->_desc( true );
 
@@ -54,7 +54,7 @@ class CMB2_Type_File extends CMB2_Type_File_Base {
 
 		// If there is no ID saved yet, try to get it from the url
 		if ( $meta_value && ! $_id_value ) {
-			$_id_value = cmb2_utils()->image_id_from_url( esc_url_raw( $meta_value ) );
+			$_id_value = CMB2_Utils::image_id_from_url( esc_url_raw( $meta_value ) );
 		}
 
 		$output .= parent::render( array(
@@ -76,16 +76,16 @@ class CMB2_Type_File extends CMB2_Type_File_Base {
 				}
 
 				$output .= $this->img_status_output( array(
-					'image'	 => $image,
-					'tag'	   => 'div',
+					'image'     => $image,
+					'tag'       => 'div',
 					'cached_id' => $cached_id,
 				) );
 
 			} else {
 
 				$output .= $this->file_status_output( array(
-					'value'	 => $meta_value,
-					'tag'	   => 'div',
+					'value'     => $meta_value,
+					'tag'       => 'div',
 					'cached_id' => $cached_id,
 				) );
 

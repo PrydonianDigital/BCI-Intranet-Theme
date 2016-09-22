@@ -8,13 +8,13 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
  */
 class CMB2_Ajax {
 
 	// Whether to hijack the oembed cache system
-	protected $hijack	  = false;
+	protected $hijack      = false;
 	protected $object_id   = 0;
 	protected $embed_args  = array();
 	protected $object_type = 'post';
@@ -68,7 +68,7 @@ class CMB2_Ajax {
 
 		// Send back error if empty
 		if ( empty( $oembed_string ) ) {
-			wp_send_json_error( '<p class="ui-state-error-text">' . __( 'Please Try Again', 'cmb2' ) . '</p>' );
+			wp_send_json_error( '<p class="ui-state-error-text">' . esc_html__( 'Please Try Again', 'cmb2' ) . '</p>' );
 		}
 
 		// Set width of embed
@@ -84,11 +84,11 @@ class CMB2_Ajax {
 
 		// Get embed code (or fallback link)
 		$html = $this->get_oembed( array(
-			'url'		 => $oembed_url,
+			'url'         => $oembed_url,
 			'object_id'   => $_REQUEST['object_id'],
 			'object_type' => isset( $_REQUEST['object_type'] ) ? $_REQUEST['object_type'] : 'post',
 			'oembed_args' => $embed_args,
-			'field_id'	=> $_REQUEST['field_id'],
+			'field_id'    => $_REQUEST['field_id'],
 		) );
 
 		wp_send_json_success( $html );
@@ -97,8 +97,8 @@ class CMB2_Ajax {
 	/**
 	 * Retrieves oEmbed from url/object ID
 	 * @since  0.9.5
-	 * @param  array  $args	  Arguments for method
-	 * @return string			html markup with embed or fallback
+	 * @param  array  $args      Arguments for method
+	 * @return string            html markup with embed or fallback
 	 */
 	public function get_oembed_no_edit( $args ) {
 		global $wp_embed;
@@ -111,8 +111,8 @@ class CMB2_Ajax {
 		$args = wp_parse_args( $args, array(
 			'object_type' => 'post',
 			'oembed_args' => $this->embed_args,
-			'field_id'	=> false,
-			'wp_error'	=> false,
+			'field_id'    => false,
+			'wp_error'    => false,
 		) );
 
 		$this->embed_args =& $args;
@@ -162,19 +162,27 @@ class CMB2_Ajax {
 	/**
 	 * Retrieves oEmbed from url/object ID
 	 * @since  0.9.5
-	 * @param  array  $args	  Arguments for method
-	 * @return string			html markup with embed or fallback
+	 * @param  array  $args      Arguments for method
+	 * @return string            html markup with embed or fallback
 	 */
 	public function get_oembed( $args ) {
 		$oembed = $this->get_oembed_no_edit( $args );
 
 		// Send back our embed
 		if ( $oembed['embed'] && $oembed['embed'] != $oembed['fallback'] ) {
-			return '<div class="cmb2-oembed embed-status">' . $oembed['embed'] . '<p class="cmb2-remove-wrapper"><a href="#" class="cmb2-remove-file-button" rel="' . $oembed['args']['field_id'] . '">' . __( 'Remove Embed', 'cmb2' ) . '</a></p></div>';
+			return '<div class="cmb2-oembed embed-status">' . $oembed['embed'] . '<p class="cmb2-remove-wrapper"><a href="#" class="cmb2-remove-file-button" rel="' . $oembed['args']['field_id'] . '">' . esc_html__( 'Remove Embed', 'cmb2' ) . '</a></p></div>';
 		}
 
 		// Otherwise, send back error info that no oEmbeds were found
-		return '<p class="ui-state-error-text">' . sprintf( __( 'No oEmbed Results Found for %s. View more info at', 'cmb2' ), $oembed['fallback'] ) . ' <a href="http://codex.wordpress.org/Embeds" target="_blank" rel="noopener">codex.wordpress.org/Embeds</a>.</p>';
+		return sprintf(
+			'<p class="ui-state-error-text">%s</p>',
+			sprintf(
+				/* translators: 1: results for. 2: link to codex.wordpress.org/Embeds */
+				esc_html__( 'No oEmbed Results Found for %1$s. View more info at %2$s.', 'cmb2' ),
+				$oembed['fallback'],
+				'<a href="https://codex.wordpress.org/Embeds" target="_blank">codex.wordpress.org/Embeds</a>'
+			)
+		);
 	}
 
 	/**
@@ -182,10 +190,10 @@ class CMB2_Ajax {
 	 * Returns cached data from relevant object metadata (vs postmeta)
 	 *
 	 * @since  0.9.5
-	 * @param  boolean $check	 Whether to retrieve postmeta or override
-	 * @param  int	 $object_id Object ID
+	 * @param  boolean $check     Whether to retrieve postmeta or override
+	 * @param  int     $object_id Object ID
 	 * @param  string  $meta_key  Object metakey
-	 * @return mixed			  Object's oEmbed cached data
+	 * @return mixed              Object's oEmbed cached data
 	 */
 	public function hijack_oembed_cache_get( $check, $object_id, $meta_key ) {
 		if ( ! $this->hijack || ( $this->object_id != $object_id && 1987645321 !== $object_id ) ) {
@@ -204,11 +212,11 @@ class CMB2_Ajax {
 	 * Saves cached data to relevant object metadata (vs postmeta)
 	 *
 	 * @since  0.9.5
-	 * @param  boolean $check	  Whether to continue setting postmeta
-	 * @param  int	 $object_id  Object ID to get postmeta from
+	 * @param  boolean $check      Whether to continue setting postmeta
+	 * @param  int     $object_id  Object ID to get postmeta from
 	 * @param  string  $meta_key   Postmeta's key
 	 * @param  mixed   $meta_value Value of the postmeta to be saved
-	 * @return boolean			 Whether to continue setting
+	 * @return boolean             Whether to continue setting
 	 */
 	public function hijack_oembed_cache_set( $check, $object_id, $meta_key, $meta_value ) {
 
@@ -236,7 +244,7 @@ class CMB2_Ajax {
 	 */
 	protected function cache_action( $meta_key ) {
 		$func_args = func_get_args();
-		$action	= isset( $func_args[1] ) ? 'update' : 'get';
+		$action    = isset( $func_args[1] ) ? 'update' : 'get';
 
 		if ( 'options-page' === $this->object_type ) {
 

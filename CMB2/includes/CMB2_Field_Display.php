@@ -6,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Field_Display {
 
@@ -113,7 +113,7 @@ class CMB2_Field_Display {
 	 * Catchall method if field's 'display_cb' is NOT defined, or field type does
 	 * not have a corresponding display method
 	 * @since 2.2.2
-	 * @param  string $method	Non-existent method name
+	 * @param  string $method    Non-existent method name
 	 * @param  array  $arguments All arguments passed to the method
 	 */
 	public function display() {
@@ -291,9 +291,9 @@ class CMB2_Display_Text_Date_Timezone extends CMB2_Field_Display {
 		$this->value = $tzstring = '';
 
 		if ( $datetime && $datetime instanceof DateTime ) {
-			$tz	   = $datetime->getTimezone();
+			$tz       = $datetime->getTimezone();
 			$tzstring = $tz->getName();
-			$this->value	= $datetime->getTimestamp();
+			$this->value    = $datetime->getTimestamp();
 		}
 
 		$date = $this->field->get_timestamp_format( 'date_format', $this->value );
@@ -311,8 +311,8 @@ class CMB2_Display_Taxonomy_Radio extends CMB2_Field_Display {
 	protected function _display() {
 		$taxonomy   = $this->field->args( 'taxonomy' );
 		$field_type = new CMB2_Type_Taxonomy_Radio( new CMB2_Types( $this->field ) );
-		$terms	  = $field_type->get_object_terms();
-		$term	   = false;
+		$terms      = $field_type->get_object_terms();
+		$term       = false;
 
 		if ( is_wp_error( $terms ) || empty( $terms ) && ( $default = $this->field->get_default() ) ) {
 			$term = get_term_by( 'slug', $default, $taxonomy );
@@ -335,7 +335,7 @@ class CMB2_Display_Taxonomy_Multicheck extends CMB2_Field_Display {
 	protected function _display() {
 		$taxonomy   = $this->field->args( 'taxonomy' );
 		$field_type = new CMB2_Type_Taxonomy_Multicheck( new CMB2_Types( $this->field ) );
-		$terms	  = $field_type->get_object_terms();
+		$terms      = $field_type->get_object_terms();
 
 		if ( is_wp_error( $terms ) || empty( $terms ) && ( $default = $this->field->get_default() ) ) {
 			$terms = array();
@@ -387,7 +387,7 @@ class CMB2_Display_File extends CMB2_Field_Display {
 	protected function file_output( $url_value, $id, CMB2_Type_File_Base $field_type ) {
 		// If there is no ID saved yet, try to get it from the url
 		if ( $url_value && ! $id ) {
-			$id = cmb2_utils()->image_id_from_url( esc_url_raw( $url_value ) );
+			$id = CMB2_Utils::image_id_from_url( esc_url_raw( $url_value ) );
 		}
 
 		if ( $field_type->is_valid_img_ext( $url_value ) ) {
@@ -405,9 +405,9 @@ class CMB2_Display_File extends CMB2_Field_Display {
 		} else {
 
 			printf( '<div class="file-status"><span>%1$s <strong><a href="%2$s">%3$s</a></strong></span></div>',
-				esc_html( $field_type->_text( 'file_text', __( 'File:', 'cmb2' ) ) ),
+				esc_html( $field_type->_text( 'file_text', esc_html__( 'File:', 'cmb2' ) ) ),
 				$url_value,
-				cmb2_utils()->get_file_name_from_path( $url_value )
+				CMB2_Utils::get_file_name_from_path( $url_value )
 			);
 
 		}
@@ -445,11 +445,11 @@ class CMB2_Display_oEmbed extends CMB2_Field_Display {
 		}
 
 		cmb2_do_oembed( array(
-			'url'		 => $this->value,
+			'url'         => $this->value,
 			'object_id'   => $this->field->object_id,
 			'object_type' => $this->field->object_type,
 			'oembed_args' => array( 'width' => '300' ),
-			'field_id'	=> $this->field->id(),
+			'field_id'    => $this->field->id(),
 		) );
 	}
 }

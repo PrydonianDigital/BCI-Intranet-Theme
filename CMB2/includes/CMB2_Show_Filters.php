@@ -11,9 +11,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author	WebDevStudios
+ * @author    WebDevStudios
  * @license   GPL-2.0+
- * @link	  http://webdevstudios.com
+ * @link      http://webdevstudios.com
  */
 class CMB2_Show_Filters {
 
@@ -24,7 +24,7 @@ class CMB2_Show_Filters {
 	 *
 	 * @param  array $meta_box_args Metabox config array
 	 *
-	 * @return mixed				show_on key or false
+	 * @return mixed                show_on key or false
 	 */
 	private static function get_show_on_key( $meta_box_args ) {
 		$show_on = isset( $meta_box_args['show_on'] ) ? (array) $meta_box_args['show_on'] : false;
@@ -48,7 +48,7 @@ class CMB2_Show_Filters {
 	 *
 	 * @param  array $meta_box_args Metabox config array
 	 *
-	 * @return mixed				show_on value or false
+	 * @return mixed                show_on value or false
 	 */
 	private static function get_show_on_value( $meta_box_args ) {
 		$show_on = isset( $meta_box_args['show_on'] ) ? (array) $meta_box_args['show_on'] : false;
@@ -70,9 +70,10 @@ class CMB2_Show_Filters {
 	/**
 	 * Add metaboxes for an specific ID
 	 * @since  1.0.0
-	 * @param  bool  $display  To display or not
+	 * @param  bool  $display       To display or not
 	 * @param  array $meta_box_args Metabox config array
-	 * @return bool			Whether to display this metabox on the current page.
+	 * @param  CMB2  $cmb           The CMB2 instance.
+	 * @return bool                 Whether to display this metabox on the current page.
 	 */
 	public static function check_id( $display, $meta_box_args, $cmb ) {
 
@@ -81,7 +82,7 @@ class CMB2_Show_Filters {
 			return $display;
 		}
 
-		$object_id = is_admin() ? $cmb->object_id() : @get_the_id();
+		$object_id = is_admin() ? $cmb->object_id() : get_the_ID();
 
 		if ( ! $object_id ) {
 			return false;
@@ -96,7 +97,7 @@ class CMB2_Show_Filters {
 	 * @since  1.0.0
 	 * @param  bool  $display  To display or not
 	 * @param  array $meta_box_args Metabox config array
-	 * @return bool			Whether to display this metabox on the current page.
+	 * @return bool            Whether to display this metabox on the current page.
 	 */
 	public static function check_page_template( $display, $meta_box_args, $cmb ) {
 
@@ -127,7 +128,7 @@ class CMB2_Show_Filters {
 	 * @since  1.0.0
 	 * @param  bool  $display  To display or not
 	 * @param  array $meta_box_args Metabox config array
-	 * @return bool			Whether to display this metabox on the current page.
+	 * @return bool            Whether to display this metabox on the current page.
 	 */
 	public static function check_admin_page( $display, $meta_box_args ) {
 
