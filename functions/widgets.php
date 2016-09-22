@@ -1295,7 +1295,7 @@
 					$new_joiners_info = get_userdata($new_joiner->ID);
 					$title = get_the_author_meta( 'title', $new_joiners_info->ID );
 					$department = get_the_author_meta( '_usercentre_centre', $new_joiners_info->ID );
-					$dept = get_the_title($department);
+					$dept = get_the_author_meta( 'description', $new_joiners_info->ID );
 					echo '<li><i class="nav-user"></i> <a href="'. get_author_posts_url( $new_joiners_info->ID ) .'">' . $new_joiners_info->first_name . ' ' . $new_joiners_info->last_name . '</a> | ' . $dept . '</li>';
 				}
 				echo '</ul>';
