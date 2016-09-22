@@ -21,8 +21,10 @@
 		);
 		register_sidebar( $args );
 		$args = array(
-			'id'			=> 'homebanner',
-			'name'		  => __( 'Home Banner', 'bci' ),
+			'id'			=> 'homeright',
+			'name'		  	=> __( 'Home Right Column', 'bci' ),
+			'before_title'  => '<h4 class="home-category">',
+			'after_title'   => '</h4>'
 		);
 		register_sidebar( $args );
 		$args = array(

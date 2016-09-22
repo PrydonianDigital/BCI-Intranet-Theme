@@ -4,9 +4,80 @@
 
 		<div class="small-12 large-9 column" role="main">
 
-			<ul class="widgets">
-				<?php dynamic_sidebar('homebanner'); ?>
-			</ul>
+			<div class="row">
+
+				<div class="large-4 small-12 columns">
+					<?php
+						$args = array (
+							'post_type' => array( 'tribe_events' ),
+							'posts_per_page' => 6,
+							'tax_query'			=> array(
+								array(
+									'taxonomy' 	=> 'tribe_events_cat',
+									'field' 	=> 'slug',
+									'terms' 	=> 'bci-events',
+								),
+							)
+						);
+						$events = new WP_Query( $args );
+						if ( $events->have_posts() ) :
+						echo '<div class="row"><div class="large-12 small-12 columns"><h4 class="home-category">BCI Events</h4></div></div>';
+						while ( $events->have_posts() ): $events->the_post();
+					?>
+					<div class="row">
+						<div <?php post_class('home-news event small-12 large-12 columns'); ?>>
+							<?php if ( has_post_thumbnail() ) : ?>
+								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+									<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
+								</a>
+							<?php endif; ?>
+							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+							<?php echo tribe_events_event_schedule_details( $event_id, '<small class="meta">', '</small>' ); ?>
+							<?php the_excerpt(); ?>
+						</div>
+					</div>
+					<?php
+						endwhile; endif;
+						wp_reset_postdata();
+					?>
+				</div>
+
+				<div class="large-4 small-12 columns">
+					<?php
+						$args = array (
+							'post_type' => array( 'post' ),
+							'posts_per_page' => 6
+						);
+						$news = new WP_Query( $args );
+						if ( $news->have_posts() ) :
+						echo '<div class="row"><div class="large-12 small-12 columns"><h4 class="home-category">Latest News</h4></div></div>';
+						while ( $news->have_posts() ): $news->the_post();
+					?>
+					<div class="row">
+						<div <?php post_class('home-news event small-12 large-12 columns'); ?>>
+							<?php if ( has_post_thumbnail() ) : ?>
+								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+									<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
+								</a>
+							<?php endif; ?>
+							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+							<small class="meta"><?php the_time('l jS F, Y') ?></small>
+							<?php the_excerpt(); ?>
+						</div>
+					</div>
+					<?php
+						endwhile; endif;
+						wp_reset_postdata();
+					?>
+				</div>
+
+				<div class="large-4 small-12 columns">
+					<ul class="widgets">
+						<?php dynamic_sidebar('homeright'); ?>
+					</ul>
+				</div>
+
+			</div>
 
 			<?php
 			$defaults = [

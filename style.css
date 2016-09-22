@@ -509,6 +509,7 @@ ul.links li:before {
 	padding-right: 0.5em;
 	margin-left: 100px;
 }
+
 ul.widgets {
 	margin: 0;
 	padding: 0;
@@ -519,6 +520,19 @@ ul.widgets li.widget {
 	padding: 1em;
 	color: #25023B;
 	border-bottom: 1px solid #efefef;
+}
+ul.widgets li.widget.widget_twitter_timeline {
+	padding: 0 0.9375rem;
+	border: none;
+}
+ul.widgets li.widget h4.home-category {
+	font-style: italic;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	padding: 10px;
+	background: #fafafa;
+	margin: 0.5em 0 1em 0;
+	line-height: 1.4;
 }
 .widgettitle, .widgettitle a {
 	color: #25023B !important;
@@ -858,9 +872,6 @@ small.updated {
 	margin-bottom: 1em;
 	border-bottom: 1px solid #999;
 }
-.home-news {
-	text-align: center;
-}
 .news h2, .home-news h2 {
 	margin: 0 0 1em 0;
 	line-height: 1.1;
@@ -871,8 +882,9 @@ small.updated {
 	font-size: 2.4rem;
 }
 .home-news {
-	border-right: 1px solid #ccc;
-	padding: 0 1em;
+	border-bottom: 1px solid #ccc;
+	padding: 0 1em 1em 1em;
+	text-align: center;
 }
 .home-news.event {
 	margin-bottom: 1em;
