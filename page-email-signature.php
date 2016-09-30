@@ -70,7 +70,7 @@
 								<?php echo $current_user->_me_building ?>, Charterhouse Square, London EC1M 6BQ</p>
 								T: +44 (0)20 7882 <?php echo $current_user->_me_ext; ?> <?php if($fax !='') { echo '| F: ' . $fax; } ?> | E: <a href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a><br />
 								<a href="http://www.bci.qmul.ac.uk">http://www.bci.qmul.ac.uk</a><br /><br />
-								<img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/Barts-SMD-blue.png" width="250" /><br /><br />
+								<?php if(bci_get_option( 'aslogo' ) != ''){ ?><img src="<?php echo bci_get_option( 'aslogofile' ); ?>" width="88" /> <?php } ?><img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/Barts-SMD-blue.png" width="250" /><br /><br />
 								<a href="https://twitter.com/<?php echo bci_get_option( 'twitter' ); ?>"><img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/TW_BCIblue_whitefill_transp.png" width="35" /></a>&nbsp;
 								<a href="https://www.facebook.com/<?php echo bci_get_option( 'facebook' ); ?>"><img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/FB_BCIblue_whitefill_transp.png" width="35" /></a>&nbsp;
 								<a href="http://www.linkedin.com/company/<?php echo bci_get_option( 'linkedin' ); ?>"><img src="<?php echo $upload_dir['baseurl']; ?>/2013/01/Lin_BCIblue_whitefill_transp.png" width="35" /></a>&nbsp;
