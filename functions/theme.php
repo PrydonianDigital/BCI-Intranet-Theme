@@ -39,6 +39,11 @@
 				'label' => 'Preview Featured Image',
 				'id' => 'secondary-image',
 				'post_type' => 'centre'
+			),
+			array(
+				'label' => 'Preview Featured Image',
+				'id' => 'secondary-image',
+				'post_type' => 'newsletter'
 			)
 		);
 	};
@@ -132,7 +137,7 @@
 	}
 
 	function my_add_excerpt_meta_box( $post_type ) {
-		if ( in_array( $post_type, array( 'post', 'page', 'tribe_events' ) ) ) {
+		if ( in_array( $post_type, array( 'post', 'page', 'tribe_events', 'newsletter' ) ) ) {
 			 add_meta_box(
 				'postexcerpt', __( 'Excerpt' ), 'post_excerpt_meta_box', $post_type, 'test', // change to something other then normal, advanced or side
 				'high'
