@@ -128,6 +128,18 @@
 				'type' => 'text',
 			) );
 			$cmb->add_field( array(
+				'name' => __( 'Athena Swan on Signature', 'bci' ),
+				'desc' => __( 'check to include the Athena Swan logo in the email signature', 'bci' ),
+				'id'   => 'aslogo',
+				'type' => 'checkbox',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Athena Swan Signature Image', 'bci' ),
+				'desc' => __( 'upload image here (width: 170 pixels / height: 84 pixels)', 'bci' ),
+				'id'   => 'aslogofile',
+				'type' => 'file',
+			) );
+			$cmb->add_field( array(
 				'name' => __( 'Header/Footer Background Colour', 'bci' ),
 				'desc' => __( 'Choose a colour for the page header and footer', 'bci' ),
 				'id'   => 'color',
