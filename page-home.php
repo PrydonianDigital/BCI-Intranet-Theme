@@ -94,21 +94,21 @@
 				'post_type'	  => 'potm',
 				'posts_per_page' => '1',
 			];
-			$stickies = get_option( 'sticky_posts' );
-			if ( $stickies ) {
-				$args3 = [
-					'post_type'				=> 'post',
-					'post__in'				=> $stickies,
-					'ignore_sticky_posts'	=> 1
-				];
-			}
+//			$stickies = get_option( 'sticky_posts' );
+//			if ( $stickies ) {
+//				$args3 = [
+//					'post_type'				=> 'post',
+//					'post__in'				=> $stickies,
+//					'ignore_sticky_posts'	=> 1
+//				];
+//			}
 			$potw_query = get_posts( array_merge( $defaults, $args  ) );
 			$potm_query = get_posts( array_merge( $defaults, $args1 ) );
-			$news_query = get_posts( array_merge( $defaults, $args3 ) );
-			$post_ids = array_merge ( $potw_query, $potm_query, $news_query ); //. You can swop around here
+			//$news_query = get_posts( array_merge( $defaults, $args3 ) );
+			$post_ids = array_merge ( $potw_query, $potm_query ); //. You can swop around here
 			if ( $post_ids ) {
 				$final_args = [
-					'post_type' => ['potw', 'potm', 'post'],
+					'post_type' => ['potw', 'potm'],
 					'post__in'  => $post_ids,
 					'orderby'   => 'post__in', // If you need to keep the order from $post_ids
 					'order'	 => 'ASC' // If you need to keep the order from $post_ids
@@ -177,11 +177,18 @@
 			$i = 1;
 			$args = array (
 				'post_type' => array( 'tribe_events' ),
-				'posts_per_page' => 6
+				'posts_per_page' => 6,
+				'tax_query'			=> array(
+					array(
+						'taxonomy' 	=> 'tribe_events_cat',
+						'field' 	=> 'slug',
+						'terms' 	=> array('conferences', 'grants'),
+					),
+				)
 			);
 			$events = new WP_Query( $args );
 			if ( $events->have_posts() ) :
-			echo '<div class="row"><div class="large-12 small-12 columns"><h4 class="home-category">Upcoming Events</h4></div>';
+			echo '<div class="row"><div class="large-12 small-12 columns"><h4 class="home-category">Upcoming Conferences &amp; Grant Opportunities</h4></div>';
 			while ( $events->have_posts() ): $events->the_post();
 		?>
 			<div <?php post_class('home-news event small-12 large-4 columns'); ?>>
@@ -202,37 +209,37 @@
 		?>
 
 		<?php
-			$args = array('parent' => 0);
-			$cats = get_categories($args);
-			foreach ($cats as $cat) {
-				$hide = get_term_meta( $cat->term_id, "_cat_hide", true );
-				if($hide != 'on') {
-					echo '<div class="row">';
-					$cat_id= $cat->term_id;
-					echo '<div class="large-12 small-12 columns"><h4 class="home-category">Latest news in '.$cat->name.'</h4></div>';
-					$the_query = new WP_Query(
-						array(
-							'category_name' => $cat->slug,
-							'posts_per_page' => 3,
-							'post__not_in' => get_option( 'sticky_posts' )
-						)
-					);
-					if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post();
-					?>
-						<div <?php post_class('home-news small-12 large-4 columns'); ?>>
-						<?php if ( has_post_thumbnail() ) : ?>
-							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-								<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
-							</a>
-						<?php endif; ?>
-						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-						<small class="meta"><?php the_time('l jS F, Y') ?></small>
-						<?php the_excerpt(); ?>
-						</div>
-					<?php endwhile; endif;
-					echo '</div>';
-				}
-			}
+//			$args = array('parent' => 0);
+//			$cats = get_categories($args);
+//			foreach ($cats as $cat) {
+//				$hide = get_term_meta( $cat->term_id, "_cat_hide", true );
+//				if($hide != 'on') {
+//					echo '<div class="row">';
+//					$cat_id= $cat->term_id;
+//					echo '<div class="large-12 small-12 columns"><h4 class="home-category">Latest news in '.$cat->name.'</h4></div>';
+//					$the_query = new WP_Query(
+//						array(
+//							'category_name' => $cat->slug,
+//							'posts_per_page' => 3,
+//							'post__not_in' => get_option( 'sticky_posts' )
+//						)
+//					);
+//					if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post();
+//					?>
+						<!--div <?php post_class('home-news small-12 large-4 columns'); ?>>
+//						<?php if ( has_post_thumbnail() ) : ?>
+//							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+//								<?php the_post_thumbnail('thumbnail-news', array( 'class' => 'aligncenter' )); ?>
+//							</a>
+//						<?php endif; ?>
+//						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+//						<small class="meta"><?php the_time('l jS F, Y') ?></small>
+//						<?php the_excerpt(); ?>
+//						</div-->
+					<?php //endwhile; endif;
+//					echo '</div>';
+//				}
+//			}
 		?>
 
 		</div>
