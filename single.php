@@ -9,17 +9,7 @@
 				<div <?php post_class('news'); ?>>
 					<h2><?php the_title(); ?></h2>
 
-					<?php if (class_exists('MultiPostThumbnails')) : ?>
-					<div class="alignleft">
-					<?php MultiPostThumbnails::the_post_thumbnail(
-							get_post_type(),
-							'secondary-image',
-							NULL,
-							'post-secondary-image-thumbnail'
-						);
-					?>
-					</div>
-					<?php endif; ?>
+					<?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?>
 
 					<?php the_content(); ?>
 
