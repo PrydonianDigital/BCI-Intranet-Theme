@@ -6,6 +6,8 @@
 
 <?php get_header('login'); ?>
 
+<div class="login">
+
 <?php the_custom_logo(); ?>
 
 <?php
@@ -27,5 +29,6 @@
 	);
 	wp_login_form( $args );
 ?>
+</div>
 
 <?php get_footer('login'); ?>

@@ -13,5 +13,3 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 </head>
 
 <body <?php body_class(); ?>>
-
-<div class="login">
