@@ -621,12 +621,7 @@ iframe .wp-embed-footer {
 
 /** ---------- TRIBE ---------- **/
 
-.tribe-mini-calendar-event .list-date {
-	background: #7E2FB0 !important;
-}
-.tribe-mini-calendar-event .list-date .list-dayname {
-	color: #7E2FB0 !important;
-}
+
 #tribe_events_filters_wrapper.tribe-events-filters-horizontal, .tribe-filters-closed #tribe_events_filters_wrapper.tribe-events-filters-horizontal, .tribe-events-filters-content {
 	background: #133577;
 }
