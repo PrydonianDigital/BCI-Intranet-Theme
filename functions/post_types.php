@@ -245,7 +245,7 @@
 			'label'				 => __( 'Newsletter', 'bci' ),
 			'description'		   => __( 'Newsletters', 'bci' ),
 			'labels'				=> $labels,
-			'supports'			  => array( 'title', 'thumbnail', 'excerpt', 'page-attributes' ),
+			'supports'			  => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
 			'hierarchical'		  => false,
 			'public'				=> true,
 			'show_ui'			   => true,

@@ -35,8 +35,9 @@
 					<?php endif; ?>
 
 					<?php the_excerpt(); ?>
-
-					<p><a href="<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); if($pdf != '') { ?>
+					<p><a href="<?php echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php } ?>
 
 					<small class="meta">Posted on <?php the_time('l jS F, Y') ?>.</small>
 				</div>
@@ -78,7 +79,9 @@
 
 					<?php the_excerpt(); ?>
 
-					<p><a href="<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); if($pdf != '') { ?>
+					<p><a href="<?php echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php } ?>
 
 					<small class="meta">Posted on <?php the_time('l jS F, Y') ?>.</small>
 				</div>
@@ -120,7 +123,9 @@
 
 					<?php the_excerpt(); ?>
 
-					<p><a href="<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php $pdf = get_post_meta( get_the_ID(), '_newsletter_pdf', true ); if($pdf != '') { ?>
+					<p><a href="<?php echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php } ?>
 
 					<small class="meta">Posted on <?php the_time('l jS F, Y') ?>.</small>
 				</div>
