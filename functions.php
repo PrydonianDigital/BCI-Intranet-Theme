@@ -1,5 +1,11 @@
 <?php
 
+	require 'theme-updates/theme-update-checker.php';
+	$example_update_checker = new ThemeUpdateChecker(
+		'conwayhall_new',
+		'http://prydonian.digital/themes/bci.json' //URL of the metadata file.
+	);
+
 	// Init CMB2
 	if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
 		require_once dirname( __FILE__ ) . '/cmb2/init.php';
