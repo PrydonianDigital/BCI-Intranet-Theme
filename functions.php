@@ -2,8 +2,8 @@
 
 	require 'theme-updates/theme-update-checker.php';
 	$example_update_checker = new ThemeUpdateChecker(
-		'conwayhall_new',
-		'http://prydonian.digital/themes/bci.json' //URL of the metadata file.
+		'bci_intranet',
+		'http://prydonian.digital/themes/bci_intranet.json' //URL of the metadata file.
 	);
 
 	// Init CMB2
