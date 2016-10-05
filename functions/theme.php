@@ -2,7 +2,7 @@
 
 	// Theme Options
 	if ( ! isset( $content_width ) )
-		$content_width = 600;
+		$content_width = 1153;
 
 	function bcc_theme()	{
 		add_theme_support( 'post-thumbnails' );
