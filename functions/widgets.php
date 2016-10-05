@@ -1334,16 +1334,16 @@
 		}
 	}
 
-
 	function BCI_subpages_load_widgets() {
 		register_widget( 'BCI_Subpages_Widget' );
-
 	}
 	add_action( 'widgets_init', 'BCI_subpages_load_widgets' );
+
 	class BCI_Subpages_Widget extends WP_Widget {
+
 		function __construct() {
 			$widget_ops = array( 'classname' => 'widget_subpages', 'description' => __( 'Lists current section subpages', 'bci' ) );
-			parent::__construct( 'subpages-widget', __( 'BCI Subpages Widget', 'bci' ), $widget_ops );
+			parent::__construct( 'subpages-widget', __( 'Subpages Widget', 'bci' ), $widget_ops );
 		}
 		function widget( $args, $instance ) {
 			extract( $args, EXTR_SKIP );

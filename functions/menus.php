@@ -4,7 +4,6 @@
 	function bci_menus() {
 		register_nav_menus( array(
 			'side_icons' => 'Side Icon Menu',
-			'mega_menu' => 'Mega Menu',
 		) );
 	}
 	add_action( 'after_setup_theme', 'bci_menus' );
