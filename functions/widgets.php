@@ -1385,35 +1385,42 @@
 		function build_subpages( $subpages, $parents, $deep_subpages = 0, $depth = 1, $nest_subpages = 0 ) {
 			if( empty( $subpages ) )
 				return;
-			global $post, $BCI_subpages_is_first;
-			echo '<ul>';
+
+			global $post, $be_subpages_is_first;
+			if ($depth != 1){
+				echo '<span id="hover"></span><ul class="sub_subpages">';}
+			else{
+				echo '<ul class="subpages">';
+				}
 			foreach ( $subpages as $subpage ) {
 				$class = array();
-				$class[] = 'menu-item-' . $subpage->ID;
+				$class[] = 'menu-item menu-item-' . $subpage->ID;
 				if ( $subpage->ID == $post->ID )
 					$class[] = 'widget_subpages_current_page';
-				if( $BCI_subpages_is_first )
+				if( $be_subpages_is_first )
 					$class[] .= 'first-menu-item';
-				$BCI_subpages_is_first = false;
-				$class = apply_filters( 'BCI_subpages_widget_class', $class, $subpage );
+				$be_subpages_is_first = false;
+
+				$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 				$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
-				echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'BCI_subpages_page_title', $subpage->post_title, $subpage ) . '</a>';
+
+				echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title, $subpage ) . '</a>';
 				if (!$nest_subpages)
 					echo '</li>';
-				do_action( 'BCI_subpages_widget_menu_extra', $subpage, $class );
-				if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
+
+				do_action( 'be_subpages_widget_menu_extra', $subpage, $class );
 					$args = array(
 						'child_of' => $subpage->ID,
 						'parent' => $subpage->ID,
 						'sort_column' => 'menu_order',
 						'post_type' => get_post_type(),
 					);
-					$deeper_pages = get_pages( apply_filters( 'BCI_subpages_widget_args', $args, $depth ) );
+					$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
 					$depth++;
 					$this->build_subpages( $deeper_pages, $parents, $deep_subpages, $depth, $nest_subpages );
-				}
 				if ($nest_subpages)
 					echo '</li>';
+
 			}
 			echo '</ul>';
 		}
@@ -1451,3 +1458,4 @@
 			<?php
 		}
 	}
+
