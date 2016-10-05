@@ -14,10 +14,6 @@
 				<h2 class="page-title"><?php the_title(); ?></h2>
 			<?php } else {} ?>
 
-			<?php if ( has_post_thumbnail() ) : ?>
-				<?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?>
-			<?php endif; ?>
-
 			<?php the_content(); ?>
 
 			<div class="row">
