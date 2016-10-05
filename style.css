@@ -564,6 +564,38 @@ ul.widgets li.widget a {
 ul.widgets li.widget li {
 	border-left: 1px solid #fff;
 }
+ul.widgets li.widget li.menu-item {
+	position: relative;
+}
+ul.widgets li.widget li.menu-item .sub_subpages li {
+	height: 0;
+	opacity: 0;
+    overflow: hidden;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+#hover {
+	position: absolute;
+	top: 12px;
+	right: 0;
+	line-height: 1;
+	font-size: 12px;
+}
+#hover:before {
+	content: '\25bc';
+}
+ul.widgets li.widget li.menu-item:hover #hover:before {
+	content: '\25b2';
+}
+ul.widgets li.widget li.menu-item:hover .sub_subpages li {
+	opacity: 1;
+	height: auto;
+}
+ul.widgets li.widget li.menu-item.widget_subpages_current_page .sub_subpages li {
+	opacity: 1;
+	height: auto;
+}
 ul.widgets li.widget li.widget_subpages_current_page {
 	background: #efefef;
 	border-left: 1px solid #666;
@@ -1748,7 +1780,9 @@ h3.accordion-title.open:before {
 	font-family: 'nav';
 	content: "\e98d";
 }
-
+hr {
+	clear: both;
+}
 .single-newsletter p {
 	clear: both;
 }
@@ -1756,7 +1790,11 @@ h3.accordion-title.open:before {
 	width: 33.3333336%;
 	float: left;
 }
-.single-newsletter .oEmbed iframe {
+.page .oEmbed {
+	width: 49%;
+	float: left;
+}
+.single-newsletter .oEmbed iframe, .page .oEmbed iframe {
 	width: 100% !important;
 }
 .newslettercontent {
