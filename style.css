@@ -525,6 +525,16 @@ ul.widgets li.widget.widget_twitter_timeline {
 	padding: 0 0.9375rem;
 	border: none;
 }
+ul.widgets li.widget.widget_potm {
+	padding: 0.5em;
+	overflow: hidden;
+}
+ul.widgets li.widget.widget_potm li {
+	background-size: cover;
+}
+ul.widgets li.widget.widget_potm li a, ul.widgets li.widget.widget_potm li a:hover {
+	text-decoration: none !important;
+}
 ul.widgets li.widget h4.home-category {
 	font-style: italic;
 	border-top: 1px solid #efefef;
@@ -1731,7 +1741,37 @@ h3.accordion-title.open:before {
 	margin-bottom: 0.75em;
 }
 #notices .small-12.large-6 {
+}
+#notices .notice {
+	margin: 0.5em 0.2em;
 	padding: 0.5em;
+	background: rgba(255, 255, 0, 0.3);
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+}
+#notices .notice:before, #notices .notice:after {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  content: "";
+}
+#notices .notice:before {
+  border-top: solid 16px #fff;
+  border-right: solid 16px #fff;
+  border-left: solid 16px transparent;
+  border-bottom: solid 16px transparent;
+}
+#notices .notice:after {
+  border-bottom: solid 16px rgba(255, 255, 0, 0.3);
+  border-left: solid 16px rgba(255, 255, 0, 0.3);
+  border-right: solid 16px transparent;
+  border-top: solid 16px transparent;
+  box-shadow: -1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 0 0 0 10px;
 }
 .iconfont {
 	font-size: 1.6rem;
