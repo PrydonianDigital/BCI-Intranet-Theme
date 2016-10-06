@@ -10,7 +10,7 @@
 					<?php
 						$args = array (
 							'post_type' => array( 'tribe_events' ),
-							'posts_per_page' => 6,
+							'posts_per_page' => bci_get_option('homeevents'),
 							'tax_query'			=> array(
 								array(
 									'taxonomy' 	=> 'tribe_events_cat',
@@ -46,7 +46,7 @@
 					<?php
 						$args = array (
 							'post_type' => array( 'post' ),
-							'posts_per_page' => 6
+							'posts_per_page' => bci_get_option('homenews')
 						);
 						$news = new WP_Query( $args );
 						if ( $news->have_posts() ) :

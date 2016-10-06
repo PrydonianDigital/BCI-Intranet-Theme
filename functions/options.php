@@ -86,6 +86,18 @@
 				'type' => 'wysiwyg',
 			) );
 			$cmb->add_field( array(
+				'name' => __( 'Home Page News Stories', 'bci' ),
+				'desc' => __( 'Enter number of articles to appear on the home page (\'Stickies\' will increase this number)', 'bci' ),
+				'id'   => 'homenews',
+				'type' => 'text_small',
+			) );
+			$cmb->add_field( array(
+				'name' => __( 'Home Page Events', 'bci' ),
+				'desc' => __( 'Enter number of events to appear on the home page', 'bci' ),
+				'id'   => 'homeevents',
+				'type' => 'text_small',
+			) );
+			$cmb->add_field( array(
 				'name' => __( 'Twitter', 'bci' ),
 				'desc' => __( 'Enter the BCI Twitter username', 'bci' ),
 				'id'   => 'twitter',
