@@ -1,5 +1,133 @@
 <?php
 
+	function BCI_leavers_widget() {
+		register_widget( 'BCI_leavers' );
+	}
+	add_action( 'widgets_init', 'BCI_leavers_widget' );
+	class BCI_leavers extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_leavers', 'description' => __( 'BCI Leavers', 'bci' ) );
+			parent::__construct( 'leavers', __( 'BCI Leavers Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array (
+				'orderby'			=> 'meta_value',
+				'meta_key'			=> '_userleaving_date',
+				'order'				=> 'ASC',
+				'meta_query'		=> array(
+					array(
+						'key'       => '_userleaving_date',
+						'type' 		=> 'DATE',
+					),
+				)
+			);
+			$leaving = new WP_User_Query( $args );
+			$leavers = $leaving->get_results();
+			if ( ! empty( $leaving->results ) ) {
+				$title = apply_filters( 'widget_title', $instance['title']);
+				$desc = apply_filters( 'widget_title', $instance['desc']);
+				echo '<li class="widget new-joiners-widget">';
+				echo '<h2 class="widgettitle">'. $title .'</h2>';
+				echo '<ul class="new-joiners">';
+				echo '<li>'.$desc.'</li>';
+				foreach ( $leaving->results as $user ) {
+					$leavers_info = get_userdata($user->ID);
+					$title = get_the_author_meta( 'title', $user->ID );
+					$enddate = get_the_author_meta( '_userleaving_date', $user->ID );
+					$finalday = strtotime($enddate);
+					$remove = strtotime('today UTC');
+					$remove = strtotime('+1 week', $remove);
+					if( $finalday >= $remove ) {
+					echo '<li><i class="nav-user"></i> <a href="'. get_author_posts_url( $user->ID, get_the_author_meta( $user->first_name ) ) .'">' . $user->first_name . ' ' . $user->last_name . '</a> on ' . date('d/m/Y', $finalday ) . '</li>';
+					}
+				}
+				echo '</ul>';
+				echo '</li>';
+			}
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Leavers', 'bci' );
+			}
+			if ( isset( $instance[ 'desc' ] ) ) {
+				$desc = $instance[ 'desc' ];
+			} else {
+				$desc = __( 'Thank you to the following:', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'desc' ); ?>"><?php _e( 'Description:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'desc' ); ?>" name="<?php echo $this->get_field_name( 'desc' ); ?>" type="text" value="<?php echo esc_attr( $error ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['desc'] = strip_tags($new_instance['desc']);
+			return $instance;
+		}
+	}
+
+	function BCI_potm_widget() {
+		register_widget( 'BCI_potm' );
+	}
+	add_action( 'widgets_init', 'BCI_potm_widget' );
+	class BCI_potm extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_potm', 'description' => __( 'Paper of the Month', 'bci' ) );
+			parent::__construct( 'potm', __( 'BCI Paper of the Month Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$args = array (
+				'post_type'			=> 'potm',
+				'posts_per_page'	=> 1,
+			);
+			$potm = new WP_Query( $args );
+			if ($potm->have_posts()) : while ($potm->have_posts()) : $potm->the_post();
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+			echo '<li class="widget widget_potm">';
+			echo '<h2 class="widgettitle">'. $title .'</h2>';
+			echo '<ul>';
+			echo '<li class="item large-12 small-12 columns" style="">';
+			echo '<a href="' . get_the_permalink() . '">';
+			echo '<h4>' . get_the_title() . '</h4>';
+			echo get_the_excerpt();
+			echo '</a>';
+			echo '<a href="/social/paper-of-the-month/"><i class="nav-file-text-o"></i> See all</a>';
+			echo '</li>';
+			echo '</ul>';
+			echo '</li>';
+			endwhile;
+			endif;
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Paper of the Month', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
 	function BCI_login_widget() {
 		register_widget( 'BCI_login' );
 	}

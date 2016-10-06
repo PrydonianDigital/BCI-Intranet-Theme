@@ -453,6 +453,26 @@
 		return doc_link_start( array( 'post_type' => 'doc', 'numberposts' => -1 ) );
 	}
 
+
+
+	// Leaver on User profile
+	add_action( 'cmb2_init', 'bci_user_leaving' );
+	function bci_user_leaving() {
+		$prefix = '_userleaving_';
+		$cmb_user = new_cmb2_box( array(
+			'id' => $prefix . 'edit_metabox',
+			'title' => __( 'Leaving', 'bci' ),
+			'object_types' => array( 'user' ),
+			'show_names' => true,
+		) );
+		$cmb_user->add_field( array(
+			'desc' => __( 'Leaving date', 'bci' ),
+			'id' => $prefix . 'date',
+			'type' => 'text_date',
+			'date_format' => 'Y/m/d',
+		) );
+	}
+
 	// Apps on User profile
 	add_action( 'cmb2_init', 'yourprefix_register_user_profile_metabox' );
 	function yourprefix_register_user_profile_metabox() {
