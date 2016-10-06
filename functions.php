@@ -3,7 +3,7 @@
 	require 'theme-updates/theme-update-checker.php';
 	$example_update_checker = new ThemeUpdateChecker(
 		'bci_intranet',
-		'https://raw.githubusercontent.com/PrydonianDigital/BCI-Intranet-Theme/master/bci_intranet.json' //URL of the metadata file.
+		'http://prydonian.digital/themes/bci_intranet.json' //URL of the metadata file.
 	);
 
 	// Init CMB2
