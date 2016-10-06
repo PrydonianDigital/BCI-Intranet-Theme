@@ -137,7 +137,7 @@
 	}
 
 	function my_add_excerpt_meta_box( $post_type ) {
-		if ( in_array( $post_type, array( 'post', 'page', 'tribe_events', 'newsletter' ) ) ) {
+		if ( in_array( $post_type, array( 'post', 'page', 'tribe_events', 'newsletter', 'potm', 'potw' ) ) ) {
 			 add_meta_box(
 				'postexcerpt', __( 'Excerpt' ), 'post_excerpt_meta_box', $post_type, 'test', // change to something other then normal, advanced or side
 				'high'
