@@ -25,6 +25,12 @@
 			'id'   => $prefix . 'title',
 			'type' => 'checkbox',
 		) );
+		$cmb_anti->add_field( array(
+			'name' => 'Image Header',
+			'description' => __( 'Hide image header?.', 'bci' ),
+			'id'   => $prefix . 'image',
+			'type' => 'checkbox',
+		) );
 	}
 
 	// Categories
@@ -452,8 +458,6 @@
 	function doc_link() {
 		return doc_link_start( array( 'post_type' => 'doc', 'numberposts' => -1 ) );
 	}
-
-
 
 	// Leaver on User profile
 	add_action( 'cmb2_init', 'bci_user_leaving' );

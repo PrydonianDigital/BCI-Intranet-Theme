@@ -4,7 +4,10 @@
 
 		<div class="small-12 large-9 column" role="main">
 
-			<?php $title = get_post_meta( get_the_ID(), "_word_title", true ); ?>
+			<?php
+				$title = get_post_meta( get_the_ID(), "_word_title", true );
+				$image = get_post_meta( get_the_ID(), "_word_image", true );
+			?>
 			<?php if($title != 'on') { ?>
 				<h2 class="page-title">Book A Room</h2>
 			<?php } else {} ?>
