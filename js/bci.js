@@ -10,6 +10,16 @@ $s(window).load(function() {
 
 $s(function() {
 
+	$s('.menu-item').on('click', '#hover.closed', function(){
+		$s(this).addClass('open').removeClass('closed');
+		$s(this).next().addClass('open');
+	});
+
+	$s('.menu-item').on('click', '#hover.open', function(){
+		$s(this).addClass('closed').removeClass('open');
+		$s(this).next().removeClass('open');
+	});
+
 	$s('.sitemap ul.submenu').hide();
 	$s('.sitemap h2').on('click', 'i', function(){
 		$s(this).toggleClass('nav-minus-circle nav-plus-circle');

@@ -1516,7 +1516,7 @@
 
 			global $post, $be_subpages_is_first;
 			if ($depth != 1){
-				echo '<span id="hover"></span><ul class="sub_subpages">';}
+				echo '<span id="hover" class="closed"></span><ul class="sub_subpages">';}
 			else{
 				echo '<ul class="subpages">';
 				}
