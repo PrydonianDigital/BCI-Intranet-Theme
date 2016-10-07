@@ -1793,17 +1793,7 @@ h3.accordion-title.open:before {
 	margin: -215px 0 0 -160px;
 	z-index: 100;
 }
-.clef {
-	display: none;
-}
-.clef-embed-container {
-	width: 500px;
-	padding: 0.5em;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin: -240px 0 0 -250px;
-}
+
 #loginform {
 	padding: 1em 0 0 0;
 }
@@ -1822,17 +1812,20 @@ h3.accordion-title.open:before {
 }
 hr {
 	clear: both;
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
 }
 .single-newsletter p {
 	clear: both;
 }
-.single-newsletter .oEmbed {
+.single-newsletter .oEmbed, .page .oEmbed {
 	width: 33.3333336%;
 	float: left;
 }
-.page .oEmbed {
-	width: 49%;
-	float: left;
+.oEmbed p {
+	margin: 0;
 }
 .single-newsletter .oEmbed iframe, .page .oEmbed iframe {
 	width: 100% !important;
