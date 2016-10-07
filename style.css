@@ -1844,3 +1844,6 @@ hr {
 		float: none;
 	}
 }
+.acadp-social {
+	display: none !important;
+}
