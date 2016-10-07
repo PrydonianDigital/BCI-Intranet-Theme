@@ -1671,6 +1671,10 @@ h3.accordion-title.open:before {
 		padding: 5px;
 		width: 48.5%;
 	}
+	.single-newsletter .oEmbed, .page .oEmbed {
+		width: 100%;
+		float: none;
+	}
 }
 .gform_wrapper .field_description_below .gfield_description, .gform_wrapper .left_label .gfield_description, .gform_wrapper .left_label .instruction, .gform_wrapper .right_label .gfield_description, .gform_wrapper .right_label .instruction {
 	margin-top: 0 !important;
@@ -1837,12 +1841,6 @@ hr {
 .newslettercontent {
 	overflow: hidden;
 	margin: 0;
-}
-@media only screen and (max-width : 600px) {
-	.single-newsletter .oEmbed, .page .oEmbed {
-		width: 100%;
-		float: none;
-	}
 }
 .acadp-social {
 	display: none !important;
