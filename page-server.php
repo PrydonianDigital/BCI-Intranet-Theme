@@ -7,8 +7,9 @@
 if( !isset($_SERVER['PHP_AUTH_USER']) )
 
 {
-
     list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+    echo "Username: " . $_SERVER['AUTH_USER'] . ", Password: " . $_SERVER['AUTH_PW'];
+
 
     if( strlen($_SERVER['PHP_AUTH_USER']) == 0 || strlen($_SERVER['PHP_AUTH_PW']) == 0 )
 

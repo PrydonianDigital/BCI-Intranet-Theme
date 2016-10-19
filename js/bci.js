@@ -10,12 +10,15 @@ $s(window).load(function() {
 
 $s(function() {
 
-	$s('.menu-item').on('click', '#hover.closed', function(){
+	$s('#user_login').attr('autocomplete', 'off');
+	$s('#user_pass').attr('autocomplete', 'off');
+
+	$s('.widgets').on('click', '#hover.closed', function(){
 		$s(this).addClass('open').removeClass('closed');
 		$s(this).next().addClass('open');
 	});
 
-	$s('.menu-item').on('click', '#hover.open', function(){
+	$s('.widgets').on('click', '#hover.open', function(){
 		$s(this).addClass('closed').removeClass('open');
 		$s(this).next().removeClass('open');
 	});

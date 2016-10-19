@@ -144,7 +144,7 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 						<div class="appIcon" style="<?php $bg = get_post_meta( $app_id, "_app_colour", true ); ?>background: <?php echo $bg ?>; <?php $font = get_post_meta( $app_id, "_app_font", true ); if($font != '') { ?>color: <?php echo $font ?>;<?php } ?> ">
 							<div>
 							<?php $link = get_post_meta( $app_id, '_app_link', true ); if($link != '') : ?>
-							<a href="<?php $link = get_post_meta( $app_id, '_app_link', true ); echo $link; ?>" <?php $target = get_post_meta( $app_id, '_app_target', true ); if($target == 'on') : ?>target="_blank" rel="noopener"<?php endif; ?> style="color: <?php $font = get_post_meta( $app_id, '_app_font', true ); echo $font; ?>">
+							<a href="<?php $link = get_post_meta( $app_id, '_app_link', true ); echo $link; ?>?=app" <?php $target = get_post_meta( $app_id, '_app_target', true ); if($target == 'on') : ?>target="_blank" rel="noopener"<?php endif; ?> style="color: <?php $font = get_post_meta( $app_id, '_app_font', true ); echo $font; ?>">
 							<?php endif; ?>
 								<i class="<?php $icon = get_post_meta( $app_id, '_app_icon', true ); echo $icon; ?>"></i>
 

@@ -73,6 +73,25 @@
 	  	}
 	}
 
+	add_action('login_init', 'acme_autocomplete_login_init');
+	function acme_autocomplete_login_init() {
+	    ob_start();
+	}
+
+	add_action('login_form', 'acme_autocomplete_login_form');
+	function acme_autocomplete_login_form() {
+	    $content = ob_get_contents();
+	    ob_end_clean();
+	    $content = str_replace('id="user_pass"', 'id="user_pass" autocomplete="off"', $content);
+	    echo $content;
+	}
+
+	add_filter( 'auth_cookie_expiration', 'keep_me_logged_in_for_2_years' );
+
+	function keep_me_logged_in_for_2_years( $expirein ) {
+	    return 63113904; // 2 years in seconds
+	}
+
 	// Custom oEmbed Template
 	add_action( 'embed_head', 'embed_styles' );
 	function embed_styles() {

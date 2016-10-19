@@ -2,7 +2,7 @@
 Theme Name: BCI Intranet
 Theme URI: http://prydonian.digital/themes
 Description: Wordpress theme for BCI Intranet
-Version: 1.3
+Version: 1.3.8.6
 Author: Mark Duwe
 Author URI: http://prydonian.digital
 Tags:
@@ -577,7 +577,7 @@ ul.widgets li.widget li {
 ul.widgets li.widget li.menu-item {
 	position: relative;
 }
-ul.widgets li.widget li.menu-item .sub_subpages li {
+.sub_subpages {
 	height: 0;
 	opacity: 0;
     overflow: hidden;
@@ -602,11 +602,7 @@ ul.widgets li.widget li.menu-item .sub_subpages li {
 #hover.open:before {
 	content: '\25b2';
 }
-ul.widgets li.widget li.menu-item .sub_subpages.open li {
-	opacity: 1;
-	height: auto;
-}
-ul.widgets li.widget li.menu-item.widget_subpages_current_page .sub_subpages li {
+.sub_subpages.open {
 	opacity: 1;
 	height: auto;
 }

@@ -9,7 +9,7 @@
 		add_image_size( 'slider', '815', '228', true );
 		add_image_size( 'header', '1172', '200', true );
 		add_image_size( 'display', '300', '250', true );
-		add_image_size( 'thumbnail-news', '347', '150', true );
+		add_image_size( 'thumbnail-news', '329', '142', true );
 		add_image_size('post-secondary-image-thumbnail', 150, 150);
 		add_theme_support( 'title-tag' );
 		remove_action( 'wp_head', 'wp_generator' );
@@ -47,6 +47,11 @@
 			)
 		);
 	};
+
+	function disable_srcset( $sources ) {
+		return false;
+	}
+	add_filter( 'wp_calculate_image_srcset', 'disable_srcset' );
 
 	function bci_news_label() {
 		global $menu;
