@@ -6,6 +6,17 @@ $s(window).load(function() {
 		$s('.site-inner').attr('style', 'padding-top: calc(' + headH + 'px + 2em);');
 		$s('#appNav').attr('style', 'top: ' + headH + 'px;');
 	}, 0.1);
+
+	if($s('.sub_subpages').find('li.widget_subpages_current_page')) {
+		$s('.sub_subpages li.widget_subpages_current_page').parent().addClass('open');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().prev().addClass('open');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().parent().prev().addClass('open').removeClass('closed');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().parent().addClass('open');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().parent().parent().prev().addClass('open').removeClass('closed');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().parent().parent().addClass('open');
+		$s('.sub_subpages li.widget_subpages_current_page').parent().parent().parent().parent().prev().addClass('open').removeClass('closed');
+	}
+
 });
 
 $s(function() {
@@ -24,6 +35,7 @@ $s(function() {
 	});
 
 	$s('.sitemap ul.submenu').hide();
+
 	$s('.sitemap h2').on('click', 'i', function(){
 		$s(this).toggleClass('nav-minus-circle nav-plus-circle');
 		$s('.sitemap ul.submenu').slideToggle();

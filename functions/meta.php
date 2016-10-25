@@ -960,7 +960,7 @@
 		$cmb_user->add_field( array(
 			'name' 			=> __( 'Photo Credit', 'bci' ),
 			'id'			=> $prefix . 'user',
-			'type'			=> 'user_search_text',
+			'type'			=> 'text',
 		) );
 	}
 

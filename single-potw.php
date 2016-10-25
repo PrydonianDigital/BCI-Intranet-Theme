@@ -9,16 +9,7 @@
 				<div <?php post_class('news'); ?>>
 					<h2 class="page-title"><?php the_title(); ?></h2>
 					<?php the_post_thumbnail('full', array( 'class' => 'aligncenter' )); ?>
-					<h4 class="authors">Photo by:
-					<?php
-						$users = get_post_meta( get_the_ID(), '_potw_user', true );
-						$user_split = explode( ',', str_replace( ' ', '', $users ) );
-						foreach ( $user_split as $user ) {
-							$user = get_user_by( 'id', $user );
-							$name = trim( $user->display_name ) ? $user->display_name : $user->user_login;
-							echo $name . ' ';
-						}
-					?></h4>
+					<h4 class="authors">Photo by: <?php $photo = get_post_meta(get_the_ID(), '_potw_user', true); echo $photo; ?></h4>
 					<small class="meta"><?php the_time('l jS F, Y') ?><br /><?php edit_post_link('<i class="nav-pencil-square-o"></i> Edit', '', ''); ?></small>
 
 				</div>
