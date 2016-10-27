@@ -576,6 +576,7 @@ ul.widgets li.widget li {
 }
 ul.widgets li.widget li.menu-item {
 	position: relative;
+	padding-right: 40px;
 }
 .sub_subpages {
 	height: 0;
@@ -1461,6 +1462,10 @@ article.item a.readmore {
 .centreLead {
 	font-weight: 500;
 }
+.single-centre .attachment-post-secondary-image-thumbnail {
+	width: 200px;
+	height: auto;
+}
 .wp-pagenavi {
 	padding: 10px;
 }
@@ -1782,6 +1787,9 @@ h3.accordion-title.open:before {
 }
 .iconfont i {
 	font-family: 'nav';
+}
+.page-picture-of-the-week .potw {
+	min-height: 290px;
 }
 /* LOG IN FORM */
 .page-template-login a {
