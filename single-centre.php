@@ -9,9 +9,14 @@
 				<div <?php post_class('news'); ?>>
 					<h2 class="page-title"><?php the_title(); ?></h2>
 
-					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail('header', array( 'class' => 'alignright' )); ?>
-					<?php endif; ?>
+					<?php if (class_exists('MultiPostThumbnails')) :
+						MultiPostThumbnails::the_post_thumbnail(
+							get_post_type(),
+							'secondary-image',
+							NULL,
+							'post-secondary-image-thumbnail alignright'
+						);
+					endif; ?>
 
 					<?php
 						$args = array (
