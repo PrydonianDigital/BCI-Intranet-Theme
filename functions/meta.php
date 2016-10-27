@@ -1255,7 +1255,7 @@
 			'description' => __( 'print date', 'bci' ),
 			'id'   => $prefix . 'date',
 			'type' => 'text_date',
-			'date_format' => __( 'jS F Y', 'bci' ),
+			'date_format' => __( 'd/m/Y', 'bci' ),
 		) );
 	}
 
