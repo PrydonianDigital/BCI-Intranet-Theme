@@ -399,7 +399,10 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	});
 
 	function my_custom_login() {
+		$less = new lessc;
+		$logo = get_header_image();
 		echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/css/custom-login-styles.css" />';
+		echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @navBg: ".bci_get_option( "color3" )."; @navSecondary: ".bci_get_option( "color2" )."; body { background: @navBg; } .login .button-primary { background: ".bci_get_option( "color2" )." !important; }") . '</style>';
 	}
 	add_action('login_head', 'my_custom_login');
 
@@ -413,6 +416,18 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 		}
 	}
 	add_action( 'login_head', 'login_function' );
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'BCINet';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+add_action('init', 'prevent_wp_login');
 
 	function no_wordpress_errors() {
 		return '';
@@ -433,17 +448,17 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 		echo "<script>document.getElementById('rememberme').checked = true;</script>";
 	}
 
-	function auto_login() {
-		if ( !is_user_logged_in() && isset($_SERVER['AUTH_USER']) ) {
-			$user_login = substr($_SERVER['AUTH_USER'], strrpos($_SERVER['AUTH_USER'],'\\')+1, strlen($_SERVER['AUTH_USER'])-strrpos($_SERVER['AUTH_USER'],'\\'));
-			$user = get_user_by('login', $user_login);
-			$user_id = $user->ID;
-			wp_set_current_user($user_id, $user_login);
-			wp_set_auth_cookie($user_id);
-			do_action('wp_login', $user_login);
-		}
-	}
-	add_action('init', 'auto_login');
+//	function auto_login() {
+//		if ( !is_user_logged_in() && isset($_SERVER['AUTH_USER']) ) {
+//			$user_login = substr($_SERVER['AUTH_USER'], strrpos($_SERVER['AUTH_USER'],'\\')+1, strlen($_SERVER['AUTH_USER'])-strrpos($_SERVER['AUTH_USER'],'\\'));
+//			$user = get_user_by('login', $user_login);
+//			$user_id = $user->ID;
+//			wp_set_current_user($user_id, $user_login);
+//			wp_set_auth_cookie($user_id);
+//			do_action('wp_login', $user_login);
+//		}
+//	}
+//	add_action('init', 'auto_login');
 
 	function restrict_admin() {
 		if ( ! current_user_can( 'edit_posts' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
@@ -537,3 +552,23 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 
 		return $query;
 	}
+
+	add_action( 'pre_get_posts', 'exclude_events_category' );
+	function exclude_events_category( $query ) {
+
+	if ( $query->query_vars['eventDisplay'] == 'list' && !is_tax(Tribe__Events__Main::TAXONOMY) || $query->query_vars['eventDisplay'] == 'month' && $query->query_vars['post_type'] == TribeEvents::POSTTYPE && !is_tax(Tribe__Events__Main::TAXONOMY) && empty( $query->query_vars['suppress_filters'] ) ) {
+
+		$query->set( 'tax_query', array(
+
+			array(
+				'taxonomy' => Tribe__Events__Main::TAXONOMY,
+				'field' => 'slug',
+				'terms' => array('can-inf', 'cecm', 'haem-onc', 'mol-onc', 'stem-cells', 'tumour-bio'),
+				'operator' => 'NOT IN'
+			)
+			)
+		);
+	}
+	return $query;
+	}
+

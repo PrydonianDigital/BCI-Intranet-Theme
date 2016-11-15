@@ -1,10 +1,3 @@
-<?php
-get_currentuserinfo();
-global $user_ID;
-if ($user_ID == '') {
-	header('Location: /login'); exit();
-}
-?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
@@ -84,8 +77,13 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 			<a href="#"><i class="nav-menu"></i></a>
 		</div>
 
-		<div id="apps" class="<?php $user = wp_get_current_user(); if ( in_array( 'administrator', (array) $user->roles ) ) { ?>wide<?php } ?>">
-			<?php if(current_user_can('activate_plugins') && is_user_logged_in() ) { ?>
+		<?php
+			$inRoles = array();
+			$allowedToAccess = array('administrator','editor');
+		?>
+
+		<div id="apps" class="<?php $user = wp_get_current_user(); if( current_user_can('editor') || current_user_can('administrator') ) { ?>wide<?php } ?>">
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) { ?>
 				<a class="appsButton close dash" id="dash"  href="<?php echo admin_url(); ?>" title="Dashboard"><i class="nav-equalizer2"></i></a>
 			<?php } ?>
 			<a class="appsButton close search" id="search"  href="<?php bloginfo('url'); ?>/search/" title="Search"><i class="nav-search"></i></a>
