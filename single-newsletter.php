@@ -15,6 +15,14 @@
 					<?php endif; ?>
 					<div class="newslettercontent">
 					<?php the_content(); ?>
+					<?php
+						$pdf = get_post_meta(get_the_ID(), '_newsletter_pdf', true);
+						if($pdf != '') {
+					?>
+					<p><a href="<?php echo $pdf; ?>">Download <?php the_title(); ?></a></p>
+					<?php
+						}
+					?>
 					</div>
 					<small>This entry was posted on <?php the_time('l jS F, Y') ?> at <?php the_time() ?></small>
 
