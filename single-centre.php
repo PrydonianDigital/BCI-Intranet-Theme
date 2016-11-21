@@ -137,7 +137,7 @@
 							echo '</div>';
 							echo '<div class="row" id="notices">';
 							foreach( $notices as $notice ) {
-								echo '<div class="small-12 large-6 column">';
+								echo '<div class="small-12 large-6 column end">';
 								echo '<div class="notice">';
 								echo '<h3><a href="'. $notice->guid . '">'. $notice->post_title . '</a></h3>';
 								echo $notice->post_excerpt;
