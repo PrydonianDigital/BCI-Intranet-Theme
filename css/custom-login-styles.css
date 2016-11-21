@@ -14,11 +14,9 @@ body {
 /* LOG IN FORM */
 .login a {
 	color: #fff;
-	text-decoration: none;
 }
-
 .login form {
-	padding: 1em 0 0 0;
+	padding: 1em 0;
 	background: none;
 	box-shadow: none;
 }
@@ -47,7 +45,15 @@ body {
 .login label {
 	font-size: 1.4rem;
 }
-
+.login p.disclaimer {
+	color: #fff;
+	width: 80%;
+	max-width: 660px;
+	margin: 0 auto 0.2em auto;
+	line-height: 1.35;
+	font-size: 12px;
+	text-align: center;
+}
 .login input[type="text"]{
 	background-color: #ffffff;
 	border-color:#dddddd;
