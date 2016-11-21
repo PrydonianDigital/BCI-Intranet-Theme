@@ -32,21 +32,24 @@
 			$args = array (
 				'number'			=> '-1',
 				'meta_query'		=> array(
+					'relation'  	=> 'AND',
 					array(
 						'key'		=> '_usercentre_main_safety',
-						'value'	 => 'on',
+						'value'		=> 'on',
 						'compare'   => 'EXISTS',
 					),
-				),
-				'orderby'			=> 'meta_value_num',
-				'meta_key'			=> '_usercentre_centre',
-				'order'				=> 'ASC'
+					array(
+						'key'		=> '_usercentre_centre',
+						'orderby'	=> 'menu_order',
+						'order'		=> 'DESC'
+					),
+				)
 			);
 			$hands = new WP_User_Query( $args );
 			if ( ! empty( $hands->results ) ) {
 				foreach ( $hands->results as $user ) {
 					$dept = get_post($user->_usercentre_centre);
-					echo '<div class="row zebra">';
+					echo '<div class="row zebra ' .get_post_field( 'menu_order', $dept->ID) . ' ' . $user->_usercentre_centre . '">';
 					echo '<div class="large-3 small-12 columns"><strong>' . $dept->post_title  . '</strong></div>';
 					echo '<div class="large-4 small-12 columns">' . $user->first_name . ' ' . $user->last_name . '</div>';
 					echo '<div class="large-2 small-12 columns"><i class="nav-phone"></i> x' . $user->_me_ext . '</div>';
@@ -62,15 +65,18 @@
 			$args = array (
 				'number'			=> '-1',
 				'meta_query'		=> array(
+					'relation'  	=> 'AND',
 					array(
 						'key'	   => '_usercentre_first_aider',
 						'value'	 => 'on',
 						'compare'   => 'EXISTS',
 					),
-				),
-				'orderby'			=> 'meta_value_num',
-				'meta_key'			=> '_usercentre_centre',
-				'order'				=> 'ASC'
+					array(
+						'key'		=> '_usercentre_centre',
+						'orderby'	=> 'menu_order',
+						'order'		=> 'DESC'
+					),
+				)
 			);
 			$hands = new WP_User_Query( $args );
 			if ( ! empty( $hands->results ) ) {
@@ -92,15 +98,18 @@
 			$args = array (
 				'number'			=> '-1',
 				'meta_query'		=> array(
+					'relation'  	=> 'AND',
 					array(
 						'key'	   => '_usercentre_fire_marshall',
 						'value'	 => 'on',
 						'compare'   => 'EXISTS',
 					),
-				),
-				'orderby'			=> 'meta_value_num',
-				'meta_key'			=> '_usercentre_centre',
-				'order'				=> 'ASC'
+					array(
+						'key'		=> '_usercentre_centre',
+						'orderby'	=> 'menu_order',
+						'order'		=> 'DESC'
+					),
+				)
 			);
 			$hands = new WP_User_Query( $args );
 			if ( ! empty( $hands->results ) ) {
