@@ -42,35 +42,28 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 
 <div id="container">
 
-	<header class="site-header" itemscope="" itemtype="http://schema.org/WPHeader">
 	<?php
 		if(is_page('Home')) {
-			$args = array (
-				'post_type' => array( 'announcement' ),
-				'posts_per_page' => '1',
-			);
-			$argh = new WP_Query( $args );
+	?>
 
-			if ( $argh->have_posts() ) {
-				while ( $argh->have_posts() ) {
-					$argh->the_post();
-			?>
-			<div id="announcement">
-				<div id="announcementClose">
-					<i class="nav-close2"></i>
-				</div>
-					<div>
-						<h2><?php the_title(); ?></h2>
-						<?php the_content(); ?>
-					</div>
-				</a>
-			</div>
-			<?php
-				}
-			} else {}
-			wp_reset_postdata();
+	<header class="site-header <?php has_announcements(); ?>" itemscope="" itemtype="http://schema.org/WPHeader">
+
+	<?php
+		} else {
+	?>
+
+	<header class="site-header" itemscope="" itemtype="http://schema.org/WPHeader">
+
+	<?php
 		}
 	?>
+
+		<?php
+			if(is_page('Home')) {
+				recent_posts(1);
+			} else {}
+		?>
+
 		<?php the_custom_logo(); ?>
 
 		<div id="navShow">
@@ -162,4 +155,18 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 		</div>
 	</div>
 
+	<?php
+		if(is_page('Home')) {
+	?>
+
+	<div class="site-inner <?php has_announcements(); ?>">
+
+	<?php
+		} else {
+	?>
+
 	<div class="site-inner">
+
+	<?php
+		}
+	?>
