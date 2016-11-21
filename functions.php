@@ -49,6 +49,7 @@
 		echo '.wp-embed-footer {display:none !important;}';
 		echo '.wp-embed {font-family: "Roboto" !important; color: #222 !important;}';
 		echo '.wp-embed-heading {color: #25023B !important;}';
+		echo '.wp-embed-featured-image.square {max-width: 100px !important;}';
 		echo '</style>';
 	}
 
@@ -242,3 +243,37 @@
 		register_wpas_form('equipment', $args);
 		}
 	add_action('init', 'equip_search');
+
+	function recent_posts($no_posts = 1) {
+		global $wpdb;
+		$request = "SELECT ID, post_title, post_content FROM $wpdb->posts WHERE post_status = 'publish' AND post_type='announcement' ORDER BY post_date DESC LIMIT $no_posts";
+		$posts = $wpdb->get_results($request);
+		if($posts) {
+			foreach ($posts as $posts) {
+				$post_title = stripslashes($posts->post_title);
+				$permalink = get_permalink($posts->ID);
+				$output .= '<div id="announcement">';
+				$output .= '<div id="announcementClose">';
+				$output .= '<i class="nav-close2"></i>';
+				$output .= '</div>';
+				$output .= '<div>';
+				$output .= '<h2>' . htmlspecialchars($post_title, ENT_COMPAT) . '</h2>';
+				$output .= stripslashes($posts->post_content);
+				$output .= '</div>';
+				$output .= '</div>';
+			}
+		} else {
+			$output .= '<header class="site-header" itemscope="" itemtype="http://schema.org/WPHeader">';
+		}
+		echo $output;
+	}
+
+	function has_announcements() {
+		global $wpdb;
+		$request = "SELECT ID, post_title, post_content FROM $wpdb->posts WHERE post_status = 'publish' AND post_type='announcement' ORDER BY post_date DESC LIMIT 1";
+		$posts = $wpdb->get_results($request);
+		if($posts) {
+			$output .=  ' announcements';
+		}
+		echo $output;
+	}
