@@ -7,7 +7,7 @@
 		foreach( $pages as $page ) {
 			$link = get_post_meta($page->ID, 'link_url', true);
 			echo '<li>';
-			echo '<a href="'. $link . '">'. $page->post_title . '</a>';
+			echo '<a href="'. $link . '" target="_blank">'. $page->post_title . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -21,7 +21,7 @@
 		foreach( $posts as $post ) {
 			$link = get_post_meta($posts->ID, 'link_url', true);
 			echo '<li>';
-			echo '<a href="'. $link . '">'. $posts->post_title . '</a>';
+			echo '<a href="'. $link . '" target="_blank">'. $posts->post_title . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -35,7 +35,7 @@
 //		foreach( $centres as $centre ) {
 //			$link = get_post_meta($centres->ID, 'link_url', true);
 //			echo '<li>';
-//			echo '<a href="'. $link . '">'. $centres->post_title . '</a>';
+//			echo '<a href="'. $link . '" target="_blank">'. $centres->post_title . '</a>';
 //			echo '</li>';
 //		}
 //		echo '</ul>';
@@ -49,7 +49,7 @@
 		foreach( $events as $event ) {
 			$link = get_post_meta($centres->ID, 'link_url', true);
 			echo '<li>';
-			echo '<a href="'. $link . '">'. $events->post_title . '</a>';
+			echo '<a href="'. $link . '" target="_blank">'. $events->post_title . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
