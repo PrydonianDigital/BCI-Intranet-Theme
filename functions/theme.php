@@ -417,17 +417,25 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	}
 	add_action( 'login_head', 'login_function' );
 
-function my_login_logo_url() {
-return get_bloginfo( 'url' );
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
+	function my_login_logo_url() {
+		return get_bloginfo( 'url' );
+	}
+	add_filter( 'login_headerurl', 'my_login_logo_url' );
 
-function my_login_logo_url_title() {
-return 'BCINet';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+	function my_login_logo_url_title() {
+		return 'BCINet';
+	}
+	add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 
-add_action('init', 'prevent_wp_login');
+	function my_loginfooter() { ?>
+	    <p class="disclaimer">Do not attempt to access this system unless you are authorised to do so.</p>
+		<p class="disclaimer">Authorisation in this context means you are using logon credentials which have been issued directly to you.</p>
+		<p class="disclaimer">Failure to comply with the above statement will be an infringement of Queen Mary University of London security policy and standard operating procedures.</p>
+		<p class="disclaimer">For a full list of these documents please <a href="http://www.infosec.qmul.ac.uk/" target="_blank">click here</a>.</p>
+		<p class="disclaimer">This system is fully logged for auditing purposes</p>
+		<?php
+	}
+	add_action('login_footer','my_loginfooter');
 
 	function no_wordpress_errors() {
 		return '';
