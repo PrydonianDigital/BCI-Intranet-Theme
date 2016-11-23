@@ -58,14 +58,7 @@ get_header('email');
 								<?php echo $current_user->_me_building ?>, Charterhouse Square, London EC1M 6BQ</p>
 								T: +44 (0)20 7882 <?php echo $current_user->_me_ext; ?> <?php if($fax !='') { echo '| F: ' . $fax; } ?> | E: <a href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a><br />
 								<a href="http://www.bci.qmul.ac.uk">http://www.bci.qmul.ac.uk</a><br /><br />
-								<?php if(bci_get_option( 'aslogo' ) != ''){ ?><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/AS-silver-white-background.png" width="88" /> <?php } ?><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/barts_blue_large.gif" width="250" /><br /><br />
-								<a href="https://twitter.com/<?php echo bci_get_option( 'twitter' ); ?>"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/TW_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="https://www.facebook.com/<?php echo bci_get_option( 'facebook' ); ?>"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/FB_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="http://www.linkedin.com/company/<?php echo bci_get_option( "linkedin" ); ?>"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/Lin_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="http://www.pinterest.com/<?php echo bci_get_option( 'pinterest' ); ?>/"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/Pin_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="http://www.flickr.com/photos/<?php echo bci_get_option( 'flickr' ); ?>/"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/Flickr_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="https://plus.google.com/u/0/<?php echo bci_get_option( 'google' ); ?>/posts"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/G_BCIblue_transp.png" width="35" /></a>&nbsp;
-								<a href="http://www.youtube.com/user/<?php echo bci_get_option( 'youtube' ); ?>"><img src="http://www.bci.qmul.ac.uk/images/stories/Hidden-page-media/YT_BCIblue_transp.png" width="35" /></a></font></font>
+								</font></font>
 							</td>
 						</tr>
 					</table>
