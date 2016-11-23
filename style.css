@@ -1779,6 +1779,9 @@ hr {
 }
 
 @media only screen and (max-width: 680px) {
+	header.site-header {
+		padding: 0 0.25em;
+	}
 	header.site-header .custom-logo-link {
 		display: inline-block;
 		float: left;
@@ -1809,12 +1812,12 @@ hr {
 	}
 	#apps {
 		text-align: left;
-		margin: 1em 2.5em 0 0;
+		margin: 1em 2.9em 0 0;
 		clear: both;
 		width: 150px;
 	}
 	#apps.wide {
-		width: 200px;
+		width: 185px;
 	}
 	#apps a {
 		height: 32px;
@@ -1848,8 +1851,8 @@ hr {
 	}
 	#navShow {
 		position: absolute;
-		bottom: 0;
-		right: 1em;
+		bottom: 2.2em;
+		right: 0.5em;
 		display: block;
 	}
 	.home-news {
