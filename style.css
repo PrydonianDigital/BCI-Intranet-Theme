@@ -66,7 +66,7 @@ header.site-header {
 	width: calc(100% - 100px);
 	height: 104px;
 }
-header.site-header.announcements {
+.home header.site-header.announcements {
 	height: 178px;
 }
 header.site-header .custom-logo-link {
@@ -85,11 +85,8 @@ header.site-header #site-logo {
 	line-height: 1;
 }
 header.site-header #announcement {
-	width: calc(100% + 2em);
-	margin: 0 -1em 0 -1em;
-}
-header.site-header #announcement a {
-	color: #222;
+	width: calc(100% + 3em);
+	margin: 0 -1.5em 0 -1.5em;
 }
 #navShow {
 	color: #fff;
@@ -218,8 +215,6 @@ header.site-header #announcement a {
 	margin-right: auto;
 }
 #announcement {
-	background: #E0E000;
-	color: #222 !important;
 }
 #announcement #announcementClose {
 	position: absolute;
@@ -230,13 +225,12 @@ header.site-header #announcement a {
 	cursor: pointer;
 }
 #announcement #announcementClose a {
-	color: #222 !important;
 	text-decoration: none;
 }
 .single-tribe_events .tribe-events-notices {
 	margin-top: 0 !important;
 }
-#announcement:before, .tribe-events-notices:before {
+.tribe-events-notices:before {
 	content: "\ea0c";
 	color: #2d592e;
 	font-family: 'nav';
@@ -246,15 +240,17 @@ header.site-header #announcement a {
 	margin: 0.2em 1em 0 0;
 }
 #announcement:before {
-	color: #222;
 	font-size: 2rem;
 }
 #announcement div, .tribe-events-notices > ul {
 	display: block !important;
 	float: left !important;
 }
-#announcement h2, #announcement p {
+#announcement h2 {
 	margin: 0 0 0.5em 0;
+	font-size: 1.6rem;
+}
+#announcement {
 	font-size: 1.4rem;
 }
 #announcement p {
@@ -1769,6 +1765,9 @@ hr {
 }
 .acadp-social {
 	display: none !important;
+}
+.gform_wrapper .field_sublabel_below .ginput_complex.ginput_container label, .gform_wrapper .field_sublabel_above .ginput_complex.ginput_container label, .gform_wrapper .field_sublabel_above div[class*=gfield_date_].ginput_container label, .gform_wrapper .field_sublabel_above div[class*=gfield_time_].ginput_container label, .gform_wrapper .field_sublabel_below .ginput_complex.ginput_container label, .gform_wrapper .field_sublabel_below div[class*=gfield_date_].ginput_container label, .gform_wrapper .field_sublabel_below div[class*=gfield_time_].ginput_container label, .gform_wrapper .description, .gform_wrapper .gfield_description, .gform_wrapper .gsection_description, .gform_wrapper .instruction {
+	font-size: 1.2rem;
 }
 
 /** ---------- @media queries ---------- **/

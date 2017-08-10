@@ -251,8 +251,11 @@
 		if($posts) {
 			foreach ($posts as $posts) {
 				$post_title = stripslashes($posts->post_title);
+				$text = bci_get_option('text');
+				$bg = bci_get_option('bg');
 				$permalink = get_permalink($posts->ID);
-				$output .= '<div id="announcement">';
+				$output .= '<div id="announcement" class="' . $text . '-text ' . $bg . '">';
+				$output .= '<style>#announcement:before, #announcement #announcementClose a, header.site-header #announcement a {color:' . $text . '} #announcement:before {content: "\ea0c"; font-family: \'nav\'; font-size: 2rem; display: block; float: left; margin: 0.2em 1em 0 0;}</style>';
 				$output .= '<div id="announcementClose">';
 				$output .= '<i class="nav-close2"></i>';
 				$output .= '</div>';
@@ -263,7 +266,6 @@
 				$output .= '</div>';
 			}
 		} else {
-			$output .= '<header class="site-header" itemscope="" itemtype="http://schema.org/WPHeader">';
 		}
 		echo $output;
 	}

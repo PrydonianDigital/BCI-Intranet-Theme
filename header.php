@@ -10,6 +10,19 @@
 $less = new lessc;
 echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @navBg: ".bci_get_option( "color3" )."; @navSecondary: ".bci_get_option( "color2" )."; footer, header.site-header { background: @furniture; } #sideNavContainer { background: @navBg; } .single-antibody nav#sideNav li.current_page_parent,.post-type-archive-tribe_events nav#sideNav li.current_page_parent, .single-tribe_events nav#sideNav li.current_page_parent, .post-type-archive-potm nav#sideNav li.current_page_parent, .single-potm nav#sideNav li.current_page_parent, .post-type-archive-potw nav#sideNav li.current_page_parent, .single-potw nav#sideNav li.current_page_parent, .single-cell_line nav#sideNav li.current_page_parent, .single-equipment nav#sideNav li.current_page_parent, .single-centre nav#sideNav li.current_page_parent, .post-type-archive-centre nav#sideNav li.current_page_parent, .author nav#sideNav li.current_page_parent, .single-tribe_venue nav#sideNav li.current_page_parent { background: @navBg; } nav#sideNav li:hover, nav#sideNav li.current_page_item, nav#sideNav li.current_page_parent, nav#sideNav li.current-page-ancestor, .post-type-archive-tribe_events nav#sideNav li.current_page_parent:hover, .single-antibody nav#sideNav li.current_page_parent:hover, .single-antibody nav#sideNav li.nav-lab, .single-cell_line nav#sideNav li.menu-item-1602, .single-antibody nav#sideNav li.menu-item-1602, .single-equipment nav#sideNav li.menu-item-1602, .post-type-archive-centre nav#sideNav li.current-menu-item, .single-centre nav#sideNav li.current-menu-item { background: @navSecondary; } .tribe-mini-calendar-event .list-date { background: @furniture !important; } .tribe-mini-calendar-event .list-date .list-dayname { color: @furniture !important; }") . '</style>';
 ?>
+<?php if(bci_get_option('googleanalytics') != '') { ?>
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '<?php echo bci_get_option('googleanalytics'); ?>', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+<?php } ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -42,27 +55,13 @@ echo '<style>' . $less->compile("@furniture: ".bci_get_option( "color" )."; @nav
 
 <div id="container">
 
-	<?php
-		if(is_page('Home')) {
-	?>
-
 	<header class="site-header <?php has_announcements(); ?>" itemscope="" itemtype="http://schema.org/WPHeader">
 
 	<?php
-		} else {
+		if(is_page('Home')) {
+			recent_posts(1);
+		} else {}
 	?>
-
-	<header class="site-header" itemscope="" itemtype="http://schema.org/WPHeader">
-
-	<?php
-		}
-	?>
-
-		<?php
-			if(is_page('Home')) {
-				recent_posts(1);
-			} else {}
-		?>
 
 		<?php the_custom_logo(); ?>
 

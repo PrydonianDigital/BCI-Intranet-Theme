@@ -5,11 +5,20 @@
 		<div class="small-12 large-9 column" role="main">
 
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				<?php
+					$title = get_post_meta( get_the_ID(), "_word_title", true );
+					$image = get_post_meta( get_the_ID(), "_word_image", true );
+				?>
 
 				<div <?php post_class('news'); ?>>
-					<h2><?php the_title(); ?></h2>
 
+					<?php if($title != 'on') { ?>
+					<h2><?php the_title(); ?></h2>
+					<?php } else {} ?>
+
+					<?php if($image != 'on') { ?>
 					<?php the_post_thumbnail('header', array( 'class' => 'aligncenter' )); ?>
+					<?php } else {} ?>
 
 					<?php the_content(); ?>
 

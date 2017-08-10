@@ -67,6 +67,12 @@
 				'type' => 'text_small',
 			) );
 			$cmb->add_field( array(
+				'name' => __( 'Google Analytics Tracking Code', 'bci' ),
+				'desc' => __( 'Enter the tracking ID number', 'bci' ),
+				'id'   => 'googleanalytics',
+				'type' => 'text',
+			) );
+			$cmb->add_field( array(
 				'name' => __( '404 Page title', 'bci' ),
 				'desc' => __( 'Enter the title for the 404 Page', 'bci' ),
 				'id'   => '404title',
@@ -168,6 +174,66 @@
 				'desc' => __( 'Choose a highlight colour for the Side Nav', 'bci' ),
 				'id'   => 'color2',
 				'type' => 'colorpicker',
+			) );
+			$cmb->add_field( array(
+				'name' => 'Announcement Text Colour',
+				'description' => __( 'Text colour for announcements', 'sc' ),
+				'id'   => 'text',
+				'type' => 'select',
+				'default' => 'black',
+				'options' => array(
+					'red' => 'red',
+					'pink' => 'pink',
+					'purple' => 'purple',
+					'deep-purple' => 'deep-purple',
+					'indigo' => 'indigo',
+					'blue' => 'blue',
+					'light-blue' => 'light-blue',
+					'cyan' => 'cyan',
+					'teal' => 'teal',
+					'green' => 'green',
+					'light-green' => 'light-green',
+					'lime' => 'lime ',
+					'yellow' => 'yellow',
+					'amber' => 'amber',
+					'orange' => 'orange',
+					'deep-orange' => 'deep-orange',
+					'brown' => 'brown',
+					'grey' => 'grey',
+					'blue-grey ' => 'blue-grey ',
+					'black' => 'black',
+					'white' => 'white'
+				)
+			) );
+			$cmb->add_field( array(
+				'name' => 'Announcement Background Colour',
+				'description' => __( 'Background colour for announcements', 'sc' ),
+				'id'   => 'bg',
+				'type' => 'select',
+				'default' => 'yellow',
+				'options' => array(
+					'red' => 'red',
+					'pink' => 'pink',
+					'purple' => 'purple',
+					'deep-purple' => 'deep-purple',
+					'indigo' => 'indigo',
+					'blue' => 'blue',
+					'light-blue' => 'light-blue',
+					'cyan' => 'cyan',
+					'teal' => 'teal',
+					'green' => 'green',
+					'light-green' => 'light-green',
+					'lime' => 'lime ',
+					'yellow' => 'yellow',
+					'amber' => 'amber',
+					'orange' => 'orange',
+					'deep-orange' => 'deep-orange',
+					'brown' => 'brown',
+					'grey' => 'grey',
+					'blue-grey ' => 'blue-grey ',
+					'black' => 'black',
+					'white' => 'white'
+				)
 			) );
 		}
 		public function settings_notices( $object_id, $updated ) {

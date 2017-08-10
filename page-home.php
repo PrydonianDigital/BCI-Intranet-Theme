@@ -46,7 +46,9 @@
 					<?php
 						$args = array (
 							'post_type' => array( 'post' ),
-							'posts_per_page' => bci_get_option('homenews')
+							'posts_per_page' => bci_get_option('homenews'),
+							'order' => 'DESC',
+							'orderby' => 'date'
 						);
 						$news = new WP_Query( $args );
 						if ( $news->have_posts() ) :

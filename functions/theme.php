@@ -112,7 +112,9 @@
 
 	function tour() {
 		wp_register_style( 'tour', get_template_directory_uri() . '/css/tour.css', false, '0.10.3' );
+		wp_register_style( 'announcement', get_template_directory_uri() . '/css/announcement.css', false, '1' );
 		wp_enqueue_style( 'tour' );
+		wp_enqueue_style( 'announcement' );
 	}
 	add_action( 'wp_enqueue_scripts', 'tour' );
 
@@ -409,7 +411,7 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	function login_function() {
 		add_filter( 'gettext', 'username_change', 20, 3 );
 		function username_change( $translated_text, $text, $domain ) {
-			if ($text === 'Username or Email') {
+			if ($text === 'Username or Email Address') {
 				$translated_text = 'QMCR Username';
 			}
 			return $translated_text;
@@ -437,15 +439,10 @@ add_filter( 'post_updated_messages', 'bci_update_messages' );
 	}
 	add_action('login_footer','my_loginfooter');
 
-	function no_wordpress_errors() {
-		return '';
-	}
-	add_filter( 'login_errors', 'no_wordpress_errors' );
-
-	function remove_loginshake() {
-		remove_action('login_head', 'wp_shake_js', 12);
-	}
-	add_action('login_head', 'remove_loginshake');
+function login_error_override() {
+    return 'Login failed; please ensure you are using your BCI username and password, not your QMUL username';
+}
+add_filter('login_errors', 'login_error_override');
 
 	function login_checked_remember_me() {
 		add_filter( 'login_footer', 'rememberme_checked' );

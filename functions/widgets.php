@@ -1,5 +1,67 @@
 <?php
 
+	function BCI_RSS_Widget() {
+		register_widget( 'BCI_RSS' );
+	}
+	add_action( 'widgets_init', 'BCI_RSS_Widget' );
+	class BCI_RSS extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_bci_rss', 'description' => __( 'BCI RSS', 'bci' ) );
+			parent::__construct( 'bci_rss', __( 'BCI RSS Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+
+			$feed = $instance[ 'bci_rss' ];
+			$rss = simplexml_load_file($feed);
+
+			echo '<li class="widget widget_rss">';
+			echo '<h2 class="widgettitle">'. $title .'</h2>';
+			echo '<ul>';
+			foreach($rss->channel->item as $i => $item) {
+				$description = $item->description;
+				$time = substr($description, 0,10);
+				$blurb = substr($description, 10);
+				echo '<li class="widget_rss">';
+				echo '<h3><a href="'. $item->link .'">' . $item->title . "</a></h3>";
+				echo "<p>" . $blurb . "</p>";
+				echo '</li>';
+				if ($i++ > 3) break;
+			}
+			echo '</ul>';
+			echo '</li>';
+
+		}
+
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'BCI RSS', 'bci' );
+			}
+			if ( isset( $instance[ 'bci_rss' ] ) ) {
+				$desc = $instance[ 'bci_rss' ];
+			} else {
+				$desc = __( '', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'bci_rss' ); ?>"><?php _e( 'RSS Feed:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'bci_rss' ); ?>" name="<?php echo $this->get_field_name( 'bci_rss' ); ?>" type="text" value="<?php echo esc_attr( $desc ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['bci_rss'] = $new_instance['bci_rss'];
+			return $instance;
+		}
+	}
+
 	function BCI_leavers_widget() {
 		register_widget( 'BCI_leavers' );
 	}
@@ -1377,6 +1439,133 @@
 				$title = $instance[ 'title' ];
 			} else {
 				$title = __( 'Exec Board', 'bci' );
+			}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		}
+		function update($new_instance, $old_instance) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			return $instance;
+		}
+	}
+
+	function BCI_exec_widget() {
+		register_widget( 'BCI_enter' );
+	}
+	add_action( 'widgets_init', 'BCI_center_widget' );
+	class BCI_exec extends WP_Widget {
+		function __construct() {
+			$widget_ops = array( 'classname' => 'widget_centre', 'description' => __( 'Lists Centre Stuff', 'bci' ) );
+			parent::__construct( 'centre', __( 'BCI Centre Info Widget', 'bci' ), $widget_ops );
+		}
+		function widget( $args, $instance) {
+			$title = apply_filters( 'widget_title', $instance['title']);
+			$args = array (
+				'meta_query'	 => array(
+					array(
+						'key'	   => '_usercentre_centre_lead',
+						'value'	 => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				),
+			);
+			$lead = new WP_User_Query( $args );
+			if ( ! empty( $lead->results ) ) {
+				foreach ( $lead->results as $user ) {
+					echo '<h3>Centre Lead: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
+				}
+			} else {
+				// no users found
+			}
+			$args = array (
+				'meta_query'	 => array(
+					array(
+						'key'	   => '_usercentre_lab_manager',
+						'value'	 => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				),
+			);
+			$lead = new WP_User_Query( $args );
+			if ( ! empty( $lead->results ) ) {
+				foreach ( $lead->results as $user ) {
+					echo '<h3>Lab Manager: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
+				}
+			} else {
+				// no users found
+			}
+			$args = array (
+				'meta_query'	 => array(
+					array(
+						'key'	   => '_usercentre_deputy_lab_manager',
+						'value'	 => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				),
+			);
+			$lead = new WP_User_Query( $args );
+			if ( ! empty( $lead->results ) ) {
+				foreach ( $lead->results as $user ) {
+					echo '<h3>Deputy Lab Manager: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
+				}
+			} else {
+				// no users found
+			}
+			$args = array (
+				'meta_query'	 => array(
+					array(
+						'key'	   => '_usercentre_centre_administrator',
+						'value'	 => 'on',
+						'compare'   => 'LIKE',
+					),
+					array(
+						'key'	   => '_usercentre_centre',
+						'value'	 => $post->ID,
+						'compare'   => 'LIKE',
+					),
+				),
+			);
+			$lead = new WP_User_Query( $args );
+			if ( ! empty( $lead->results ) ) {
+				foreach ( $lead->results as $user ) {
+					echo '<h3>Centre Administrator: <a href="mailto:' . $user->user_email . '">' . $user->_me_ttitle . ' ' . $user->first_name . ' ' . $user->last_name . '</a></h3>';
+				}
+			} else {
+				$email = get_post_meta(get_the_ID(), '_centre_admine', true);
+				echo '<h3><a href="mailto:' . $email . '">Centre Administrator</a></h3>';
+			}
+			$link = get_post_meta(get_the_ID(), '_centre_link', true); if($link != '') :
+				echo '<h4>Centre web page: <a href="'. $link .'" target="_blank" rel="noopener">'. the_title() .'</a></h4>';
+			endif;
+			$ml = get_post_meta(get_the_ID(), '_centre_ml', true); if($ml != '') :
+				echo '<h4>Centre mailing list: <a href="mailto:'. $ml .'"><i class="nav-envelope"></i> '. $ml .'</a></h4>';
+			endif;
+		}
+		function form( $instance ) {
+			if ( isset( $instance[ 'title' ] ) ) {
+				$title = $instance[ 'title' ];
+			} else {
+				$title = __( 'Centre Details', 'bci' );
 			}
 		?>
 		<p>
